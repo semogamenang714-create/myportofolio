@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Desti Puspita - Professional Profile</title>
+    <title>Portofolio Saya - Desti Puspita</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -16,7 +16,6 @@
             scroll-behavior: smooth;
             background-color: #fdfcfd;
             overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
         }
 
         /* LATAR BELAKANG GRADASI MESH */
@@ -35,93 +34,140 @@
             to { transform: scale(1.3); opacity: 0.4; }
         }
 
-        /* Animasi Reveal */
+        /* Animasi Reveal - Transisi Mulus */
         .reveal {
             opacity: 0; 
-            transform: translateY(20px);
-            transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), 
-                        transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform: translateY(25px);
+            transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                        transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .reveal.active { 
             opacity: 1; 
             transform: translateY(0); 
         }
 
-        /* Float Anim */
+        /* Animasi Mengapung Foto Profil */
         @keyframes floating {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-12px); }
             100% { transform: translateY(0px); }
         }
-        .float-anim { animation: floating 4s ease-in-out infinite; }
+        .float-anim {
+            animation: floating 4s ease-in-out infinite;
+        }
 
-        /* Mobile Dropdown */
+        /* Gaya Menu Dropdown Mobile */
         #mobile-dropdown {
             max-height: 0;
             overflow: hidden;
-            transition: all 0.4s ease-in-out;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 0;
+            transform: translateY(-5px);
         }
         #mobile-dropdown.open {
-            max-height: 350px;
+            max-height: 400px;
             opacity: 1;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
+            transform: translateY(0);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
         }
 
         /* Dropdown Bahasa */
         #lang-dropdown {
             display: none;
-            position: absolute; top: 110%; right: 0;
-            background: white; border-radius: 12px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            position: absolute; top: 100%; right: 0; margin-top: 0.5rem;
+            background: white; border-radius: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             border: 1px solid rgba(0,0,0,0.05); z-index: 100;
         }
-        #lang-dropdown.open { display: block; animation: fadeIn 0.2s ease-out; }
+        #lang-dropdown.open { display: block; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Neumorphism-ish Cards */
+        /* Efek Interaktif Timbul */
         .timbul-interaktif {
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 4px 4px 12px rgba(0,0,0,0.02), -4px -4px 12px rgba(255,255,255,0.7);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 6px 6px 15px rgba(0,0,0,0.03), -6px -6px 15px rgba(255,255,255,0.8);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .timbul-interaktif:hover {
-            transform: translateY(-5px);
-            box-shadow: 8px 8px 24px rgba(0,0,0,0.05);
+            transform: translateY(-8px);
+            box-shadow: 12px 12px 30px rgba(0,0,0,0.06);
+            background: white;
+        }
+        .timbul-interaktif:active { transform: translateY(1px) scale(0.98); }
+
+        /* Gaya Nama Kustom - Super Tebal, 1 Line, Merah Tua */
+        .desti-name-center {
+            letter-spacing: 0.02em; 
+            color: #7F1D1D; 
+            text-align: center;
+            font-size: 1.8rem; 
+            font-weight: 900; 
+            text-transform: uppercase;
+            white-space: nowrap; 
+            display: block;
+            line-height: 1.1;
+        }
+        @media (min-width: 768px) {
+            .desti-name-center { 
+                letter-spacing: 0.05em; 
+                font-size: 2.5rem; 
+            }
         }
 
-        /* Header Slim */
-        .header-slim { padding-top: 0.4rem !important; padding-bottom: 0.4rem !important; }
+        /* Musik & Progress */
+        .music-btn {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid white;
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.1);
+        }
+        .music-btn.playing { background: #be185d; color: white; animation: pulse-btn 2s infinite; }
+        @keyframes pulse-btn {
+            0% { box-shadow: 0 0 0 0 rgba(190, 24, 93, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(190, 24, 93, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(190, 24, 93, 0); }
+        }
+
+        .bar-container { width: 100%; background: #f1f5f9; height: 0.5rem; border-radius: 999px; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 999px; transform: scaleX(0); transform-origin: left; transition: transform 2.5s ease-out; }
+        .reveal.active .bar-fill { transform: scaleX(1); }
 
         /* Marquee */
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .marquee-track { display: flex; width: max-content; animation: marquee 35s linear infinite; }
+        .marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
 
-        .chibi-character { width: 65px; height: 65px; position: absolute; bottom: 32px; left: 10%; z-index: 20; }
+        .chibi-character { width: 70px; height: 70px; position: absolute; bottom: 32px; left: 10%; z-index: 20; }
+        .force-1-line { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+
+        /* Tipisin Nav Bar Mobile */
+        .header-slim { padding-top: 0.3rem !important; padding-bottom: 0.3rem !important; }
+        @media (min-width: 768px) { .header-slim { padding-top: 0.6rem !important; padding-bottom: 0.6rem !important; } }
     </style>
 </head>
-<body class="selection:bg-pink-100">
+<body class="selection:bg-pink-200">
 
+    <!-- Audio Element -->
     <audio id="bg-music" loop>
         <source src="Maudy Ayunda - Kejar Mimpi _ Official Music Video - (64 Kbps).mp3" type="audio/mpeg">
     </audio>
 
     <div class="mesh-bg">
-        <div class="mesh-circle bg-pink-200" style="top: -10%; left: -10%; width: 80%; height: 80%;"></div>
-        <div class="mesh-circle bg-blue-100" style="bottom: -10%; right: -5%; width: 70%; height: 70%; animation-delay: 1.5s;"></div>
-        <div class="mesh-circle bg-purple-100" style="top: 20%; left: 10%; width: 60%; height: 60%; animation-delay: 0.5s;"></div>
+        <div class="mesh-circle bg-pink-300" style="top: -10%; left: -10%; width: 90%; height: 90%;"></div>
+        <div class="mesh-circle bg-blue-200" style="bottom: -10%; right: -5%; width: 80%; height: 80%; animation-delay: 1.5s;"></div>
+        <div class="mesh-circle bg-purple-200" style="top: 20%; left: 10%; width: 70%; height: 70%; animation-delay: 0.5s;"></div>
+        <div class="mesh-circle bg-green-100" style="bottom: 10%; left: 0%; width: 60%; height: 60%; animation-delay: 2.5s;"></div>
     </div>
 
     <!-- Header Navigation -->
-    <header class="fixed w-full z-50 px-4 py-3">
-        <div class="max-w-4xl mx-auto bg-white/80 backdrop-blur-xl px-6 header-slim rounded-full shadow-sm border border-white/50">
-            <div class="flex justify-between items-center h-12">
-                <span class="text-[10px] font-black uppercase tracking-[0.3em] text-pink-900/60">DP.</span>
+    <header class="fixed w-full z-50 px-4 py-2 md:py-4 md:px-6">
+        <div class="max-w-5xl mx-auto bg-white/70 backdrop-blur-2xl px-6 md:px-10 header-slim rounded-[2.5rem] md:rounded-full shadow-lg border border-white/50 overflow-hidden">
+            <div class="flex justify-between items-center relative">
+                <span class="text-[10px] font-black uppercase tracking-[0.4em] text-pink-900/60" id="nav-brand">Portofolio</span>
                 
-                <div class="flex items-center gap-4">
-                    <nav class="hidden md:flex space-x-6">
+                <div class="flex items-center gap-3 md:gap-4">
+                    <!-- Navigasi Desktop -->
+                    <nav class="hidden md:flex space-x-8">
                         <a href="#menu" class="hover:text-pink-600 font-bold text-[10px] uppercase tracking-widest text-slate-500 transition-all" data-t="nav_menu">Menu</a>
                         <a href="#capaian" class="hover:text-pink-600 font-bold text-[10px] uppercase tracking-widest text-slate-500 transition-all" data-t="nav_capaian">Pencapaian</a>
                         <a href="#sertifikat" class="hover:text-pink-600 font-bold text-[10px] uppercase tracking-widest text-slate-500 transition-all" data-t="nav_sertifikat">Sertifikat</a>
@@ -130,9 +176,9 @@
 
                     <!-- Language Switcher -->
                     <div class="relative">
-                        <button id="lang-toggle" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-pink-50/50 hover:bg-pink-100 transition-all border border-pink-100">
-                            <i data-lucide="languages" class="w-3.5 h-3.5 text-pink-600"></i>
-                            <span id="current-lang-text" class="text-[9px] font-black uppercase tracking-widest text-pink-800">ID</span>
+                        <button id="lang-toggle" class="flex items-center gap-2 p-1.5 md:p-2 rounded-xl bg-white/80 hover:bg-pink-50 transition-all shadow-sm border border-pink-100">
+                            <i data-lucide="languages" class="w-3.5 h-3.5 md:w-4 md:h-4 text-pink-600"></i>
+                            <span id="current-lang-text" class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-700">ID</span>
                         </button>
                         <div id="lang-dropdown">
                             <button onclick="changeLanguage('id')" class="w-full text-left px-4 py-2 text-[10px] font-bold hover:bg-pink-50 text-slate-600 border-b border-pink-50">INDONESIA</button>
@@ -141,179 +187,179 @@
                         </div>
                     </div>
 
-                    <button id="menu-toggle" class="md:hidden p-2 rounded-full bg-white shadow-sm active:scale-90 transition-transform">
-                        <i data-lucide="menu" class="w-4 h-4 text-pink-600"></i>
+                    <button id="menu-toggle" class="md:hidden p-2 rounded-2xl bg-white/80 hover:bg-pink-100 transition-all shadow-md active:scale-90">
+                        <i data-lucide="more-horizontal" class="w-5 h-5 text-pink-600"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Mobile Menu -->
-            <div id="mobile-dropdown" class="md:hidden flex flex-col items-center space-y-2">
-                <a href="#menu" class="text-[10px] font-bold text-slate-600 uppercase tracking-widest py-2" data-t="nav_menu">Menu</a>
-                <a href="#capaian" class="text-[10px] font-bold text-slate-600 uppercase tracking-widest py-2" data-t="nav_capaian">Pencapaian</a>
-                <a href="#sertifikat" class="text-[10px] font-bold text-slate-600 uppercase tracking-widest py-2" data-t="nav_sertifikat">Sertifikat</a>
-                <a href="#dokumentasi" class="text-[10px] font-bold text-slate-600 uppercase tracking-widest py-2" data-t="nav_dokumen">Dokumen</a>
+            <!-- Menu Dropdown Mobile -->
+            <div id="mobile-dropdown" class="md:hidden flex flex-col items-center space-y-3">
+                <a href="#menu" class="mobile-link text-xs font-bold text-slate-600 uppercase tracking-widest py-2" data-t="nav_menu">Menu</a>
+                <a href="#capaian" class="mobile-link text-xs font-bold text-slate-600 uppercase tracking-widest py-2" data-t="nav_capaian">Pencapaian</a>
+                <a href="#sertifikat" class="mobile-link text-xs font-bold text-slate-600 uppercase tracking-widest py-2" data-t="nav_sertifikat">Sertifikat</a>
+                <a href="#dokumentasi" class="mobile-link text-xs font-bold text-slate-600 uppercase tracking-widest py-2" data-t="nav_dokumen">Dokumen</a>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="menu" class="min-h-screen flex flex-col items-center justify-center px-6 pt-20 text-center">
-        <div class="reveal active space-y-6">
-            <div class="float-anim relative w-36 h-36 md:w-48 md:h-48 mx-auto">
-                <div class="absolute inset-0 bg-pink-100 rounded-full blur-xl opacity-50 scale-110"></div>
-                <img src="https://i.imgur.com/ZZnypaj.jpeg" alt="Desti Puspita" class="relative z-10 w-full h-full object-cover rounded-full border-4 border-white shadow-lg" />
+    <section id="menu" class="min-h-screen flex flex-col items-center justify-center px-6 pt-12 md:pt-24 text-center">
+        <div class="reveal active space-y-6 md:space-y-8 relative">
+            <div class="float-anim relative w-40 h-40 md:w-52 md:h-52 mx-auto flex items-center justify-center">
+                <div class="absolute inset-0 animate-[spin_40s_linear_infinite] opacity-30">
+                    <svg class="w-full h-full" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="46" fill="none" stroke="#be185d" stroke-width="1.2" stroke-dasharray="15 15" />
+                        <circle cx="50" cy="4" r="4.5" fill="#f472b6" />
+                    </svg>
+                </div>
+                <div class="absolute -inset-4 bg-gradient-to-tr from-pink-200/40 via-transparent to-blue-200/40 rounded-full blur-2xl opacity-40"></div>
+                <img src="https://i.imgur.com/ZZnypaj.jpeg" alt="Desti Puspita" class="relative z-10 w-32 h-32 md:w-44 md:h-44 object-cover rounded-full border-4 border-white shadow-2xl transition-transform hover:scale-110" />
             </div>
 
-            <div class="space-y-3">
-                <h1 id="hero-name" class="text-2xl md:text-4xl font-black text-red-900 tracking-wider uppercase">DESTI PUSPITA</h1>
+            <div class="space-y-4 flex flex-col items-center">
+                <h1 id="hero-name" class="desti-name-center">DESTI PUSPITA</h1>
                 
                 <div class="flex justify-center mt-2">
-                    <button id="music-control" class="px-6 py-2 bg-white/80 backdrop-blur rounded-full flex items-center gap-2 border border-pink-100 shadow-sm hover:shadow-md transition-all active:scale-95 group">
-                        <i id="music-icon" data-lucide="play" class="w-3.5 h-3.5 text-pink-600"></i>
-                        <span class="text-[9px] font-black uppercase tracking-widest text-slate-600" data-t="btn_music">Putar Musik</span>
+                    <button id="music-control" class="music-btn px-7 py-2.5 rounded-full flex items-center gap-3 active:scale-95 group hover:bg-pink-50">
+                        <i id="music-icon" data-lucide="play-circle" class="w-5 h-5"></i>
+                        <span class="text-[9px] font-black uppercase tracking-[0.2em]" data-t="btn_music">Putar Musik</span>
                     </button>
                 </div>
 
-                <p class="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 max-w-xs mx-auto" data-t="hero_sub">
+                <p class="text-[8.5px] sm:text-[9.5px] md:text-[11px] font-bold uppercase tracking-[0.05em] sm:tracking-[0.1em] md:tracking-[0.3em] text-slate-500 pt-1 force-1-line" data-t="hero_sub">
                     Penutur Bahasa Jepang • Kreatif • Layanan Profesional
                 </p>
             </div>
         </div>
 
-        <div class="w-full max-w-xl mx-auto mt-12 reveal active" style="transition-delay: 0.2s">
-            <div class="p-8 md:p-12 rounded-[2.5rem] timbul-interaktif relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-24 h-24 bg-pink-50 rounded-bl-full -z-10 opacity-50"></div>
-                <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-pink-700 mb-6" data-t="about_title">Tentang Saya</h3>
-                <div id="about-text" class="space-y-4 text-xs md:text-sm leading-relaxed text-slate-600 font-medium">
+        <div class="w-full max-w-2xl mx-auto mt-10 md:mt-16 reveal active" style="transition-delay: 0.3s">
+            <div id="about-box" class="p-8 md:p-14 relative overflow-hidden group rounded-[2.5rem] md:rounded-[3.5rem] cursor-pointer border-2 shadow-2xl transition-all duration-1000 timbul-interaktif text-center">
+                <div class="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 bg-pink-100/30 rounded-bl-full -z-10 group-hover:scale-125 transition-transform"></div>
+                <h3 class="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-pink-700 mb-8 flex items-center justify-center gap-4">
+                    <span class="w-10 md:w-16 h-[2px] bg-pink-300"></span> <span data-t="about_title">Tentang Saya</span> <span class="w-10 md:w-16 h-[2px] bg-pink-300"></span>
+                </h3>
+                <div id="about-text" class="space-y-6 text-[14px] md:text-[16px] leading-relaxed text-slate-700 font-medium px-2">
                     <p data-t="about_p1">Halo, perkenalkan nama saya <strong>Desti Puspita</strong>.</p>
-                    <p data-t="about_p2">Saya adalah pribadi yang sangat menyukai hal-hal baru dan memiliki ambisi kuat untuk mencapai target saya. Sebagai bukti, saya berhasil meraih sertifikasi <strong>JLPT N3 hanya dalam waktu 1 tahun</strong>.</p>
-                    <p class="text-pink-800/30 text-[9px] font-black uppercase tracking-widest pt-4 italic" data-t="about_quote">"Ini adalah tentang saya, tentang sebuah perjalanan hidup."</p>
+                    <p data-t="about_p2">Saya adalah pribadi yang sangat menyukai hal-hal baru dan memiliki ambisi kuat untuk mencapai target saya. Sebagai bukti, saya berhasil meraih sertifikasi <strong>JLPT N3 hanya dalam waktu 1 tahun</strong>, serta berbagai pencapaian membanggakan selama masa sekolah menengah.</p>
+                    <p class="text-pink-800/40 text-[10px] font-black uppercase tracking-widest pt-4 italic" data-t="about_quote">"Ini adalah tentang saya, tentang sebuah perjalanan hidup."</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pencapaian -->
-    <section id="capaian" class="py-20 px-6">
-        <div class="max-w-4xl mx-auto text-center mb-12 reveal">
-            <h3 class="text-xl font-black uppercase tracking-[0.3em] text-slate-800" data-t="sec_capaian">Pencapaian</h3>
-            <div class="w-12 h-1 bg-pink-200 mx-auto mt-3 rounded-full"></div>
+    <section id="capaian" class="py-12 md:py-24 px-6">
+        <div class="max-w-6xl mx-auto text-center mb-10 md:mb-16 reveal">
+            <h3 class="text-2xl font-black uppercase tracking-widest text-red-900/80" data-t="sec_capaian">Pencapaian</h3>
+            <div class="w-20 h-[3px] bg-gradient-to-r from-pink-400 to-blue-400 mx-auto mt-4 rounded-full shadow-sm"></div>
         </div>
-        
-        <div id="achievements-grid" class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            <!-- Rendered by JS -->
-        </div>
+        <div id="achievements-grid" class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 mb-12 md:mb-24"></div>
 
-        <!-- Skills Section -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            <div class="timbul-interaktif p-8 rounded-[2rem] bg-blue-50/30 border border-blue-100 reveal">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="p-2 bg-blue-500 text-white rounded-xl shadow-sm"><i data-lucide="languages" class="w-4 h-4"></i></div>
-                    <h4 class="text-[11px] font-black uppercase text-blue-900 tracking-widest" data-t="skill_lang">Bahasa</h4>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
+            <div class="timbul-interaktif p-8 md:p-10 reveal rounded-[2.5rem] bg-blue-50/50 border-2 border-blue-100">
+                <div class="flex items-center gap-5 mb-8 border-b border-blue-200 pb-5">
+                    <div class="p-3 bg-blue-600 text-white rounded-2xl shadow-lg"><i data-lucide="languages" class="w-6 h-6"></i></div>
+                    <h4 class="text-[13px] font-black uppercase text-blue-900 tracking-widest" data-t="skill_lang">Kompetensi Bahasa</h4>
                 </div>
-                <div class="space-y-6">
-                    <div class="space-y-2">
-                        <div class="flex justify-between text-[10px] font-bold"><span data-t="lang_jp">Jepang (N3)</span><span class="text-blue-600 uppercase" data-t="lvl_adv">Lanjutan</span></div>
-                        <div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-blue-400 rounded-full" style="width: 85%"></div></div>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex justify-between text-[10px] font-bold"><span data-t="lang_id">Indonesia</span><span class="text-blue-600 uppercase" data-t="lvl_native">Asli</span></div>
-                        <div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-blue-300 rounded-full" style="width: 100%"></div></div>
-                    </div>
+                <div class="space-y-10">
+                    <div class="space-y-3"><div class="flex justify-between items-end"><span class="text-[15px] font-bold text-slate-700" data-t="lang_jp">Jepang (N3)</span><span class="text-[10px] font-black text-blue-800 uppercase tracking-widest" data-t="lvl_adv">Lanjutan</span></div><div class="bar-container"><div class="bar-fill bg-gradient-to-r from-blue-400 to-blue-600" style="width: 85%;"></div></div></div>
+                    <div class="space-y-3"><div class="flex justify-between items-end"><span class="text-[15px] font-bold text-slate-700" data-t="lang_id">Indonesia (Native)</span><span class="text-[10px] font-black text-blue-700 uppercase tracking-widest" data-t="lvl_native">Asli</span></div><div class="bar-container"><div class="bar-fill bg-gradient-to-r from-blue-300 to-blue-500" style="width: 100%;"></div></div></div>
                 </div>
             </div>
-
-            <div class="timbul-interaktif p-8 rounded-[2rem] bg-purple-50/30 border border-purple-100 reveal">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="p-2 bg-purple-500 text-white rounded-xl shadow-sm"><i data-lucide="zap" class="w-4 h-4"></i></div>
-                    <h4 class="text-[11px] font-black uppercase text-purple-900 tracking-widest" data-t="skill_soft">Soft Skills</h4>
+            <div class="timbul-interaktif p-8 md:p-10 reveal rounded-[2.5rem] bg-purple-50/50 border-2 border-purple-100">
+                <div class="flex items-center gap-5 mb-8 border-b border-purple-200 pb-5">
+                    <div class="p-3 bg-purple-700 text-white rounded-2xl shadow-lg"><i data-lucide="zap" class="w-6 h-6"></i></div>
+                    <h4 class="text-[13px] font-black uppercase text-purple-900 tracking-widest" data-t="skill_soft">Keahlian Soft Skills</h4>
                 </div>
-                <div class="grid grid-cols-2 gap-3" id="soft-skills-grid">
-                    <!-- Rendered by JS -->
-                </div>
+                <div class="grid grid-cols-2 gap-4" id="soft-skills-grid"></div>
             </div>
         </div>
     </section>
 
     <!-- Sertifikat -->
-    <section id="sertifikat" class="py-20 px-6 bg-white/30 backdrop-blur-sm">
-        <div class="max-w-2xl mx-auto text-center mb-10 reveal">
-            <h3 class="text-xl font-black uppercase tracking-[0.3em] text-slate-800" data-t="sec_sertifikat">Sertifikat</h3>
+    <section id="sertifikat" class="py-12 md:py-24 px-6">
+        <div class="max-w-3xl mx-auto text-center mb-8 reveal">
+            <h3 class="text-2xl font-black uppercase tracking-widest text-blue-900/80" data-t="sec_sertifikat">Sertifikat</h3>
+            <div class="w-14 h-[2px] bg-blue-400 mx-auto mt-3 rounded-full shadow-sm"></div>
         </div>
-        <div class="flex justify-center reveal">
-            <div class="max-w-md w-full overflow-hidden rounded-[2rem] shadow-xl border-4 border-white timbul-interaktif group">
-                <img src="https://i.imgur.com/yuCaZtp.jpeg" alt="Sertifikat" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-1000" />
+        <div class="flex justify-center reveal px-2 md:px-0">
+            <div class="w-full max-w-sm md:max-w-lg overflow-hidden rounded-[2rem] md:rounded-[3.5rem] shadow-2xl border-4 border-white bg-white ring-4 ring-blue-50/20 timbul-interaktif group">
+                <img src="https://i.imgur.com/yuCaZtp.jpeg" alt="Sertifikat" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-[2000ms]" />
             </div>
         </div>
     </section>
 
-    <!-- Gallery / Dokumen -->
-    <section id="dokumentasi" class="py-20 px-6">
-        <div class="max-w-2xl mx-auto text-center mb-12 reveal">
-            <h3 class="text-xl font-black uppercase tracking-[0.3em] text-slate-800" data-t="sec_dokumen">Portofolio</h3>
-            <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-2" data-t="dokumen_sub">Karya Kreatif & Catatan Momen</p>
+    <!-- Portofolio Saya -->
+    <section id="dokumentasi" class="py-16 md:py-24 px-4 md:px-6">
+        <div class="max-w-6xl mx-auto text-center mb-10 reveal">
+            <div class="inline-block px-10 md:px-14 py-4 md:py-5 rounded-full mb-6 border-2 border-pink-100 bg-white/60 shadow-sm">
+                <h3 class="text-xl md:text-2xl font-black uppercase tracking-[0.4em] text-pink-900" data-t="sec_dokumen">Portofolio Saya</h3>
+            </div>
+            <p class="text-[10px] md:text-[12px] text-slate-400 font-bold uppercase tracking-[0.3em] mt-2" data-t="dokumen_sub">Karya Kreatif & Catatan Momen</p>
         </div>
-        <div class="max-w-4xl mx-auto">
-            <div class="flex flex-wrap justify-center gap-8 mb-16 reveal">
-                <div class="w-56 h-72 md:w-64 md:h-80 overflow-hidden rounded-[3rem] shadow-xl border-4 border-white timbul-interaktif group">
-                    <img src="https://i.imgur.com/6m2penP.jpeg" class="w-full h-full object-cover scale-[1.6] group-hover:scale-[1.8] transition-transform duration-1000" />
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="mb-12 md:mb-24 reveal flex flex-wrap justify-center gap-10 md:gap-16">
+                <div class="w-64 md:w-80 h-80 md:h-96 overflow-hidden rounded-[3rem] md:rounded-[5rem] shadow-2xl border-8 border-white bg-pink-100 ring-8 ring-pink-50 group timbul-interaktif">
+                    <img src="https://i.imgur.com/6m2penP.jpeg" class="w-full h-full object-cover object-center scale-[1.75] group-hover:scale-[1.9] transition-transform duration-[2000ms]" />
                 </div>
-                <div class="w-56 h-72 md:w-64 md:h-80 overflow-hidden rounded-[3rem] shadow-xl border-4 border-white timbul-interaktif group">
-                    <img src="https://i.imgur.com/tPVHLLA.png" class="w-full h-full object-cover group-hover:scale-[1.2] transition-transform duration-1000" />
+                <div class="w-64 md:w-80 h-80 md:h-96 overflow-hidden rounded-[3rem] md:rounded-[5rem] shadow-2xl border-8 border-white bg-blue-100 ring-8 ring-blue-200/50 group timbul-interaktif">
+                    <img src="https://i.imgur.com/tPVHLLA.png" class="w-full h-full object-cover object-center scale-[1.1] group-hover:scale-[1.25] transition-transform duration-[2000ms]" />
                 </div>
             </div>
-            <div class="py-10 reveal overflow-hidden">
-                <h4 class="text-[8px] font-black text-slate-300 mb-8 uppercase tracking-[0.5em] text-center" data-t="dokumen_marquee">PHOTO FEED</h4>
+            <div class="py-10 md:py-16 reveal overflow-hidden">
+                <h4 class="text-[10px] font-black text-blue-900/30 mb-12 uppercase tracking-[0.6em] text-center" data-t="dokumen_marquee">Momen Foto Bergulir</h4>
                 <div class="marquee-track" id="marquee-track"></div>
             </div>
         </div>
     </section>
 
     <!-- Mini Game -->
-    <section class="pb-24 px-6 reveal">
-        <div id="game-box" class="max-w-3xl mx-auto p-8 md:p-12 rounded-[3rem] timbul-interaktif text-center relative border border-pink-50">
-            <div class="inline-block px-8 py-2 bg-gradient-to-r from-pink-400 to-pink-500 text-white font-black rounded-full text-[9px] shadow-sm uppercase tracking-widest mb-6" data-t="game_title">Mini Game</div>
-            <p class="text-[9px] text-slate-400 mb-8 font-black uppercase tracking-widest" data-t="game_sub">Jump to reach your dreams!</p>
-            <div class="relative w-full h-48 bg-sky-50 rounded-[2rem] overflow-hidden border border-pink-50 cursor-pointer" id="game-stage">
+    <section class="pb-16 md:pb-24 px-4 md:px-6 reveal -mt-10 md:-mt-16">
+        <div id="game-box" class="max-w-5xl mx-auto game-container-static p-8 md:p-16 rounded-[4rem] md:rounded-[6rem] text-center relative shadow-2xl border-2 border-pink-100/50">
+            <div class="absolute -top-5 left-1/2 -translate-x-1/2 px-10 py-2.5 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-black rounded-full text-[11px] shadow-lg uppercase tracking-widest" data-t="game_title">Permainan Mini</div>
+            <p class="text-[10px] md:text-[12px] text-slate-500 mb-10 font-black opacity-60" data-t="game_sub">Lompati rintangan untuk mencapai impian!</p>
+            <div class="relative w-full h-56 md:h-72 bg-sky-50 rounded-[3rem] md:rounded-[4rem] overflow-hidden border-2 border-pink-100 cursor-pointer shadow-inner" id="game-stage">
+                <div class="cloud text-4xl" style="top: 15%; animation-duration: 25s;">☁️</div>
                 <div id="player" class="chibi-character">
                     <svg viewBox="0 0 100 100" class="w-full h-full">
                         <path d="M20,50 Q20,20 50,20 Q80,20 80,50" fill="#4B2C20" /><path d="M15,55 Q5,40 25,30 Q50,20 75,30 Q95,40 85,55" fill="#5D4037" /><circle cx="50" cy="55" r="30" fill="#FFE0B2" /><circle cx="40" cy="55" r="4" fill="#333" /><circle cx="60" cy="55" r="4" fill="#333" /><circle cx="41" cy="54" r="1.5" fill="white" /><circle cx="61" cy="54" r="1.5" fill="white" /><circle cx="35" cy="62" r="3" fill="#F06292" opacity="0.4" /><circle cx="65" cy="62" r="3" fill="#F06292" opacity="0.4" /><path d="M47,65 Q50,68 53,65" fill="none" stroke="#333" stroke-width="1.5" /><path d="M30,85 L70,85 L65,75 Q50,70 35,75 Z" fill="#F48FB1" /><path d="M50,75 L50,85" stroke="white" stroke-width="2" /><path d="M70,25 Q85,20 80,40 Q70,45 70,25 Z" fill="#E91E63" />
                     </svg>
                 </div>
-                <div class="absolute bottom-8 text-3xl" id="obstacle" style="right: -10%;">🌵</div>
-                <div class="absolute bottom-0 w-full h-2 bg-emerald-100 opacity-50"></div>
+                <div class="absolute bottom-8 text-4xl md:text-5xl" id="obstacle" style="right: -10%;">🌵</div>
+                <div class="absolute bottom-0 w-full h-3 md:h-4 bg-gradient-to-r from-green-300 via-emerald-200 to-green-300 opacity-70"></div>
             </div>
-            <div class="mt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-                <span class="text-[12px] font-black text-pink-600 tracking-widest bg-white px-6 py-2 rounded-xl shadow-sm border border-pink-50 uppercase"><span data-t="game_score">Score</span>: <span id="score">0</span></span>
-                <button id="restart-btn" class="hidden px-8 py-3 bg-red-500 text-white rounded-full text-[10px] font-black uppercase hover:bg-red-600 shadow-lg" data-t="game_restart">Retry</button>
-            </div>
+            <div class="mt-8 flex flex-col md:flex-row justify-between items-center px-4 md:px-16 gap-6"><span class="text-[18px] font-black text-pink-600 tracking-widest bg-white px-8 py-3 rounded-2xl shadow-sm border border-pink-50 uppercase"><span data-t="game_score">Skor</span>: <span id="score">0</span></span><button id="restart-btn" class="hidden px-14 py-4 bg-red-600 text-white rounded-[2.5rem] text-[12px] font-black uppercase hover:bg-red-700 shadow-xl" data-t="game_restart">Mulai Lagi</button></div>
         </div>
     </section>
 
-    <!-- Footer - PRECISE & SLIM -->
-    <footer class="py-12 px-6 text-center border-t border-pink-50 bg-white/80">
-        <div class="reveal max-w-lg mx-auto space-y-6">
-            <div class="flex justify-center items-center gap-6">
-                <a href="https://wa.me/6289506878654" target="_blank" class="w-10 h-10 flex items-center justify-center bg-white rounded-xl shadow-sm hover:scale-110 transition-transform text-green-500 border border-slate-50">
-                    <i data-lucide="phone" class="w-4 h-4"></i>
+    <!-- Footer - REVISI: Optimized Mobile Footer, Fixed IG Icon & Link -->
+    <footer class="py-10 md:py-16 px-6 text-center border-t border-pink-100 bg-white/40 backdrop-blur-xl">
+        <div class="reveal max-w-4xl mx-auto flex flex-col items-center space-y-8">
+            <!-- Ikon Kontak - REVISI: Sejajar, Presisi di Tengah -->
+            <div class="flex justify-center items-center gap-6 md:gap-10">
+                <a href="https://wa.me/6289506878654" target="_blank" class="p-2 md:p-3 bg-white/80 rounded-xl shadow-sm hover:scale-110 transition-transform text-green-500 border border-pink-50">
+                    <i data-lucide="phone" class="w-5 h-5 md:w-6 md:h-6"></i>
                 </a>
-                <a href="mailto:destipuspita.official@gmail.com" class="w-10 h-10 flex items-center justify-center bg-white rounded-xl shadow-sm hover:scale-110 transition-transform text-red-600 border border-slate-50">
-                    <i data-lucide="mail" class="w-4 h-4"></i>
+                <a href="mailto:destipuspita.official@gmail.com" class="p-2 md:p-3 bg-white/80 rounded-xl shadow-sm hover:scale-110 transition-transform text-red-700 border border-pink-50">
+                    <i data-lucide="mail" class="w-5 h-5 md:w-6 md:h-6"></i>
                 </a>
-                <a href="https://www.instagram.com/tentang_desti_?igsh=MXNqcGhvMmF3ZDl4bw==" target="_blank" class="w-10 h-10 flex items-center justify-center bg-white rounded-xl shadow-sm hover:scale-110 transition-transform overflow-hidden border border-slate-50">
-                    <img src="1.jpeg" alt="Instagram" class="w-5 h-5 object-contain" />
+                <!-- Link Instagram REVISI -->
+                <a href="https://www.instagram.com/tentang_desti_?igsh=MXNqcGhvMmF3ZDl4bw==" target="_blank" class="p-2 md:p-3 bg-white/80 rounded-xl shadow-sm hover:scale-110 transition-transform text-pink-600 border border-pink-50">
+                    <i data-lucide="instagram" class="w-5 h-5 md:w-6 md:h-6"></i>
                 </a>
-                <a href="#" class="w-10 h-10 flex items-center justify-center bg-white rounded-xl shadow-sm hover:scale-110 transition-transform text-blue-700 border border-slate-50">
-                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                <a href="#" class="p-2 md:p-3 bg-white/80 rounded-xl shadow-sm hover:scale-110 transition-transform text-blue-900 border border-pink-50">
+                    <i data-lucide="linkedin" class="w-5 h-5 md:w-6 md:h-6"></i>
                 </a>
             </div>
             
-            <div class="space-y-1">
-                <p class="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]" data-t="footer_name">
-                    Desti Puspita • Purposeful Living
+            <div class="space-y-2 w-full text-center">
+                <!-- Slogan - 1 Line -->
+                <p class="text-[10px] sm:text-[11px] md:text-[13px] font-black text-slate-500 uppercase tracking-[0.1em] sm:tracking-[0.4em] md:tracking-[0.8em] force-1-line" data-t="footer_name">
+                    Tujuan Bermakna • Desti Puspita
                 </p>
-                <p class="text-[7px] md:text-[8px] font-bold text-slate-300 uppercase tracking-widest pt-2" data-t="footer_copy">© 2026 Portfolio</p>
+                <!-- Copyright paling bawah -->
+                <p class="text-[7.5px] md:text-[9px] font-bold text-slate-300 uppercase tracking-[0.4em] mt-4" data-t="footer_copy">© 2026 • Portofolio Profesional</p>
             </div>
         </div>
     </footer>
@@ -321,6 +367,7 @@
     <script>
         lucide.createIcons();
 
+        // KAMUS BAHASA (Data untuk ganti bahasa)
         const translations = {
             id: {
                 nav_menu: "Menu", nav_capaian: "Pencapaian", nav_sertifikat: "Sertifikat", nav_dokumen: "Dokumen",
@@ -328,37 +375,43 @@
                 hero_sub: "Penutur Bahasa Jepang • Kreatif • Layanan Profesional",
                 about_title: "Tentang Saya",
                 about_p1: "Halo, perkenalkan nama saya <strong>Desti Puspita</strong>.",
-                about_p2: "Saya adalah pribadi yang sangat menyukai hal-hal baru dan memiliki ambisi kuat untuk mencapai target saya. Sebagai bukti, saya berhasil meraih sertifikasi <strong>JLPT N3 hanya dalam waktu 1 tahun</strong>.",
+                about_p2: "Saya adalah pribadi yang sangat menyukai hal-hal baru dan memiliki ambisi kuat untuk mencapai target saya. Sebagai bukti, saya berhasil meraih sertifikasi <strong>JLPT N3 hanya dalam waktu 1 tahun</strong>, serta berbagai pencapaian membanggakan selama masa sekolah menengah.",
                 about_quote: '"Ini adalah tentang saya, tentang sebuah perjalanan hidup."',
                 sec_capaian: "Pencapaian",
-                ach_1_title: "Juara 1 J-Challenge", ach_1_org: "JEducation", ach_1_desc: '"Beasiswa belajar ke Jepang."',
-                ach_2_title: "Juara 3 Nihongo Shiken", ach_2_org: "UI", ach_2_desc: '"Tingkat Nasional."',
-                ach_3_title: "Juara 3 Rodoku", ach_3_org: "UNJ", ach_3_desc: '"Seni Pelafalan Jepang."',
-                skill_lang: "Bahasa", lang_jp: "Jepang (N3)", lang_id: "Indonesia", lvl_adv: "Lanjutan", lvl_native: "Asli",
-                skill_soft: "Soft Skills", soft_1: "Public Speaking", soft_2: "Berpikir Kritis", soft_3: "Mentoring", soft_4: "Adaptasi",
+                ach_1_title: "Juara 1 J-Challenge", ach_1_desc: '"Beasiswa belajar ke Jepang."', 
+                ach_2_title: "Juara 3 Nihongo Shiken", ach_2_desc: '"Uji kemahiran tingkat nasional (UI)."', 
+                ach_3_title: "Juara 3 Lomba Rodoku", ach_3_desc: '"Seni intonasi dan pelafalan Bahasa Jepang."',
+                ach_4_title: "Juara 3 Pidato", ach_4_desc: '"Pidato Bahasa Jepang Internasional."', 
+                ach_5_title: "Juara 5 Global Japanese", ach_5_desc: '"Kemahiran praktis tingkat global."',
+                ach_6_title: "Pemenang Kontes Harian", ach_6_desc: '"Konsistensi penguasaan bahasa setiap hari."',
+                skill_lang: "Kompetensi Bahasa", lang_jp: "Jepang (N3)", lang_id: "Indonesia (Native)", lvl_adv: "Lanjutan", lvl_native: "Asli",
+                skill_soft: "Keahlian Soft Skills", soft_1: "Public Speaking", soft_2: "Berpikir Kritis", soft_3: "Pendampingan", soft_4: "Adaptasi Cepat",
                 sec_sertifikat: "Sertifikat",
-                sec_dokumen: "Portofolio", dokumen_sub: "Karya Kreatif & Catatan Momen", dokumen_marquee: "PHOTO FEED",
-                game_title: "Mini Game", game_sub: "Jump to reach your dreams!", game_score: "Score", game_restart: "Retry",
-                footer_name: "Desti Puspita • Purposeful Living", footer_copy: "© 2026 Portfolio"
+                sec_dokumen: "Portofolio Saya", dokumen_sub: "Karya Kreatif & Catatan Momen", dokumen_marquee: "Momen Foto Bergulir",
+                game_title: "Permainan Mini", game_sub: "Lompati rintangan untuk mencapai impian!", game_score: "Skor", game_restart: "Mulai Lagi",
+                footer_name: "Tujuan Bermakna • Desti Puspita", footer_copy: "© 2026 • Portofolio Profesional"
             },
             jp: {
                 nav_menu: "メニュー", nav_capaian: "実績", nav_sertifikat: "証明書", nav_dokumen: "ギャラリー",
                 btn_music: "音楽を再生",
-                hero_sub: "日本語スピーカー • クリエイティブ • プロフェッショナルケア",
-                about_title: "自己紹介",
+                hero_sub: "日本語話者 • クリエイティブ • プロフェッショナルケア",
+                about_title: "私について",
                 about_p1: "こんにちは、<strong>デスティ・プスピタ</strong>と申します。",
-                about_p2: "私は常に新しいことに挑戦し、目標達成に向けて全力を尽くす人間です。その成果として、わずか<strong>1年間でJLPT N3</strong>を取得いたしました。",
+                about_p2: "私は新しいことに挑戦するのが大好きで、目標達成への強い意欲を持っています。その証として、わずか<strong>1年間でJLPT N3</strong>を取得し、高校時代にも数々の実績を残してきました。",
                 about_quote: '"これは私の物語、人生の旅路についてです。"',
                 sec_capaian: "主な実績",
-                ach_1_title: "J-Challenge 優勝", ach_1_org: "JEducation", ach_1_desc: '"日本留学奨学金獲得"',
-                ach_2_title: "日本語試験 第3位", ach_2_org: "インドネシア大学", ach_2_desc: '"全国大会レベル"',
-                ach_3_title: "朗読大会 第3位", ach_3_org: "ジャカルタ州立大学", ach_3_desc: '"発音と表現の技術"',
-                skill_lang: "言語能力", lang_jp: "日本語 (N3)", lang_id: "インドネシア語", lvl_adv: "上級", lvl_native: "ネイティブ",
-                skill_soft: "ソフトスキル", soft_1: "人前で話す力", soft_2: "論理的思考", soft_3: "メンタリング", soft_4: "適応力",
+                ach_1_title: "J-Challenge 優勝", ach_1_desc: '"日本への留学奨学金を取得"', 
+                ach_2_title: "日本語試験 3位", ach_2_desc: '"インドネシア大学主催の全国日本語試験"', 
+                ach_3_title: "日本語朗読 3位", ach_3_desc: '"日本語朗読のイントネーションと発音技術"',
+                ach_4_title: "スピーチ大会 3位", ach_4_desc: '"国際日本語スピーチコンテスト"', 
+                ach_5_title: "Global Japanese 5位", ach_5_desc: '"グローバルレベルの実踐的日本語能力"',
+                ach_6_title: "デイリーコンテスト優勝", ach_6_desc: '"毎日の継続的な言語習得の成果"',
+                skill_lang: "言語能力", lang_jp: "日本語 (N3)", lang_id: "インドネシア語 (母国語)", lvl_adv: "上級", lvl_native: "ネイティブ",
+                skill_soft: "ソフトスキル", soft_1: "パブリックスピーキング", soft_2: "批判的思考", soft_3: "メンタリング", soft_4: "柔軟な適応力",
                 sec_sertifikat: "資格・証明書",
-                sec_dokumen: "ポートフォリオ", dokumen_sub: "制作物と活動の記録", dokumen_marquee: "活動写真",
+                sec_dokumen: "マイポートフォリオ", dokumen_sub: "クリエイティブ作品と活動の記録", dokumen_marquee: "活動のフォトギャラリー",
                 game_title: "ミニゲーム", game_sub: "障害物を飛び越えて夢を掴もう！", game_score: "スコア", game_restart: "もう一度",
-                footer_name: "デスティ・プスピタ • 意味のある人生を", footer_copy: "© 2026 ポートフォリオ"
+                footer_name: "意味のある目的 • デスティ・プスピタ", footer_copy: "© 2026 • プロフェッショナルポートフォリオ"
             },
             en: {
                 nav_menu: "Menu", nav_capaian: "Achievements", nav_sertifikat: "Certificates", nav_dokumen: "Docs",
@@ -366,21 +419,25 @@
                 hero_sub: "Japanese Speaker • Creative • Professional Care",
                 about_title: "About Me",
                 about_p1: "Hello, my name is <strong>Desti Puspita</strong>.",
-                about_p2: "I am a motivated person who loves new challenges. As proof of my dedication, I achieved <strong>JLPT N3 within just 1 year</strong>.",
-                about_quote: '"This is about me, a journey of life."',
+                about_p2: "I am someone who loves new challenges and has a strong ambition to reach my goals. As proof, I achieved <strong>JLPT N3 within just 1 year</strong>, and earned several achievements during my high school years.",
+                about_quote: '"This is about me, about a journey of life."',
                 sec_capaian: "Achievements",
-                ach_1_title: "1st Place J-Challenge", ach_1_org: "JEducation", ach_1_desc: '"Scholarship to Japan."',
-                ach_2_title: "3rd Place Nihongo Shiken", ach_2_org: "Univ. of Indonesia", ach_2_desc: '"National Level."',
-                ach_3_title: "3rd Place Rodoku", ach_3_org: "Jakarta State Univ.", ach_3_desc: '"Japanese Pronunciation Art."',
-                skill_lang: "Languages", lang_jp: "Japanese (N3)", lang_id: "Indonesian", lvl_adv: "Advanced", lvl_native: "Native",
-                skill_soft: "Soft Skills", soft_1: "Public Speaking", soft_2: "Critical Thinking", soft_3: "Mentoring", soft_4: "Adaptation",
+                ach_1_title: "1st Winner J-Challenge", ach_1_desc: '"Scholarship to study in Japan."', 
+                ach_2_title: "3rd Place Nihongo Shiken", ach_2_desc: '"National proficiency test at Univ. of Indonesia."', 
+                ach_3_title: "3rd Place Rodoku", ach_3_desc: '"Art of Japanese intonation and pronunciation."',
+                ach_4_title: "3rd Place Speech", ach_4_desc: '"International Japanese Speech Contest."', 
+                ach_5_title: "5th Place Global Japanese", ach_5_desc: '"Global level practical proficiency."',
+                ach_6_title: "Daily Contest Winner", ach_6_desc: '"Consistent daily language mastery."',
+                skill_lang: "Language Competency", lang_jp: "Japanese (N3)", lang_id: "Indonesian (Native)", lvl_adv: "Advanced", lvl_native: "Native",
+                skill_soft: "Soft Skills", soft_1: "Public Speaking", soft_2: "Critical Thinking", soft_3: "Mentoring", soft_4: "Fast Adaptation",
                 sec_sertifikat: "Certificates",
-                sec_dokumen: "Portfolio", dokumen_sub: "Creative Works & Moments", dokumen_marquee: "PHOTO FEED",
-                game_title: "Mini Game", game_sub: "Jump to reach your dreams!", game_score: "Score", game_restart: "Retry",
-                footer_name: "Desti Puspita • Purposeful Living", footer_copy: "© 2026 Portfolio"
+                sec_dokumen: "My Portfolio", dokumen_sub: "Creative Works & Moments", dokumen_marquee: "Photo Moments",
+                game_title: "Mini Game", game_sub: "Jump over obstacles to reach your dreams!", game_score: "Score", game_restart: "Restart",
+                footer_name: "Meaningful Purpose • Desti Puspita", footer_copy: "© 2026 • Professional Portfolio"
             }
         };
 
+        // Fungsi Ganti Bahasa
         function changeLanguage(lang) {
             const t = translations[lang];
             document.querySelectorAll('[data-t]').forEach(el => {
@@ -389,24 +446,39 @@
             });
             document.getElementById('current-lang-text').innerText = lang.toUpperCase();
             document.getElementById('lang-dropdown').classList.remove('open');
+            
+            // Stylisasi nama khusus Jepang agar rapi 1 baris
+            const nameEl = document.getElementById('hero-name');
+            if (lang === 'jp') {
+                nameEl.style.letterSpacing = '0.02em'; 
+                nameEl.style.fontSize = window.innerWidth < 768 ? '1.4rem' : '1.8rem';
+            } else {
+                nameEl.style.letterSpacing = '0.02em';
+                nameEl.style.fontSize = window.innerWidth < 768 ? '1.8rem' : '2.5rem';
+            }
             renderAchievements(lang);
             renderSoftSkills(lang);
+            lucide.createIcons(); // Re-render icons after DOM update
         }
 
         function renderAchievements(lang) {
             const t = translations[lang];
             const items = [
-                { title: t.ach_1_title, org: t.ach_1_org, desc: t.ach_1_desc, bg: "https://i.imgur.com/HwQXNA8.jpeg" },
-                { title: t.ach_2_title, org: t.ach_2_org, desc: t.ach_2_desc, bg: "https://i.imgur.com/iZ9jDEZ.jpeg" },
-                { title: t.ach_3_title, org: t.ach_3_org, desc: t.ach_3_desc, bg: "https://i.imgur.com/Dl3ucVd.png" }
+                { title: t.ach_1_title, org: "JEducation", desc: t.ach_1_desc, bg: "https://i.imgur.com/HwQXNA8.jpeg", theme: "bg-pink-50" },
+                { title: t.ach_2_title, org: "Universitas Indonesia", desc: t.ach_2_desc, bg: "https://i.imgur.com/iZ9jDEZ.jpeg", theme: "bg-blue-50" },
+                { title: t.ach_3_title, org: "Universitas Negeri Jakarta", desc: t.ach_3_desc, bg: "https://i.imgur.com/Dl3ucVd.png", theme: "bg-red-50" },
+                { title: t.ach_4_title, org: "Grand Pertiwi Int.", desc: t.ach_4_desc, bg: "", theme: "bg-green-50" },
+                { title: t.ach_5_title, org: "LifeArk", desc: t.ach_5_desc, bg: "https://i.imgur.com/4vda2dQ.png", theme: "bg-purple-50" },
+                { title: t.ach_6_title, org: "LifeArk", desc: t.ach_6_desc, bg: "https://i.imgur.com/Tv9nqiC.png", theme: "bg-orange-50" }
             ];
-            document.getElementById('achievements-grid').innerHTML = items.map(item => `
-                <div class="reveal timbul-interaktif active relative overflow-hidden p-8 rounded-[2rem]">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-[0.05]" style="background-image: url('${item.bg}')"></div>
+            const grid = document.getElementById('achievements-grid');
+            grid.innerHTML = items.map((item) => `
+                <div class="reveal timbul-interaktif active relative overflow-hidden p-8 md:p-10 rounded-[2.5rem] border-2 border-white shadow-xl group ${item.theme}">
+                    ${item.bg ? `<div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('${item.bg}')"></div>` : ''}
                     <div class="relative z-10">
-                        <h4 class="font-black text-[11px] text-slate-800 mb-1 uppercase">${item.title}</h4>
-                        <p class="text-[8px] font-bold mb-3 uppercase tracking-widest text-pink-500">${item.org}</p>
-                        <p class="text-[10px] text-slate-500 leading-relaxed">${item.desc}</p>
+                        <h4 class="font-extrabold text-sm text-slate-800 mb-2 uppercase">${item.title}</h4>
+                        <p class="text-[9px] font-black mb-4 uppercase tracking-widest text-slate-500">${item.org}</p>
+                        <p class="text-[11px] text-slate-600 italic">${item.desc}</p>
                     </div>
                 </div>
             `).join('');
@@ -416,71 +488,75 @@
             const t = translations[lang];
             const skills = [t.soft_1, t.soft_2, t.soft_3, t.soft_4];
             document.getElementById('soft-skills-grid').innerHTML = skills.map(s => `
-                <div class="p-3 bg-white rounded-2xl text-center text-[9px] font-bold uppercase tracking-tight text-slate-500 border border-purple-50">${s}</div>
+                <div class="p-5 bg-white rounded-3xl text-center text-[10px] font-bold uppercase tracking-tight text-slate-600 shadow-sm border border-purple-50 hover:border-purple-200 transition-colors">${s}</div>
             `).join('');
         }
 
-        // Initialize
+        // Jalankan Ganti Bahasa saat load awal
         changeLanguage('id');
 
-        // UI Interactions
-        document.getElementById('lang-toggle').onclick = (e) => { e.stopPropagation(); document.getElementById('lang-dropdown').classList.toggle('open'); };
-        document.getElementById('menu-toggle').onclick = (e) => { e.stopPropagation(); document.getElementById('mobile-dropdown').classList.toggle('open'); };
+        // Logic Toggle UI
+        document.getElementById('lang-toggle').onclick = (e) => { 
+            e.stopPropagation(); 
+            document.getElementById('lang-dropdown').classList.toggle('open'); 
+        };
         window.onclick = () => { 
             document.getElementById('lang-dropdown').classList.remove('open'); 
             document.getElementById('mobile-dropdown').classList.remove('open'); 
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
-        }, { threshold: 0.1 });
+        const menuToggle = document.getElementById('menu-toggle'), mobileDropdown = document.getElementById('mobile-dropdown');
+        menuToggle.onclick = (e) => {
+            e.stopPropagation();
+            mobileDropdown.classList.toggle('open');
+            const icon = menuToggle.querySelector('i');
+            icon.setAttribute('data-lucide', mobileDropdown.classList.contains('open') ? 'chevron-up' : 'more-horizontal');
+            lucide.createIcons();
+        };
+
+        // Smooth Reveal Logic
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -40px 0px" };
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); }, observerOptions);
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Music Control
-        const music = document.getElementById('bg-music'), musicBtn = document.getElementById('music-control'), musicIcon = document.getElementById('music-icon');
+        // Music Logic
+        const music = document.getElementById('bg-music'), musicControl = document.getElementById('music-control'), musicIcon = document.getElementById('music-icon');
         let isPlaying = false;
-        musicBtn.onclick = () => {
-            if (isPlaying) { music.pause(); musicIcon.setAttribute('data-lucide', 'play'); }
-            else { music.play(); musicIcon.setAttribute('data-lucide', 'pause'); }
+        musicControl.onclick = () => {
+            if (isPlaying) { music.pause(); musicControl.classList.remove('playing'); musicIcon.setAttribute('data-lucide', 'play-circle'); }
+            else { music.play().catch(e => console.log("Interaction needed.")); musicControl.classList.add('playing'); musicIcon.setAttribute('data-lucide', 'pause-circle'); }
             isPlaying = !isPlaying; lucide.createIcons();
         };
 
-        // Marquee
+        // Marquee Logic
         const track = document.getElementById('marquee-track');
-        const images = ["https://i.imgur.com/sLl3KOL.jpeg", "https://i.imgur.com/QpmT1DF.jpeg", "https://i.imgur.com/qSjyQzR.jpeg", "https://i.imgur.com/xiJxEVA.jpeg", "https://i.imgur.com/bS6YW8w.jpeg"];
+        const images = ["https://i.imgur.com/sLl3KOL.jpeg", "https://i.imgur.com/QpmT1DF.jpeg", "https://i.imgur.com/qSjyQzR.jpeg", "https://i.imgur.com/xiJxEVA.jpeg", "https://i.imgur.com/bS6YW8w.jpeg", "https://i.imgur.com/xrJJL9Q.jpeg"];
         [...images, ...images].forEach(src => {
             const div = document.createElement('div');
-            div.className = "w-36 h-36 md:w-48 md:h-48 mx-4 overflow-hidden rounded-[2rem] border-4 border-white shadow-md flex-shrink-0";
+            div.className = "w-44 h-44 md:w-60 md:h-60 mx-5 md:mx-10 overflow-hidden rounded-[3rem] md:rounded-[4rem] border-4 border-white shadow-xl flex-shrink-0 bg-white";
             div.innerHTML = `<img src="${src}" class="w-full h-full object-cover">`;
             track.appendChild(div);
         });
 
-        // Mini Game Logic
+        // Game Physics & Logic
         const player = document.getElementById('player'), obstacle = document.getElementById('obstacle'), scoreEl = document.getElementById('score'), restartBtn = document.getElementById('restart-btn'), stage = document.getElementById('game-stage');
         let score = 0, isGameOver = false, obstaclePos = 110, playerY = 0, velocityY = 0;
-        const gravity = 0.5, jumpPower = -11;
+        const gravity = 0.55, jumpPower = -12.5;
 
         function jump() { if (!isGameOver && playerY === 0) velocityY = jumpPower; else if(isGameOver) resetGame(); }
         function resetGame() { score = 0; obstaclePos = 110; isGameOver = false; playerY = 0; velocityY = 0; scoreEl.innerText = "0"; restartBtn.classList.add('hidden'); player.style.opacity = "1"; gameLoop(); }
-
         function gameLoop() {
             if (isGameOver) return;
-            obstaclePos -= 1.2;
+            obstaclePos -= (window.innerWidth > 768 ? 1.15 : 1.0);
             if (obstaclePos < -15) { obstaclePos = 115; score++; scoreEl.innerText = score; }
             obstacle.style.right = (100 - obstaclePos) + '%';
             velocityY += gravity; playerY += velocityY;
             if (playerY > 0) { playerY = 0; velocityY = 0; }
             player.style.transform = `translateY(${playerY}px)`;
-            
             const pRect = player.getBoundingClientRect(), oRect = obstacle.getBoundingClientRect();
-            if (pRect.right > oRect.left + 15 && pRect.left < oRect.right - 15 && pRect.bottom > oRect.top + 10) { 
-                isGameOver = true; 
-                player.style.opacity = "0.5"; 
-                restartBtn.classList.remove('hidden'); 
-            }
+            if (pRect.right > oRect.left + 15 && pRect.left < oRect.right - 15 && pRect.bottom > oRect.top + 10) { isGameOver = true; player.style.opacity = "0.5"; restartBtn.classList.remove('hidden'); }
             requestAnimationFrame(gameLoop);
         }
-        
         stage.addEventListener('mousedown', (e) => { e.preventDefault(); jump(); });
         stage.addEventListener('touchstart', (e) => { e.preventDefault(); jump(); });
         restartBtn.onclick = (e) => { e.stopPropagation(); resetGame(); };
