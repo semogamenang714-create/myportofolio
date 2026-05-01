@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desti Puspita - Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Neumorphism-style Interactive Cards */
+        .timbul-interaktif { 
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 6px 6px 15px rgba(0,0,0,0.03), -6px -6px 15px rgba(255,255,255,0.8);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .timbul-interaktif:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 12px 12px 30px rgba(0,0,0,0.06);
+            background: white;
+        }
+        .timbul-interaktif:active { transform: translateY(1px) scale(0.98); }
+
+        .desti-name-center { 
+            letter-spacing: 0.8em; 
+            color: #7F1D1D; 
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 900;
+            line-height: 1.6;
+        }
+        @media (max-width: 640px) {
+            .desti-name-center { letter-spacing: 0.3em; font-size: 0.75rem; }
+        }
+        
+        @keyframes barGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        .bar-fill { animation: barGrow 2.5s ease-out forwards; transform-origin: left; }
+
+        .menu-btn {
+            background: white;
+            box-shadow: 4px 4px 12px rgba(0,0,0,0.03), -4px -4px 12px rgba(255,255,255,0.9);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1.5px solid transparent;
+        }
+        .menu-btn:hover { 
+            transform: translateY(-4px); 
+            border-color: #f472b6;
+            color: #be185d;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative text-[#2D3436] selection:bg-pink-200 overflow-x-hidden">
+
+    <!-- GRADIENT BACKGROUND -->
+    <div class="fixed inset-0 -z-10 pointer-events-none">
+        <div class="absolute inset-0 bg-[#fdfcfd]"></div>
+        <div class="absolute top-[-20%] left-[-10%] w-[90%] h-[90%] rounded-full bg-pink-300/20 blur-[140px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[80%] h-[80%] rounded-full bg-blue-300/20 blur-[140px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-pink-100/10"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="fixed w-full z-50 px-6 py-4">
+        <div class="max-w-5xl mx-auto flex justify-between items-center bg-white/70 backdrop-blur-2xl px-10 py-2.5 rounded-full shadow-sm border border-white/50">
+            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-red-900/40">Portfolio</span>
+            <nav class="hidden md:flex space-x-4">
+                <a href="#menu" class="menu-btn px-6 py-2 rounded-2xl text-[9px] font-extrabold uppercase tracking-widest text-slate-500">Menu</a>
+                <a href="#capaian" class="menu-btn px-6 py-2 rounded-2xl text-[9px] font-extrabold uppercase tracking-widest text-slate-500">Capaian</a>
+                <a href="#game" class="menu-btn px-6 py-2 rounded-2xl text-[9px] font-extrabold uppercase tracking-widest text-slate-500">Game</a>
+            </nav>
+            <div class="md:hidden"><i data-lucide="menu" class="w-5 h-5 text-slate-400"></i></div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="menu" class="min-h-screen flex flex-col items-center justify-center px-6 pt-24 text-center">
+        <div class="reveal active space-y-8">
+            <div class="relative w-44 h-44 mx-auto flex items-center justify-center">
+                <div class="absolute -inset-4 bg-gradient-to-tr from-pink-200/50 via-purple-100/30 to-blue-200/30 rounded-full blur-2xl opacity-40"></div>
+                <img src="https://i.imgur.com/ZZnypaj.jpeg" alt="Desti Puspita" class="relative z-10 w-36 h-36 object-cover rounded-full border-4 border-white shadow-2xl transition-transform hover:scale-105">
+            </div>
+            <div class="space-y-4">
+                <h1 class="desti-name-center uppercase w-full">DESTI PUSPITA</h1>
+                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-slate-500 pt-2 flex items-center justify-center gap-2">
+                    <span class="w-4 h-[1px] bg-blue-300"></span> Japanese Speaker • Creative • Professional Care <span class="w-4 h-[1px] bg-purple-300"></span>
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-2xl mx-auto mt-16 reveal active" style="transition-delay: 0.2s">
+            <div class="p-12 relative overflow-hidden group rounded-[3.5rem] border-2 shadow-2xl transition-all duration-700 timbul-interaktif bg-white/90 border-white hover:border-pink-300">
+                <h3 class="text-[11px] font-black uppercase tracking-widest text-pink-700 mb-8 flex items-center justify-center gap-4">
+                    <span class="w-10 h-[1.5px] bg-pink-400"></span> Tentang Aku <span class="w-10 h-[1.5px] bg-pink-400"></span>
+                </h3>
+                <div class="space-y-6 text-[15px] leading-relaxed text-slate-700 font-medium text-center">
+                    <p>Halo kenalin, Namaku <strong>Desti Puspita</strong>.</p>
+                    <p>Aku seorang yang sangat menyukai hal baru dan memiliki ambisi untuk mencapai target-targetku. Aku berhasil mendapatkan <strong>JLPT N3 hanya dalam kurun waktu 1 tahun</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="capaian" class="py-40 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-28 reveal">
+                <h3 class="text-2xl font-black uppercase tracking-widest text-red-900/80">Pencapaian</h3>
+                <div class="w-20 h-[3px] bg-gradient-to-r from-pink-400 via-red-400 to-blue-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-32">
+                <div class="reveal timbul-interaktif p-10 rounded-[2.8rem] bg-pink-50/50">
+                    <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 1 J-Challenge</h4>
+                    <p class="text-[9px] font-black mb-6 uppercase tracking-widest text-slate-500">JEducation</p>
+                    <p class="text-[11px] text-slate-600 italic">"Beasiswa sinau menyang Jepang."</p>
+                </div>
+                <div class="reveal timbul-interaktif p-10 rounded-[2.8rem] bg-blue-50/50">
+                    <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 3 Nihongo Shiken</h4>
+                    <p class="text-[9px] font-black mb-6 uppercase tracking-widest text-slate-500">UI</p>
+                    <p class="text-[11px] text-slate-600 italic">"Uji kemahiran tingkat nasional."</p>
+                </div>
+                <div class="reveal timbul-interaktif p-10 rounded-[2.8rem] bg-purple-50/50">
+                    <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 3 Lomba Rodoku</h4>
+                    <p class="text-[9px] font-black mb-6 uppercase tracking-widest text-slate-500">UNJ</p>
+                    <p class="text-[11px] text-slate-600 italic">"Seni intonasi Basa Jepang."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MINI GAME -->
+    <section id="game" class="pb-32 px-6 reveal">
+        <div class="max-w-4xl mx-auto bg-white/95 p-12 rounded-[5rem] text-center shadow-2xl border-2 border-pink-100">
+            <div class="px-8 py-2 bg-pink-500 text-white inline-block rounded-full text-[10px] font-black uppercase mb-6">Mini Game: Jump Desti!</div>
+            <div id="game-container" class="relative w-full h-48 bg-pink-50/40 rounded-[3rem] overflow-hidden cursor-pointer border border-pink-100">
+                <div id="player" class="absolute bottom-6 left-20 text-5xl transition-all duration-300">🐱</div>
+                <div id="obstacle" class="absolute bottom-6 text-4xl right-[-50px]">🌵</div>
+            </div>
+            <div class="mt-8 flex justify-between items-center px-6">
+                <span id="score" class="text-lg font-black text-pink-600">Skor: 0</span>
+                <button id="restart-btn" class="hidden px-6 py-2 bg-red-600 text-white rounded-full font-black uppercase text-[10px]">Restart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-20 text-center border-t border-pink-100 bg-white/50">
+        <div class="flex justify-center gap-8 mb-8">
+            <a href="https://wa.me/6289506878654" class="text-slate-400 hover:text-green-500 transition-colors"><i data-lucide="phone"></i></a>
+            <a href="mailto:destipuspita.official@gmail.com" class="text-slate-400 hover:text-red-700 transition-colors"><i data-lucide="mail"></i></a>
+        </div>
+        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">© 2026 • Desti Puspita</p>
+    </footer>
+
+    <script>
+        // Init Icons
+        lucide.createIcons();
+
+        // Reveal Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Game Logic
+        const player = document.getElementById('player');
+        const obstacle = document.getElementById('obstacle');
+        const scoreEl = document.getElementById('score');
+        const gameContainer = document.getElementById('game-container');
+        const restartBtn = document.getElementById('restart-btn');
+
+        let score = 0;
+        let isJumping = false;
+        let isGameOver = false;
+        let obstaclePos = -50;
+
+        function jump() {
+            if(isGameOver) { reset(); return; }
+            if(!isJumping) {
+                isJumping = true;
+                player.style.transform = 'translateY(-100px)';
+                setTimeout(() => { player.style.transform = 'translateY(0)'; isJumping = false; }, 400);
+            }
+        }
+
+        function reset() {
+            score = 0; isGameOver = false; obstaclePos = -50;
+            scoreEl.innerText = 'Skor: 0';
+            restartBtn.classList.add('hidden');
+            player.innerText = '🐱';
+            gameLoop();
+        }
+
+        function gameLoop() {
+            if(isGameOver) return;
+            obstaclePos += 6;
+            if(obstaclePos > gameContainer.offsetWidth) {
+                obstaclePos = -50; score++; scoreEl.innerText = `Skor: ${score}`;
+            }
+            obstacle.style.right = obstaclePos + 'px';
+
+            const pRect = player.getBoundingClientRect();
+            const oRect = obstacle.getBoundingClientRect();
+
+            if(oRect.left < pRect.right && oRect.right > pRect.left && oRect.top < pRect.bottom && !isJumping) {
+                isGameOver = true; player.innerText = '😵'; restartBtn.classList.remove('hidden');
+            }
+            requestAnimationFrame(gameLoop);
+        }
+
+        gameContainer.addEventListener('click', jump);
+        restartBtn.addEventListener('click', reset);
+        gameLoop();
+    </script>
+</body>
+</html>
