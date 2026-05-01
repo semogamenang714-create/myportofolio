@@ -1,499 +1,624 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio - Desti Puspita</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>J-Master SRS | Anki Mode Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Quicksand', sans-serif;
-            scroll-behavior: smooth;
-            background-color: #fdfcfd;
-        }
-
-        /* VIBRANT MULTICOLOR MESH GRADIENT BACKGROUND */
-        .mesh-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -10;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        .mesh-circle {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.25;
-            animation: pulse-glow 10s infinite alternate;
-        }
-        @keyframes pulse-glow {
-            from { transform: scale(1); opacity: 0.2; }
-            to { transform: scale(1.3); opacity: 0.4; }
-        }
-
-        /* Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Interactive Timbul & Stroke */
-        .timbul-interaktif {
-            background: rgba(255, 255, 255, 0.92);
-            box-shadow: 6px 6px 15px rgba(0,0,0,0.03), -6px -6px 15px rgba(255,255,255,0.8);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .timbul-interaktif:hover {
-            transform: translateY(-8px);
-            box-shadow: 12px 12px 30px rgba(0,0,0,0.06);
-            background: white;
-        }
-        .timbul-interaktif:active {
-            transform: translateY(1px) scale(0.98);
-        }
-
-        .glass-pink-nav {
-            background: rgba(255, 182, 193, 0.4);
-            backdrop-filter: blur(15px);
-            border: 2.5px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 30px rgba(219, 39, 119, 0.1);
-        }
-
-        .menu-btn {
-            background: white;
-            box-shadow: 4px 4px 12px rgba(0,0,0,0.03), -4px -4px 12px rgba(255,255,255,0.9);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1.5px solid transparent;
-        }
-        .menu-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 8px 8px 20px rgba(219, 39, 119, 0.15);
-            border-color: #f472b6;
-            color: #be185d;
-        }
-
-        .desti-name-center {
-            letter-spacing: 0.7em;
-            color: #7F1D1D;
-            text-align: center;
-            font-size: 0.9rem;
-            font-weight: 900;
-            line-height: 1.6;
-        }
-
-        /* Marquee Animation */
-        @keyframes scroll-marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .marquee-container {
-            overflow: hidden;
-            width: 100%;
-            padding: 2rem 0;
-        }
-        .marquee-track {
+        body { 
+            font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif; 
+            background: linear-gradient(135deg, #f8faff 0%, #fff5f6 100%);
+            min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
-            width: max-content;
-            animation: scroll-marquee 40s linear infinite;
-        }
-        .marquee-track:hover { animation-play-state: paused; }
-
-        /* Progress Bar */
-        .bar-container {
-            width: 100%;
-            background: rgba(241, 245, 249, 1);
-            height: 0.7rem;
-            border-radius: 9999px;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
-            border: 1px solid rgba(226, 232, 240, 1);
+            -webkit-tap-highlight-color: transparent;
         }
-        .bar-fill {
-            height: 100%;
-            border-radius: 9999px;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 2s ease-out;
+        .glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
         }
-        .reveal.active .bar-fill {
-            transform: scaleX(1);
+        .perspective { perspective: 1000px; }
+        .card-inner {
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+        }
+        .flipped { transform: rotateY(180deg); }
+        .card-front, .card-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .card-back { transform: rotateY(180deg); }
+        
+        .btn-glow-active {
+            background: rgba(79, 70, 229, 0.1) !important;
+            border-color: rgba(79, 70, 229, 0.4) !important;
+            color: #4f46e5 !important;
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.2);
+            transform: scale(1.02);
         }
 
-        /* Game Styles */
-        .game-container-static {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 10px 10px 40px rgba(0,0,0,0.05), -10px -10px 40px rgba(255,255,255,0.9);
-            border: 2px solid rgba(255, 255, 255, 0.8);
+        .nav-active {
+            background: rgba(79, 70, 229, 0.15);
+            color: #4f46e5;
         }
-        #player {
-            transition: transform 0.6s cubic-bezier(0.1, 0.4, 0.1, 1);
+
+        @keyframes correct-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); background-color: rgba(16, 185, 129, 0.2); border-color: #10b981; }
+            100% { transform: scale(1); }
         }
-        .jumping {
-            transform: translateY(-130px);
+        @keyframes wrong-shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); background-color: rgba(244, 63, 94, 0.1); border-color: #f43f5e; }
+            75% { transform: translateX(5px); }
         }
+        .ans-correct { animation: correct-pulse 0.4s ease-out; color: #059669 !important; border-color: #10b981 !important; }
+        .ans-wrong { animation: wrong-shake 0.4s ease-out; color: #e11d48 !important; border-color: #f43f5e !important; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade { animation: fadeIn 0.4s ease-out forwards; }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 10px; }
     </style>
 </head>
-<body class="selection:bg-pink-200">
+<body>
+    <div id="app" class="w-full max-w-md h-screen h-[100dvh] flex flex-col p-5 pb-8 relative z-10">
+        
+        <!-- Background Decor -->
+        <div class="fixed top-[-5%] left-[-5%] w-72 h-72 bg-indigo-100 rounded-full blur-[80px] opacity-50 z-0"></div>
+        <div class="fixed bottom-[-5%] right-[-5%] w-72 h-72 bg-rose-100 rounded-full blur-[80px] opacity-50 z-0"></div>
 
-    <!-- Mesh Background Layers -->
-    <div class="mesh-bg">
-        <div class="mesh-circle bg-pink-300" style="top: -20%; left: -10%; width: 90%; height: 90%;"></div>
-        <div class="mesh-circle bg-blue-300" style="bottom: -10%; right: -10%; width: 80%; height: 80%; animation-delay: 1.5s;"></div>
-        <div class="mesh-circle bg-purple-300" style="top: 20%; left: 20%; width: 70%; height: 70%; animation-delay: 0.5s;"></div>
-        <div class="mesh-circle bg-green-200" style="bottom: 20%; left: 5%; width: 60%; height: 60%; animation-delay: 2.5s;"></div>
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-5 shrink-0 relative z-20">
+            <div>
+                <h1 class="text-xl font-black tracking-tighter text-slate-800">J-MASTER <span class="text-indigo-600">SRS</span></h1>
+                <div class="flex gap-2 text-[9px] font-bold text-slate-400 mt-1.5 uppercase tracking-widest">
+                    <span id="stat-new">NEW: --</span>
+                    <span class="opacity-30">•</span>
+                    <span id="stat-rev">DUE: --</span>
+                </div>
+            </div>
+            <button onclick="switchView('settings')" class="glass p-2.5 rounded-2xl text-slate-400 hover:text-indigo-600 transition-all active:scale-90">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+        </header>
+
+        <!-- Main Display -->
+        <main class="flex-1 overflow-hidden relative">
+            
+            <!-- VIEW: Study -->
+            <section id="view-study" class="view h-full flex flex-col animate-fade">
+                <div id="study-status" class="flex-1 flex flex-col items-center justify-center text-center p-6">
+                    <div id="status-icon" class="text-6xl mb-6">📚</div>
+                    <h2 id="status-title" class="text-xl font-black text-slate-800 uppercase tracking-tight">Sesi Belajar</h2>
+                    <p id="status-desc" class="text-slate-500 text-[10px] font-bold mt-2 mb-8 leading-relaxed px-10 uppercase tracking-widest opacity-60">Fokus dan selesaikan kartu hari ini.</p>
+                    <div class="space-y-3 w-full max-w-[200px]">
+                        <button onclick="startSession()" class="w-full glass bg-slate-900 text-white text-[11px] font-black uppercase tracking-[0.2em] py-5 rounded-2xl shadow-xl active:scale-95 transition-all">Mulai Sesi</button>
+                        <button onclick="switchView('quiz')" class="w-full glass bg-white/60 text-indigo-600 text-[9px] font-black uppercase tracking-widest py-3 rounded-xl active:scale-95 transition-all">Daily Quiz (10 Soal)</button>
+                    </div>
+                </div>
+
+                <div id="study-active" class="flex-1 flex flex-col hidden overflow-hidden">
+                    <div class="flex items-center gap-3 mb-4 px-1 shrink-0">
+                        <span id="session-counter" class="text-[9px] font-black text-slate-300 uppercase tracking-widest tabular-nums">0 REMAINING</span>
+                        <div class="flex-1 h-1.5 glass rounded-full overflow-hidden border-white/40">
+                            <div id="session-progress" class="h-full bg-indigo-500 transition-all duration-500 w-0"></div>
+                        </div>
+                    </div>
+                    <div class="flex-1 perspective relative">
+                        <div id="flashcard" class="card-inner w-full h-full relative cursor-pointer" onclick="flipCard()">
+                            <div class="card-front glass absolute inset-0 rounded-[2.5rem] flex flex-col items-center justify-center p-6 border-white/80">
+                                <span class="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-6">Kanji</span>
+                                <div id="display-front" class="text-7xl font-bold text-slate-800 tracking-tighter">--</div>
+                                <div class="absolute bottom-10 text-indigo-400 text-[9px] font-black uppercase animate-pulse tracking-widest">Tap to flip</div>
+                            </div>
+                            <div class="card-back glass absolute inset-0 rounded-[2.5rem] flex flex-col items-center justify-center p-6 text-center border-indigo-200">
+                                <span class="text-[9px] font-black text-indigo-400 uppercase tracking-widest mb-3">Detail</span>
+                                <div id="display-reading" class="text-xl text-indigo-500 font-bold mb-1 tracking-tight">--</div>
+                                <div id="display-meaning" class="text-3xl font-black text-slate-800 leading-tight px-4">--</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="srs-actions" class="mt-6 grid grid-cols-4 gap-2 opacity-0 pointer-events-none translate-y-6 transition-all duration-300 shrink-0">
+                        <button onclick="handleRate(0)" class="glass py-4 rounded-xl flex flex-col items-center justify-center border-rose-100 hover:bg-rose-50">
+                            <span class="text-rose-500 font-black text-[9px] uppercase">Lupa</span>
+                            <span class="text-[7px] text-slate-400 mt-1">&lt;1m</span>
+                        </button>
+                        <button onclick="handleRate(1)" class="glass py-4 rounded-xl flex flex-col items-center justify-center border-orange-100 hover:bg-orange-50">
+                            <span class="text-orange-500 font-black text-[9px] uppercase">Sulit</span>
+                            <span class="text-[7px] text-slate-400 mt-1">2h</span>
+                        </button>
+                        <button onclick="handleRate(2)" class="glass py-4 rounded-xl flex flex-col items-center justify-center border-indigo-100 hover:bg-indigo-50">
+                            <span class="text-indigo-600 font-black text-[9px] uppercase">Bagus</span>
+                            <span class="text-[7px] text-slate-400 mt-1">1d</span>
+                        </button>
+                        <button onclick="handleRate(3)" class="glass py-4 rounded-xl flex flex-col items-center justify-center border-emerald-100 hover:bg-emerald-50">
+                            <span class="text-emerald-600 font-black text-[9px] uppercase">Mudah</span>
+                            <span class="text-[7px] text-slate-400 mt-1">4d</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW: Daily Quiz -->
+            <section id="view-quiz" class="view h-full flex flex-col hidden animate-fade">
+                <div id="quiz-setup" class="h-full flex flex-col items-center justify-center text-center p-6">
+                    <div class="text-5xl mb-6">⚡</div>
+                    <h2 class="text-xl font-black text-slate-800 uppercase tracking-tight">Daily Kanji Quiz</h2>
+                    <p class="text-[10px] text-slate-500 font-bold mt-2 mb-10 leading-relaxed px-12 uppercase tracking-widest opacity-60">Tantang ingatanmu dengan 10 kartu acak yang sudah dipelajari.</p>
+                    <button onclick="startDailyQuiz()" class="glass bg-indigo-600 text-white text-[11px] font-black uppercase tracking-[0.2em] px-12 py-5 rounded-2xl shadow-xl active:scale-95 transition-all">Mulai Quiz</button>
+                </div>
+
+                <div id="quiz-active" class="h-full flex flex-col hidden">
+                    <div class="flex justify-between items-center mb-6 px-1">
+                        <span id="quiz-q-count" class="glass px-4 py-1.5 rounded-full text-[9px] font-black uppercase text-slate-600">Soal 1/10</span>
+                        <button onclick="switchView('study')" class="text-slate-400 font-black text-[9px] uppercase tracking-widest">Batal</button>
+                    </div>
+                    <div class="flex-1 glass rounded-[3rem] flex items-center justify-center p-8 mb-6">
+                        <div id="quiz-display" class="text-8xl font-black text-slate-800">--</div>
+                    </div>
+                    <div id="quiz-options" class="grid grid-cols-2 gap-3 mb-4 shrink-0">
+                    </div>
+                </div>
+
+                <div id="quiz-result" class="h-full flex flex-col items-center justify-center text-center p-6 hidden">
+                    <div class="text-5xl mb-4">🏆</div>
+                    <h2 class="text-xl font-black text-slate-800 uppercase mb-6">Hasil Quiz</h2>
+                    <div class="glass w-full p-6 rounded-3xl space-y-4 mb-8">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-black text-slate-400 uppercase">Skor Akhir</span>
+                            <span id="quiz-final-score" class="text-xl font-black text-indigo-600">0/10</span>
+                        </div>
+                    </div>
+                    <button onclick="switchView('study')" class="w-full bg-slate-900 text-white py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest active:scale-95 transition-all">Kembali ke Menu</button>
+                </div>
+            </section>
+
+            <!-- VIEW: Kana Blitz -->
+            <section id="view-kana" class="view h-full flex flex-col hidden animate-fade">
+                <div id="kana-setup" class="h-full flex flex-col items-center justify-center text-center p-6">
+                    <div class="w-20 h-20 glass rounded-[2rem] flex items-center justify-center mb-6 text-3xl shadow-sm border-white">あ</div>
+                    <h2 class="text-lg font-black text-slate-800 tracking-tight">Kana Blitz</h2>
+                    <p class="text-[10px] text-slate-400 font-bold px-12 mt-1 mb-8 uppercase tracking-widest">Latih kecepatan membaca Kana.</p>
+                    <div class="glass p-4 rounded-3xl w-full space-y-3 mb-8">
+                        <button onclick="toggleKana('hira')" id="btn-hira" class="w-full flex justify-between items-center p-4 rounded-2xl border border-slate-100 text-[11px] font-black transition-all bg-white/40">
+                            <span>HIRAGANA (あ)</span> <span id="icon-hira" class="hidden">✓</span>
+                        </button>
+                        <button onclick="toggleKana('kata')" id="btn-kata" class="w-full flex justify-between items-center p-4 rounded-2xl border border-slate-100 text-[11px] font-black transition-all bg-white/40">
+                            <span>KATAKANA (ア)</span> <span id="icon-kata" class="hidden">✓</span>
+                        </button>
+                    </div>
+                    <button onclick="startKanaQuiz()" class="w-full bg-slate-900 text-white py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest active:scale-95 transition-all shadow-md">Mulai Kuis</button>
+                </div>
+                
+                <div id="kana-active" class="h-full flex flex-col hidden relative">
+                    <div class="flex justify-between items-center mb-4 px-1 shrink-0">
+                        <div class="flex gap-2">
+                            <span id="kana-q-count" class="glass px-4 py-1.5 rounded-full text-[9px] font-black uppercase text-slate-600">Q #1</span>
+                            <span id="kana-timer" class="glass px-4 py-1.5 rounded-full text-[9px] font-black text-indigo-600 tabular-nums">0:00</span>
+                        </div>
+                        <button onclick="stopKanaQuiz()" class="text-rose-500 active:scale-90 p-1 flex items-center gap-1">
+                            <span class="text-[9px] font-black uppercase">Selesai</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                        </button>
+                    </div>
+                    <div class="flex-1 glass rounded-[3rem] flex items-center justify-center p-8 relative overflow-hidden">
+                        <div id="kana-display" class="text-9xl font-black text-slate-800 z-10">--</div>
+                    </div>
+                    <div id="kana-options" class="grid grid-cols-2 gap-3 mt-6 shrink-0"></div>
+                </div>
+
+                <div id="kana-result" class="h-full flex flex-col items-center justify-center text-center px-6 py-4 hidden overflow-y-auto custom-scrollbar">
+                    <div class="text-4xl mb-3 animate-bounce">📈</div>
+                    <h2 class="text-lg font-black text-slate-800 uppercase tracking-tight mb-2">Statistik Akhir</h2>
+                    <div class="glass w-full p-4 rounded-[2rem] space-y-3 mb-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[9px] font-black text-slate-400 uppercase">Total Soal</span>
+                            <span id="res-total" class="font-bold text-slate-800 text-sm">0</span>
+                        </div>
+                        <div class="flex justify-between items-center text-emerald-600">
+                            <span class="text-[9px] font-black uppercase">Benar</span>
+                            <span id="res-correct" class="font-bold text-sm">0</span>
+                        </div>
+                        <div class="flex justify-between items-center text-rose-500">
+                            <span class="text-[9px] font-black uppercase">Salah</span>
+                            <span id="res-wrong" class="font-bold text-sm">0</span>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
+                            <span class="text-[10px] font-black text-indigo-500 uppercase tracking-widest">Akurasi</span>
+                            <span id="res-accuracy" class="text-lg font-black text-indigo-600">0%</span>
+                        </div>
+                    </div>
+                    <button onclick="switchView('kana')" class="w-full bg-slate-900 text-white py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-widest active:scale-95 transition-all mb-4 shrink-0">Kembali ke Menu</button>
+                </div>
+            </section>
+
+            <!-- VIEW: List -->
+            <section id="view-list" class="view h-full flex flex-col hidden animate-fade">
+                <div class="mb-5 shrink-0 px-1">
+                    <h2 class="text-sm font-black text-slate-800 mb-4">Statistik Kartu</h2>
+                    <div class="grid grid-cols-3 gap-2.5">
+                        <div class="glass p-3.5 rounded-2xl border-indigo-100 text-center">
+                            <div id="stat-mature" class="text-indigo-600 font-black text-lg leading-none">0</div>
+                            <div class="text-[8px] font-black uppercase text-slate-400 mt-2">Mature</div>
+                        </div>
+                        <div class="glass p-3.5 rounded-2xl border-orange-100 text-center">
+                            <div id="stat-young" class="text-orange-500 font-black text-lg leading-none">0</div>
+                            <div class="text-[8px] font-black uppercase text-slate-400 mt-2">Young</div>
+                        </div>
+                        <div class="glass p-3.5 rounded-2xl border-slate-100 text-center">
+                            <div id="stat-unseen" class="text-slate-400 font-black text-lg leading-none">0</div>
+                            <div class="text-[8px] font-black uppercase text-slate-400 mt-2">Unseen</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="card-list" class="flex-1 overflow-y-auto space-y-2.5 pr-1 custom-scrollbar"></div>
+            </section>
+
+            <!-- VIEW: Settings -->
+            <section id="view-settings" class="view h-full flex flex-col hidden animate-fade">
+                <h2 class="text-sm font-black text-slate-800 mb-6 px-1 uppercase tracking-wider">Pengaturan</h2>
+                <div class="space-y-4">
+                    <div class="glass p-6 rounded-3xl space-y-6 border-white/60">
+                        <div>
+                            <label class="text-[9px] font-black text-slate-400 uppercase mb-2.5 block tracking-widest">Target Kartu Baru / Hari</label>
+                            <input type="number" id="input-new-limit" class="w-full bg-white/50 border-none rounded-xl p-4 text-[12px] font-bold outline-none ring-1 ring-slate-100 focus:ring-indigo-500 transition-all">
+                        </div>
+                        <div>
+                            <label class="text-[9px] font-black text-slate-400 uppercase mb-2.5 block tracking-widest">Maksimal Review / Hari</label>
+                            <input type="number" id="input-rev-limit" class="w-full bg-white/50 border-none rounded-xl p-4 text-[12px] font-bold outline-none ring-1 ring-slate-100 focus:ring-indigo-500 transition-all">
+                        </div>
+                    </div>
+                    <button onclick="saveSettings()" class="w-full bg-indigo-600 text-white text-[11px] font-black uppercase py-4.5 rounded-2xl shadow-lg shadow-indigo-100 active:scale-95 transition-all">Simpan Perubahan</button>
+                    <button onclick="resetAllData()" class="w-full bg-rose-50 text-rose-500 border border-rose-100 text-[10px] font-black uppercase py-3.5 rounded-xl active:bg-rose-100 transition-all mt-6">Reset Semua Progress</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Navigation: Dinaikkan sedikit agar tidak tertutup navigasi HP -->
+        <nav class="mt-auto mb-6 glass rounded-[2.5rem] p-1.5 flex gap-1 shrink-0 z-30">
+            <button onclick="switchView('study')" id="nav-study" class="nav-btn flex-1 py-4 rounded-full flex flex-col items-center justify-center gap-1 nav-active transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="text-[8px] font-black uppercase tracking-tighter">Study</span>
+            </button>
+            <button onclick="switchView('kana')" id="nav-kana" class="nav-btn flex-1 py-4 rounded-full flex flex-col items-center justify-center gap-1 text-slate-400 hover:bg-white/40 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span class="text-[8px] font-black uppercase tracking-tighter">Kana</span>
+            </button>
+            <button onclick="switchView('list')" id="nav-list" class="nav-btn flex-1 py-4 rounded-full flex flex-col items-center justify-center gap-1 text-slate-400 hover:bg-white/40 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                <span class="text-[8px] font-black uppercase tracking-tighter">List</span>
+            </button>
+        </nav>
+
+        <div id="toast" class="fixed bottom-28 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full text-[10px] font-black uppercase text-white shadow-2xl transition-all opacity-0 pointer-events-none z-50"></div>
     </div>
 
-    <!-- Header Navigation -->
-    <header class="fixed w-full z-50 px-6 py-4">
-        <div class="max-w-5xl mx-auto flex justify-between items-center bg-white/70 backdrop-blur-2xl px-10 py-2.5 rounded-full shadow-sm border border-white/50">
-            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-red-900/40">Portfolio</span>
-            <nav class="hidden md:flex space-x-4">
-                <a href="#menu" class="menu-btn px-6 py-2 rounded-2xl text-[9px] font-extrabold uppercase tracking-widest text-slate-500 active:ring-2 active:ring-pink-300">Menu</a>
-                <a href="#capaian" class="menu-btn px-6 py-2 rounded-2xl text-[9px] font-extrabold uppercase tracking-widest text-slate-500">Capaian</a>
-                <a href="#sertifikat" class="menu-btn px-6 py-2 rounded-2xl text-[9px] font-extrabold uppercase tracking-widest text-slate-500">Sertifikat</a>
-                <a href="#dokumentasi" class="menu-btn px-6 py-2 rounded-2xl text-[9px] font-extrabold uppercase tracking-widest text-slate-500">Dokumentasi</a>
-            </nav>
-            <div class="md:hidden"><i data-lucide="menu" class="w-5 h-5 text-slate-400"></i></div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="menu" class="min-h-screen flex flex-col items-center justify-center px-6 pt-24 text-center">
-        <div class="reveal active space-y-8">
-            <div class="relative w-44 h-44 mx-auto flex items-center justify-center">
-                <!-- Spinning Decoration -->
-                <div class="absolute inset-0 animate-[spin_30s_linear_infinite] opacity-40">
-                    <svg class="w-full h-full" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="46" fill="none" stroke="#be185d" stroke-width="1" stroke-dasharray="10 15" />
-                        <circle cx="50" cy="4" r="4.5" fill="#f472b6" />
-                        <circle cx="5" cy="50" r="3.5" fill="#60a5fa" />
-                    </svg>
-                </div>
-                <div class="absolute -inset-4 bg-gradient-to-tr from-pink-200/50 via-purple-100/30 to-blue-200/30 rounded-full blur-2xl opacity-30"></div>
-                <img src="https://i.imgur.com/ZZnypaj.jpeg" alt="Desti Puspita" class="relative z-10 w-36 h-36 object-cover rounded-full border-4 border-white shadow-2xl transition-transform hover:scale-105" />
-            </div>
-
-            <div class="space-y-4">
-                <h1 class="desti-name-center uppercase w-full">DESTI PUSPITA</h1>
-                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-slate-500 pt-2 flex items-center justify-center gap-2">
-                    <span class="w-4 h-[1px] bg-blue-300"></span> Japanese Speaker • Creative • Professional Care <span class="w-4 h-[1px] bg-purple-300"></span>
-                </p>
-            </div>
-        </div>
-
-        <!-- Tentang Aku Box -->
-        <div class="max-w-2xl mx-auto mt-16 reveal active" style="transition-delay: 0.2s">
-            <div id="about-box" class="p-12 relative overflow-hidden group rounded-[3.5rem] cursor-pointer border-2 shadow-2xl transition-all duration-700 timbul-interaktif">
-                <div class="absolute top-0 right-0 w-40 h-40 bg-pink-100/30 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-1000"></div>
-                <h3 class="text-[11px] font-black uppercase tracking-widest text-pink-700 mb-8 flex items-center justify-center gap-4">
-                    <span class="w-12 h-[2px] bg-pink-400"></span> Tentang Aku <span class="w-12 h-[2px] bg-pink-400"></span>
-                </h3>
-                <div class="space-y-6 text-[15px] leading-relaxed text-slate-700 font-medium text-center">
-                    <p>Halo kenalin, Namaku <strong>Desti Puspita</strong>.</p>
-                    <p>Aku seorang yang sangat menyukai hal baru, dan memiliki ambisi untuk mencapai target-targetku. Contohnya aku bisa mendapatkan <strong>JLPT N3 hanya kurun waktu 1 tahun</strong>, aku juga memiliki pencapaian yang ku dapetkan ketika aku berada di SMK.</p>
-                    <p class="text-pink-800/40 text-[10px] font-black uppercase tracking-widest pt-4 italic">"Ini adalah tentang aku, tentang perjalanan."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pencapaian Section -->
-    <section id="capaian" class="py-40 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-28 reveal">
-                <h3 class="text-2xl font-black uppercase tracking-widest text-red-900/80">Pencapaian</h3>
-                <div class="w-16 h-[3px] bg-gradient-to-r from-pink-400 via-red-400 to-blue-400 mx-auto mt-4 rounded-full shadow-sm"></div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-32">
-                <!-- Achievement Card 1 -->
-                <div class="reveal timbul-interaktif relative overflow-hidden p-10 rounded-[2.8rem] border-2 border-white shadow-xl group bg-pink-50 hover:ring-pink-400">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/HwQXNA8.jpeg')"></div>
-                    <div class="relative z-10">
-                        <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 1 J-Challenge</h4>
-                        <p class="text-[9px] font-black mb-6 uppercase tracking-widest text-slate-500">JEducation</p>
-                        <p class="text-[11px] text-slate-600 leading-relaxed italic">"Beasiswa sinau menyang Jepang."</p>
-                    </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="reveal timbul-interaktif relative overflow-hidden p-10 rounded-[2.8rem] border-2 border-white shadow-xl group bg-blue-50 hover:ring-blue-400" style="transition-delay: 0.1s">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/iZ9jDEZ.jpeg')"></div>
-                    <div class="relative z-10">
-                        <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 3 Nihongo Shiken</h4>
-                        <p class="text-[9px] font-black mb-6 uppercase tracking-widest text-slate-500">Universitas Indonesia</p>
-                        <p class="text-[11px] text-slate-600 leading-relaxed italic">"Uji kemahiran tingkat nasional (UI)."</p>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="reveal timbul-interaktif relative overflow-hidden p-10 rounded-[2.8rem] border-2 border-white shadow-xl group bg-red-50 hover:ring-red-500" style="transition-delay: 0.2s">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/Dl3ucVd.png')"></div>
-                    <div class="relative z-10">
-                        <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 3 Lomba Rodoku</h4>
-                        <p class="text-[9px] font-black mb-6 uppercase tracking-widest text-slate-500">Univ. Negeri Jakarta</p>
-                        <p class="text-[11px] text-slate-600 leading-relaxed italic">"Seni intonasi lan pelafalan Basa Jepang."</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Skills Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-                <!-- Bahasa -->
-                <div class="timbul-interaktif p-10 reveal rounded-[3.5rem] bg-blue-50/50 border-2 hover:border-red-600 hover:ring-8 hover:ring-blue-100">
-                    <div class="flex items-center gap-4 mb-10 border-b border-red-100 pb-5">
-                        <div class="p-3 bg-red-800 text-white rounded-2xl shadow-lg shadow-red-100"><i data-lucide="languages" class="w-6 h-6"></i></div>
-                        <h4 class="text-[13px] font-black uppercase text-red-900 tracking-widest">Kompetensi Bahasa</h4>
-                    </div>
-                    <div class="space-y-10">
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-end">
-                                <span class="text-[15px] font-bold text-slate-700">Jepang (N3)</span>
-                                <span class="text-[10px] font-black text-red-800 uppercase tracking-widest">Advanced</span>
-                            </div>
-                            <div class="bar-container"><div class="bar-fill bg-gradient-to-r from-blue-500 to-red-800 shadow-[0_0_15px_rgba(220,38,38,0.3)]" style="width: 85%;"></div></div>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-end">
-                                <span class="text-[15px] font-bold text-slate-700">Indonesia (Native)</span>
-                                <span class="text-[10px] font-black text-blue-700 uppercase tracking-widest">Native</span>
-                            </div>
-                            <div class="bar-container"><div class="bar-fill bg-gradient-to-r from-red-400 to-blue-700 shadow-[0_0_15px_rgba(37,99,235,0.3)]" style="width: 100%;"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Soft Skills -->
-                <div class="timbul-interaktif p-10 reveal rounded-[3.5rem] bg-purple-50/50 border-2 hover:border-pink-500 hover:ring-8 hover:ring-purple-100" style="transition-delay: 0.1s">
-                    <div class="flex items-center gap-4 mb-10 border-b border-purple-200 pb-5">
-                        <div class="p-3 bg-purple-700 text-white rounded-2xl shadow-lg"><i data-lucide="zap" class="w-6 h-6"></i></div>
-                        <h4 class="text-[13px] font-black uppercase text-purple-900 tracking-widest">Soft Skills Profesional</h4>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="p-5 bg-white border-2 border-transparent hover:border-pink-400 hover:bg-pink-50 rounded-3xl shadow-sm transition-all group text-center active:scale-95">
-                            <span class="text-[10px] font-black text-slate-600 group-hover:text-pink-700 transition-colors uppercase tracking-tight">Public Speaking</span>
-                        </div>
-                        <div class="p-5 bg-white border-2 border-transparent hover:border-pink-400 hover:bg-pink-50 rounded-3xl shadow-sm transition-all group text-center active:scale-95">
-                            <span class="text-[11px] font-black text-slate-600 group-hover:text-pink-700 transition-colors uppercase tracking-tight">Critical Thinking</span>
-                        </div>
-                        <div class="p-5 bg-white border-2 border-transparent hover:border-pink-400 hover:bg-pink-50 rounded-3xl shadow-sm transition-all group text-center active:scale-95">
-                            <span class="text-[11px] font-black text-slate-600 group-hover:text-pink-700 transition-colors uppercase tracking-tight">Mentoring</span>
-                        </div>
-                        <div class="p-5 bg-white border-2 border-transparent hover:border-pink-400 hover:bg-pink-50 rounded-3xl shadow-sm transition-all group text-center active:scale-95">
-                            <span class="text-[11px] font-black text-slate-600 group-hover:text-pink-700 transition-colors uppercase tracking-tight">Adaptasi Cepat</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certificate Section -->
-    <section id="sertifikat" class="py-20 px-6">
-        <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-12 reveal">
-                <h3 class="text-2xl font-black uppercase tracking-widest text-blue-900/80">Certificate</h3>
-                <div class="w-14 h-[2.5px] bg-blue-400 mx-auto mt-3 rounded-full shadow-sm"></div>
-            </div>
-            <div class="flex justify-center reveal">
-                <div class="w-full max-w-lg overflow-hidden rounded-[2.5rem] shadow-2xl border-4 border-white hover:scale-[1.02] transition-all duration-1000 bg-white ring-4 ring-blue-50 group timbul-interaktif">
-                    <img src="https://i.imgur.com/yuCaZtp.jpeg" alt="Sertifikat Desti" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-[2000ms]" />
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dokumentasi Section -->
-    <section id="dokumentasi" class="py-40 px-6">
-        <div class="max-w-6xl mx-auto text-center mb-24 reveal">
-            <div class="glass-pink-nav inline-block px-12 py-4 rounded-full mb-6 ring-4 ring-pink-50">
-                <h3 class="text-2xl font-black uppercase tracking-[0.4em] text-pink-900">My Portofolio</h3>
-            </div>
-            <p class="text-[11px] text-slate-400 font-bold uppercase tracking-[0.3em] mt-4">Karya Kreatif & Catetan Momen</p>
-        </div>
-
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-32 reveal">
-                <div class="flex flex-wrap justify-center gap-14">
-                    <!-- Portofolio Kiri - Presisi & Zoom -->
-                    <div class="w-72 h-80 overflow-hidden rounded-[4rem] shadow-2xl border-8 border-white hover:scale-105 transition-all duration-1000 bg-pink-100 ring-8 ring-pink-50 group timbul-interaktif">
-                        <img src="https://i.imgur.com/6m2penP.jpeg" alt="Portrait 1" class="w-full h-full object-cover object-center scale-[1.75] group-hover:scale-[1.9] transition-transform duration-[2000ms]" />
-                    </div>
-                    <!-- Portofolio Kanan -->
-                    <div class="w-72 h-80 overflow-hidden rounded-[4rem] shadow-2xl border-8 border-white hover:scale-105 transition-all duration-1000 bg-blue-100 ring-8 ring-blue-200/50 group timbul-interaktif">
-                        <img src="https://i.imgur.com/tPVHLLA.png" alt="Portrait 2" class="w-full h-full object-cover object-center scale-[1.1] group-hover:scale-[1.25] transition-transform duration-[2000ms]" />
-                    </div>
-                </div>
-            </div>
-
-            <!-- Marquee Foto Bergulir -->
-            <div class="py-20 reveal mb-32 overflow-hidden">
-                <h4 class="text-[11px] font-black text-blue-900/30 mb-16 uppercase tracking-[0.6em] text-center">Momen Foto Bergulir</h4>
-                <div class="marquee-container">
-                    <div class="marquee-track" id="marquee-track">
-                        <!-- Foto-foto disuntikkan lewat JS agar rapi -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mini Game Section -->
-    <section class="pb-32 px-6 reveal -mt-16">
-        <div id="game-box" class="max-w-5xl mx-auto bg-white/95 p-12 md:p-16 rounded-[5rem] text-center relative shadow-2xl transition-all duration-500 active:ring-8 active:ring-pink-50 border-2 border-pink-100">
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2 px-12 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-black rounded-full text-[11px] uppercase tracking-widest shadow-xl shadow-pink-200">Mini Game</div>
-            <p class="text-[12px] text-slate-500 mb-10 tracking-widest uppercase font-black opacity-60">Lompati rintangan supaya tekan impian!</p>
-            
-            <div class="relative w-full h-56 bg-pink-50/40 rounded-[4rem] overflow-hidden border-2 border-pink-100 cursor-pointer shadow-inner" id="game-stage">
-                <div class="absolute bottom-8 left-24 text-6xl" id="player">🐱</div>
-                <div class="absolute bottom-8 text-5xl" id="obstacle" style="right: -10%;">🌵</div>
-                <div class="absolute bottom-0 w-full h-3 bg-gradient-to-r from-pink-300 via-blue-200 to-green-200 opacity-70"></div>
-            </div>
-
-            <div class="mt-12 flex justify-between items-center px-16">
-                <span class="text-[16px] font-black text-pink-600 uppercase tracking-widest bg-white px-6 py-2 rounded-2xl shadow-sm border border-pink-50">Skor: <span id="score">0</span></span>
-                <button id="restart-btn" class="hidden px-14 py-4 bg-red-600 text-white rounded-[2rem] text-[12px] font-black uppercase hover:bg-red-700 hover:scale-105 transition-all shadow-2xl active:scale-90">Restart</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-32 px-6 text-center border-t border-pink-100 bg-white/40 backdrop-blur-xl">
-        <div class="reveal space-y-16">
-            <div class="flex justify-center gap-16">
-                <a href="https://wa.me/6289506878654" target="_blank" class="text-slate-400 hover:text-green-500 transition-all transform hover:scale-150"><i data-lucide="phone" class="w-8 h-8"></i></a>
-                <a href="mailto:destipuspita.official@gmail.com" class="text-slate-400 hover:text-red-700 transition-all transform hover:scale-150"><i data-lucide="mail" class="w-8 h-8"></i></a>
-                <a href="#" class="text-slate-400 hover:text-pink-500 transition-all transform hover:scale-150"><i data-lucide="instagram" class="w-8 h-8"></i></a>
-                <a href="#" class="text-slate-400 hover:text-blue-900 transition-all transform hover:scale-150"><i data-lucide="linkedin" class="w-8 h-8"></i></a>
-            </div>
-            <div class="space-y-4">
-                <p class="text-[11px] font-black text-slate-500 uppercase tracking-[1.2em] leading-relaxed">
-                    Tujuan Bermakna • Desti Puspita
-                </p>
-                <p class="text-[9px] font-bold text-slate-300 uppercase tracking-[0.5em]">© 2026 • Professional Portfolio</p>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        // Init Ikon
-        lucide.createIcons();
-
-        // Reveal Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Marquee Logic
-        const track = document.getElementById('marquee-track');
-        const images = [
-            "https://i.imgur.com/sLl3KOL.jpeg", "https://i.imgur.com/QpmT1DF.jpeg",
-            "https://i.imgur.com/qSjyQzR.jpeg", "https://i.imgur.com/xiJxEVA.jpeg",
-            "https://i.imgur.com/bS6YW8w.jpeg", "https://i.imgur.com/xrJJL9Q.jpeg"
+        const ALL_KANJI = [
+            {f:'一',r:'いち',m:'Satu'},{f:'二',r:'に',m:'Dua'},{f:'三',r:'さん',m:'Tiga'},{f:'四',r:'よん',m:'Empat'},{f:'五',r:'ご',m:'Lima'},{f:'六',r:'ろく',m:'Enam'},{f:'七',r:'なな',m:'Tujuh'},{f:'八',r:'ハち',m:'Delapan'},{f:'九',r:'きゅう',m:'Sembilan'},{f:'十',r:'じゅう',m:'Sepuluh'},{f:'百',r:'ひゃく',m:'Ratus'},{f:'千',r:'せん',m:'Ribuan'},{f:'万',r:'まん',m:'Puluh ribu'},{f:'円',r:'えん',m:'Yen'},{f:'半',r:'はん',m:'Setengah'},
+            {f:'右',r:'みぎ',m:'Kanan'},{f:'左',r:'ひだり',m:'Kiri'},{f:'上',r:'うえ',m:'Atas'},{f:'下',r:'した',m:'Bawah'},{f:'前',r:'まえ',m:'Depan'},{f:'後ろ',r:'うしろ',m:'Belakang'},{f:'中',r:'なか',m:'Dalam'},{f:'外',r:'そと',m:'Luar'},{f:'間',r:'あいだ',m:'Antara'},{f:'西',r:'にし',m:'Barat'},{f:'東',r:'ひがし',m:'Timur'},{f:'北',r:'きた',m:'Utara'},{f:'南',r:'みなみ',m:'Selatan'},
+            {f:'雨',r:'あめ',m:'Hujan'},{f:'火',r:'ひ',m:'Api'},{f:'水',r:'みず',m:'Air'},{f:'空',r:'そら',m:'Langit'},{f:'花',r:'はな',m:'Bunga'},{f:'魚',r:'さかな',m:'Ikan'},{f:'山',r:'やま',m:'Gunung'},{f:'川',r:'かわ',m:'Sungai'},{f:'木',r:'き',m:'Pohon'},{f:'土',r:'つち',m:'Tanah'},{f:'天',r:'てん',m:'Cuaca'},{f:'雪',r:'ゆき',m:'Salju'},{f:'海',r:'うみ',m:'Laut'},{f:'空気',r:'くうき',m:'Udara'},
+            {f:'飲む',r:'のむ',m:'Minum'},{f:'食べる',r:'たべる',m:'Makan'},{f:'見る',r:'みる',m:'Melihat'},{f:'休む',r:'やすむ',m:'Istirahat'},{f:'会う',r:'あう',m:'Bertemu'},{f:'言う',r:'いう',m:'Berkata'},{f:'行く',r:'いく',m:'Pergi'},{f:'書く',r:'かく',m:'Menulis'},{f:'読む',r:'よむ',m:'Membaca'},{f:'買う',r:'かう',m:'Membeli'},{f:'入る',r:'はいる',m:'Masuk'},{f:'聞く',r:'きく',m:'Mendengar'},{f:'来る',r:'くる',m:'Datang'},{f:'話す',r:'はなす',m:'Berbicara'},{f:'持つ',r:'もつ',m:'Membawa'},{f:'待つ',r:'まつ',m:'Menunggu'},{f:'教える',r:'おしえる',m:'Memberitahu'},{f:'働く',r:'はたらく',m:'Bekerja'},{f:'借りる',r:'かりる',m:'Meminjam'},{f:'貸す',r:'かす',m:'Meminjamkan'},{f:'返す',r:'かえす',m:'Mengembalikan'},
+            {f:'安い',r:'やすい',m:'Murah'},{f:'高い',r:'たかい',m:'Tinggi/Mahal'},{f:'古い',r:'ふるい',m:'Lama/Usang'},{f:'新しい',r:'あたらしい',m:'Baru'},{f:'大きい',r:'おおきい',m:'Besar'},{f:'小さい',r:'ちいさい',m:'Kecil'},{f:'長い',r:'ながい',m:'Panjang'},{f:'短い',r:'みじかい',m:'Pendek'},{f:'多い',r:'おおい',m:'Banyak'},{f:'少ない',r:'すくない',m:'Sedikit'},{f:'明るい',r:'あかるい',m:'Terang/Ceria'},{f:'暑い',r:'あつい',m:'Panas (cuaca)'},{f:'寒い',r:'さむい',m:'Dingin (cuaca)'},{f:'冷たい',r:'つめたい',m:'Dingin (benda)'},
+            {f:'年',r:'ねん',m:'Tahun'},{f:'月',r:'つき',m:'Bulan'},{f:'日',r:'ひ',m:'Hari'},{f:'時',r:'とき',m:'Waktu'},{f:'分',r:'ふん',m:'Menit'},{f:'週',r:'しゅう',m:'Minggu'},{f:'午前',r:'ごぜん',m:'Pagi (AM)'},{f:'午後',r:'ごご',m:'Siang (PM)'},{f:'朝',r:'あさ',m:'Pagi'},{f:'昼',r:'ひる',m:'Siang'},{f:'夜',r:'よる',m:'Malam'},{f:'月曜日',r:'げつようび',m:'Senin'},{f:'火曜日',r:'かようび',m:'Selasa'},{f:'水曜日',r:'すいようび',m:'Rabu'},{f:'木曜日',r:'もくようび',m:'Kamis'},{f:'金曜日',r:'きんようび',m:'Jumat'},{f:'土曜日',r:'どようび',m:'Sabtu'},{f:'日曜日',r:'にちようび',m:'Minggu'},
+            {f:'人',r:'ひと',m:'Orang'},{f:'男',r:'おとco',m:'Laki-laki'},{f:'女',r:'おんな',m:'Perempuan'},{f:'子',r:'こ',m:'Anak'},{f:'父',r:'ちち',m:'Ayah'},{f:'母',r:'はは',m:'Ibu'},{f:'姉',r:'あね',m:'Kakak perempuan'},{f:'兄',r:'あに',m:'Kakak laki-laki'},{f:'妹',r:'いもうと',m:'Adik perempuan'},{f:'弟',r:'おとうと',m:'Adik laki-laki'},{f:'兄弟',r:'きょうだい',m:'Saudara'},{f:'友達',r:'ともだち',m:'Teman'},{f:'大人',r:'おとな',m:'Dewasa'},{f:'私',r:'わたし',m:'Saya'},
+            {f:'駅',r:'えき',m:'Stasiun'},{f:'学校',r:'がっこう',m:'Sekolah'},{f:'高校',r:'こうこう',m:'SMA'},{f:'大学',r:'だいがく',m:'Universitas'},{f:'会社',r:'かいしゃ',m:'Perusahaan'},{f:'店',r:'みせ',m:'Toko'},{f:'病院',r:'びょういん',m:'Rumah sakit'},{f:'公園',r:'こうえん',m:'Taman'},{f:'国',r:'くに',m:'Negara'},{f:'道',r:'みち',m:'Jalan'},{f:'東京',r:'とうきょう',m:'Tokyo'},{f:'京都',r:'きょうと',m:'Kyoto'}
         ];
-        // Duplicate for seamless loop
-        [...images, ...images].forEach(src => {
-            const div = document.createElement('div');
-            div.className = "w-52 h-52 mx-8 overflow-hidden rounded-[3.5rem] border-4 border-white shadow-2xl flex-shrink-0 hover:scale-110 hover:ring-8 hover:ring-pink-300 transition-all duration-700 bg-white";
-            const img = document.createElement('img');
-            img.src = src;
-            img.className = "w-full h-full object-cover";
-            div.appendChild(img);
-            track.appendChild(div);
-        });
 
-        // Interactive states for About Box
-        const aboutBox = document.getElementById('about-box');
-        aboutBox.addEventListener('mousedown', () => aboutBox.classList.add('bg-pink-100', 'border-pink-400', 'ring-8', 'ring-pink-50', 'scale-95'));
-        ['mouseup', 'mouseleave'].forEach(e => 
-            aboutBox.addEventListener(e, () => aboutBox.classList.remove('bg-pink-100', 'border-pink-400', 'ring-8', 'ring-pink-50', 'scale-95'))
-        );
+        const KANA_POOL = {
+            hira: { 'あ':'a','い':'i','う':'u','え':'e','お':'o','か':'ka','き':'ki','く':'ku','け':'ke','こ':'ko','さ':'sa','し':'shi','す':'su','せ':'se','そ':'so','た':'ta','ち':'chi','つ':'tsu','て':'te','と':'to','な':'na','ni':'ni','ぬ':'nu','ね':'ne','の':'no','は':'ha','ひ':'hi','ふ':'fu','へ':'he','ほ':'ho','ま':'ma','み':'mi','む':'mu','め':'me','も':'mo','や':'ya','ゆ':'yu','よ':'yo','ら':'ra','り':'ri','る':'ru','れ':'re','ろ':'ro','わ':'wa','を':'wo','ん':'n' },
+            kata: { 'ア':'a','イ':'i','ウ':'u','エ':'e','オ':'o','カ':'ka','キ':'ki','ク':'ku','ケ':'ke','コ':'ko','サ':'sa','シ':'shi','ス':'su','セ':'se','そ':'so','タ':'ta','チ':'chi','ツ':'tsu','テ':'te','ト':'to','ナ':'na','ニ':'ni','ヌ':'nu','ネ':'ne','ノ':'no','ハ':'ha','ヒ':'hi','フ':'fu','ヘ':'he','ホ':'ho','マ':'ma','ミ':'mi','ム':'mu','メ':'me','モ':'mo','ヤ':'ya','ユ':'yu','ヨ':'yo','ラ':'ra','リ':'ri','ル':'ru','レ':'re','ロ':'ro','ワ':'wa','ヲ':'wo','ン':'n' }
+        };
 
-        // Game Logic
-        let score = 0;
-        let isJumping = false;
-        let isGameOver = false;
-        let obstaclePos = 110;
-        const player = document.getElementById('player');
-        const obstacle = document.getElementById('obstacle');
-        const scoreEl = document.getElementById('score');
-        const restartBtn = document.getElementById('restart-btn');
-        const stage = document.getElementById('game-stage');
+        // --- STATE ---
+        let cards = [];
+        let settings = { newLimit: 10, reviewLimit: 20, dailyReset: "", newDoneToday: 0, reviewDoneToday: 0 };
+        let activeQueue = [];
+        let quizQueue = [];
+        let quizScore = 0;
+        let totalQueueSize = 0;
+        let isFlipped = false;
+        let kanaConfig = { hira: true, kata: false };
+        let kanaCorrect = 0;
+        let kanaWrong = 0;
+        let kanaTime = 0;
+        let kanaInterval = null;
+        let currentKanaTarget = null;
+        let kanaQuestionCount = 0;
+        let isProcessing = false;
 
-        function jump() {
-            if (isGameOver) {
-                resetGame();
-                return;
-            }
-            if (!isJumping) {
-                isJumping = true;
-                player.classList.add('jumping');
-                setTimeout(() => {
-                    player.classList.remove('jumping');
-                    isJumping = false;
-                }, 600);
-            }
-        }
+        const getWIBDate = () => new Date().toLocaleDateString("en-US", {timeZone: "Asia/Jakarta"});
 
-        function resetGame() {
-            score = 0;
-            obstaclePos = 110;
-            isGameOver = false;
-            isJumping = false;
-            scoreEl.innerText = "0";
-            restartBtn.classList.add('hidden');
-            player.innerText = '🐱';
-            gameLoop();
-        }
+        const init = () => {
+            const storedCards = localStorage.getItem('jmaster_v15_cards');
+            const storedSettings = localStorage.getItem('jmaster_v15_settings');
+            const todayWIB = getWIBDate();
 
-        function gameLoop() {
-            if (isGameOver) return;
-
-            obstaclePos -= 0.85; // Speed
-            if (obstaclePos < -15) {
-                obstaclePos = 115;
-                score++;
-                scoreEl.innerText = score;
+            if (storedCards) cards = JSON.parse(storedCards);
+            else {
+                cards = ALL_KANJI.map(k => ({ ...k, repetitions: 0, interval: 0, ease: 2.5, nextReview: 0, id: Math.random().toString(36).substr(2, 9) }));
+                saveCards();
             }
 
-            obstacle.style.right = (100 - obstaclePos) + '%';
-
-            // Simple collision check (approx based on percentages)
-            if (obstaclePos > 15 && obstaclePos < 35 && !isJumping) {
-                isGameOver = true;
-                player.innerText = '😵';
-                restartBtn.classList.remove('hidden');
+            if (storedSettings) {
+                settings = JSON.parse(storedSettings);
+                if (settings.dailyReset !== todayWIB) {
+                    settings.dailyReset = todayWIB;
+                    settings.newDoneToday = 0;
+                    settings.reviewDoneToday = 0;
+                    saveSettings(false);
+                }
+            } else {
+                settings.dailyReset = todayWIB;
+                saveSettings(false);
             }
+            updateUI();
+        };
 
-            requestAnimationFrame(gameLoop);
-        }
+        const startSession = () => {
+            const now = Date.now();
+            const dueRev = cards.filter(c => c.repetitions > 0 && c.nextReview <= now);
+            const newCards = cards.filter(c => c.repetitions === 0);
+            const remNew = Math.max(0, settings.newLimit - settings.newDoneToday);
+            const remRev = Math.max(0, settings.reviewLimit - settings.reviewDoneToday);
+            activeQueue = [...dueRev.slice(0, remRev), ...newCards.slice(0, remNew)].sort(() => Math.random() - 0.5);
+            totalQueueSize = activeQueue.length;
+            if (activeQueue.length === 0) return showToast("Target harian tuntas!", "success");
+            updateUI();
+        };
 
-        stage.addEventListener('click', (e) => {
-            e.preventDefault();
-            jump();
-        });
+        const handleRate = (evalScore) => {
+            const current = activeQueue[0];
+            if (!current) return;
+            setIsFlipped(false);
+            setTimeout(() => {
+                const original = cards.find(c => c.id === current.id);
+                const wasNew = original.repetitions === 0;
+                if (evalScore === 0) {
+                    original.interval = 0;
+                    original.ease = Math.max(1.3, original.ease - 0.2);
+                    activeQueue.push(activeQueue.shift());
+                } else {
+                    if (wasNew) settings.newDoneToday++; else settings.reviewDoneToday++;
+                    if (evalScore === 1) { original.interval = Math.max(1, Math.round(original.interval * 1.2)); original.ease = Math.max(1.3, original.ease - 0.15); }
+                    else if (evalScore === 2) { original.interval = original.interval === 0 ? 1 : Math.round(original.interval * original.ease); }
+                    else if (evalScore === 3) { original.interval = original.interval === 0 ? 4 : Math.round(original.interval * original.ease * 1.3); original.ease = Math.min(3.0, original.ease + 0.15); }
+                    original.repetitions++;
+                    original.nextReview = Date.now() + (original.interval * 24 * 60 * 60 * 1000);
+                    activeQueue.shift();
+                }
+                saveCards(); saveSettings(false); updateUI();
+            }, 400);
+        };
 
-        restartBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            resetGame();
-        });
+        const setIsFlipped = (val) => {
+            isFlipped = val;
+            const card = document.getElementById('flashcard');
+            const actions = document.getElementById('srs-actions');
+            if(val) { card.classList.add('flipped'); actions.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-6'); }
+            else { card.classList.remove('flipped'); actions.classList.add('opacity-0', 'pointer-events-none', 'translate-y-6'); }
+        };
 
-        // Initialize game
-        gameLoop();
+        window.flipCard = () => { if(!isFlipped && activeQueue.length > 0) setIsFlipped(true); };
+
+        window.startDailyQuiz = () => {
+            const available = cards.filter(c => c.repetitions > 0);
+            if(available.length < 5) return showToast("Pelajari min. 5 kartu dulu!", "error");
+            quizQueue = available.sort(() => Math.random() - 0.5).slice(0, 10);
+            quizScore = 0;
+            document.getElementById('quiz-setup').classList.add('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-active').classList.remove('hidden');
+            nextQuizQuestion();
+        };
+
+        const nextQuizQuestion = () => {
+            if(quizQueue.length === 0) return showQuizResult();
+            const current = quizQueue[0];
+            const qCount = 10 - quizQueue.length + 1;
+            document.getElementById('quiz-display').innerText = current.f;
+            document.getElementById('quiz-q-count').innerText = `Soal ${qCount}/10`;
+            
+            let opts = [current.m];
+            const pool = ALL_KANJI.map(k => k.m);
+            while(opts.length < 4) {
+                const r = pool[Math.floor(Math.random() * pool.length)];
+                if(!opts.includes(r)) opts.push(r);
+            }
+            opts = opts.sort(() => Math.random() - 0.5);
+            
+            document.getElementById('quiz-options').innerHTML = opts.map(o => `
+                <button onclick="handleQuizAnswer(event, '${o}')" class="glass py-5 rounded-2xl font-black text-slate-700 text-[10px] uppercase border-white active:scale-95 transition-all">${o}</button>
+            `).join('');
+            isProcessing = false;
+        };
+
+        window.handleQuizAnswer = (e, ans) => {
+            if(isProcessing) return;
+            isProcessing = true;
+            const correct = quizQueue[0].m;
+            if(ans === correct) {
+                quizScore++;
+                e.currentTarget.classList.add('ans-correct');
+            } else {
+                e.currentTarget.classList.add('ans-wrong');
+            }
+            setTimeout(() => {
+                quizQueue.shift();
+                nextQuizQuestion();
+            }, 600);
+        };
+
+        const showQuizResult = () => {
+            document.getElementById('quiz-active').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+            document.getElementById('quiz-final-score').innerText = `${quizScore}/10`;
+        };
+
+        window.startKanaQuiz = () => {
+            if (!kanaConfig.hira && !kanaConfig.kata) return showToast("Pilih Kana!", "error");
+            kanaCorrect = 0; kanaWrong = 0; kanaTime = 0; kanaQuestionCount = 0;
+            document.getElementById('kana-setup').classList.add('hidden');
+            document.getElementById('kana-result').classList.add('hidden');
+            document.getElementById('kana-active').classList.remove('hidden');
+            clearInterval(kanaInterval);
+            kanaInterval = setInterval(() => {
+                kanaTime++;
+                const m = Math.floor(kanaTime/60); const s = kanaTime%60;
+                document.getElementById('kana-timer').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+            }, 1000);
+            nextKana();
+        };
+
+        const nextKana = () => {
+            kanaQuestionCount++;
+            document.getElementById('kana-q-count').innerText = `Q #${kanaQuestionCount}`;
+            let pool = {};
+            if (kanaConfig.hira) pool = {...pool, ...KANA_POOL.hira};
+            if (kanaConfig.kata) pool = {...pool, ...KANA_POOL.kata};
+            const chars = Object.keys(pool); const char = chars[Math.floor(Math.random() * chars.length)];
+            const ans = pool[char]; const allPossible = [...new Set(Object.values(pool))];
+            let opts = [ans];
+            while(opts.length < 4) { const r = allPossible[Math.floor(Math.random()*allPossible.length)]; if(!opts.includes(r)) opts.push(r); }
+            opts = opts.sort(() => Math.random() - 0.5);
+            currentKanaTarget = ans;
+            document.getElementById('kana-display').innerText = char;
+            document.getElementById('kana-options').innerHTML = opts.map(o => `
+                <button onclick="checkKana(event, '${o}')" class="glass py-5 rounded-2xl font-black text-slate-700 text-sm uppercase border-white">${o}</button>
+            `).join('');
+            isProcessing = false;
+        };
+
+        window.checkKana = (event, choice) => {
+            if (isProcessing) return; isProcessing = true;
+            if (choice === currentKanaTarget) { kanaCorrect++; event.currentTarget.classList.add('ans-correct'); }
+            else { kanaWrong++; event.currentTarget.classList.add('ans-wrong'); }
+            setTimeout(() => nextKana(), 500);
+        };
+
+        window.stopKanaQuiz = () => {
+            clearInterval(kanaInterval);
+            const total = kanaCorrect + kanaWrong;
+            const accuracy = total > 0 ? Math.round((kanaCorrect / total) * 100) : 0;
+            document.getElementById('res-total').innerText = total;
+            document.getElementById('res-correct').innerText = kanaCorrect;
+            document.getElementById('res-wrong').innerText = kanaWrong;
+            document.getElementById('res-accuracy').innerText = accuracy + "%";
+            document.getElementById('kana-active').classList.add('hidden');
+            document.getElementById('kana-result').classList.remove('hidden');
+        };
+
+        window.switchView = (target) => {
+            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+            document.getElementById(`view-${target}`).classList.remove('hidden');
+            
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('nav-active'));
+            const map = { 'study': 'nav-study', 'quiz': 'nav-study', 'settings': 'nav-study', 'kana': 'nav-kana', 'list': 'nav-list' };
+            const btn = document.getElementById(map[target]);
+            if(btn) btn.classList.add('nav-active');
+
+            if(target === 'kana') {
+                document.getElementById('kana-setup').classList.remove('hidden');
+                document.getElementById('kana-active').classList.add('hidden');
+                document.getElementById('kana-result').classList.add('hidden');
+                clearInterval(kanaInterval);
+            }
+            if(target === 'quiz') {
+                document.getElementById('quiz-setup').classList.remove('hidden');
+                document.getElementById('quiz-active').classList.add('hidden');
+                document.getElementById('quiz-result').classList.add('hidden');
+            }
+            if(target === 'list') renderList();
+            if(target === 'study') updateUI();
+        };
+
+        const updateUI = () => {
+            const remNew = Math.max(0, settings.newLimit - settings.newDoneToday);
+            const remRev = Math.max(0, settings.reviewLimit - settings.reviewDoneToday);
+            document.getElementById('stat-new').innerText = `NEW: ${remNew}`;
+            document.getElementById('stat-rev').innerText = `DUE: ${remRev}`;
+            document.getElementById('input-new-limit').value = settings.newLimit;
+            document.getElementById('input-rev-limit').value = settings.reviewLimit;
+            
+            if(activeQueue.length === 0) {
+                document.getElementById('study-status').classList.remove('hidden');
+                document.getElementById('study-active').classList.add('hidden');
+                if(remNew === 0 && remRev === 0) {
+                    document.getElementById('status-icon').innerText = "✅";
+                    document.getElementById('status-title').innerText = "Target Tuntas!";
+                    document.getElementById('status-desc').innerHTML = "Bagus! Kamu sudah mencapai target harian.<br/>Sampai besok pukul 00:00 WIB!";
+                } else {
+                    document.getElementById('status-icon').innerText = "📚";
+                    document.getElementById('status-title').innerText = "Sesi Belajar";
+                }
+            } else {
+                document.getElementById('study-status').classList.add('hidden');
+                document.getElementById('study-active').classList.remove('hidden');
+                const card = activeQueue[0];
+                document.getElementById('display-front').innerText = card.f;
+                document.getElementById('display-reading').innerText = card.r;
+                document.getElementById('display-meaning').innerText = card.m;
+                document.getElementById('session-counter').innerText = `${activeQueue.length} REMAINING`;
+                document.getElementById('session-progress').style.width = `${(1 - activeQueue.length / totalQueueSize) * 100}%`;
+            }
+        };
+
+        window.toggleKana = (type) => { kanaConfig[type] = !kanaConfig[type]; updateKanaSelectionUI(); };
+        const updateKanaSelectionUI = () => {
+            const bh = document.getElementById('btn-hira'); const bk = document.getElementById('btn-kata');
+            bh.className = `w-full flex justify-between items-center p-4 rounded-2xl border text-[11px] font-black transition-all ${kanaConfig.hira ? 'btn-glow-active' : 'bg-white/40 border-slate-100 text-slate-400'}`;
+            bk.className = `w-full flex justify-between items-center p-4 rounded-2xl border text-[11px] font-black transition-all ${kanaConfig.kata ? 'btn-glow-active' : 'bg-white/40 border-slate-100 text-slate-400'}`;
+            document.getElementById('icon-hira').classList.toggle('hidden', !kanaConfig.hira);
+            document.getElementById('icon-kata').classList.toggle('hidden', !kanaConfig.kata);
+        };
+
+        window.saveSettings = (sh = true) => {
+            settings.newLimit = parseInt(document.getElementById('input-new-limit').value) || 10;
+            settings.reviewLimit = parseInt(document.getElementById('input-rev-limit').value) || 20;
+            localStorage.setItem('jmaster_v15_settings', JSON.stringify(settings));
+            if(sh) { showToast("Disimpan", "success"); switchView('study'); }
+        };
+
+        const saveCards = () => localStorage.setItem('jmaster_v15_cards', JSON.stringify(cards));
+        window.resetCard = (id) => { if(confirm("Reset progress kartu ini?")) { const c = cards.find(x => x.id === id); c.repetitions = 0; c.interval = 0; c.ease = 2.5; c.nextReview = 0; saveCards(); renderList(); } };
+        window.resetAllData = () => { if(confirm("Hapus seluruh progress?")) { localStorage.clear(); location.reload(); } };
+
+        const renderList = () => {
+            const list = document.getElementById('card-list');
+            const mature = cards.filter(c => c.interval >= 21).length;
+            const young = cards.filter(c => c.repetitions > 0 && c.interval < 21).length;
+            const unseen = cards.filter(c => c.repetitions === 0).length;
+            document.getElementById('stat-mature').innerText = mature;
+            document.getElementById('stat-young').innerText = young;
+            document.getElementById('stat-unseen').innerText = unseen;
+            list.innerHTML = cards.map(c => {
+                let color = "text-slate-300 border-slate-100"; let label = "NEW";
+                if(c.interval >= 21) { color = "text-indigo-600 bg-indigo-50/50 border-indigo-100"; label = "MATURE"; }
+                else if(c.repetitions > 0) { color = "text-orange-500 bg-orange-50/50 border-orange-100"; label = "YOUNG"; }
+                return `<div class="glass p-4 rounded-3xl flex justify-between items-center"><div class="flex-1"><div class="font-bold text-slate-800 text-lg">${c.f}</div><div class="text-[9px] text-slate-400 font-black tracking-tight uppercase">${c.r} • ${c.m}</div></div><div class="flex items-center gap-3"><div class="text-[7px] font-black px-2.5 py-1.5 rounded-full border ${color}">${label}</div><button onclick="resetCard('${c.id}')" class="p-2 text-slate-300 hover:text-rose-500"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></button></div></div>`;
+            }).join('');
+        };
+
+        const showToast = (msg, type) => {
+            const t = document.getElementById('toast'); t.innerText = msg;
+            t.className = `fixed bottom-28 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full text-[10px] font-black uppercase text-white shadow-2xl transition-all z-50 ${type === 'error' ? 'bg-rose-500' : 'bg-slate-900'}`;
+            t.classList.remove('opacity-0'); setTimeout(() => t.classList.add('opacity-0'), 2000);
+        };
+
+        init();
     </script>
 </body>
 </html>
