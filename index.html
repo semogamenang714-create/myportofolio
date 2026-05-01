@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio - Desti Puspita</title>
-    <!-- Tailwind CSS untuk tata letak yang responsif -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -19,24 +21,14 @@
         /* VIBRANT MULTICOLOR MESH GRADIENT BACKGROUND */
         .mesh-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -10;
-            overflow: hidden;
-            pointer-events: none;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -10; overflow: hidden; pointer-events: none;
         }
         .mesh-circle {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.25;
-            animation: pulse-glow 10s infinite alternate;
+            position: absolute; border-radius: 50%; filter: blur(80px);
+            opacity: 0.25; animation: pulse-glow 10s infinite alternate;
         }
-        @media (min-width: 768px) {
-            .mesh-circle { filter: blur(120px); }
-        }
+        @media (min-width: 768px) { .mesh-circle { filter: blur(120px); } }
         @keyframes pulse-glow {
             from { transform: scale(1); opacity: 0.2; }
             to { transform: scale(1.3); opacity: 0.4; }
@@ -44,14 +36,10 @@
 
         /* Reveal Animation */
         .reveal {
-            opacity: 0;
-            transform: translateY(20px);
+            opacity: 0; transform: translateY(20px);
             transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* Interactive Timbul & Stroke */
         .timbul-interaktif {
@@ -65,85 +53,74 @@
             box-shadow: 12px 12px 30px rgba(0,0,0,0.06);
             background: white;
         }
-        .timbul-interaktif:active {
-            transform: translateY(1px) scale(0.98);
-        }
+        .timbul-interaktif:active { transform: translateY(1px) scale(0.98); }
 
-        /* Navigation Buttons */
-        .menu-btn {
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* Floating Audio Control */
+        .music-btn {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid white;
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.15);
+            transition: all 0.3s ease;
         }
-        .menu-btn:hover {
-            color: #be185d;
-            transform: scale(1.1);
+        .music-btn.playing {
+            background: #be185d; color: white;
+            animation: pulse-btn 2s infinite;
+        }
+        @keyframes pulse-btn {
+            0% { box-shadow: 0 0 0 0 rgba(190, 24, 93, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(190, 24, 93, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(190, 24, 93, 0); }
         }
 
         /* Mobile Menu */
         #mobile-menu {
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateX(100%);
-            opacity: 0;
+            transform: translateX(100%); opacity: 0;
         }
-        #mobile-menu.open {
-            transform: translateX(0);
-            opacity: 1;
-        }
+        #mobile-menu.open { transform: translateX(0); opacity: 1; }
 
-        /* Game Character Chibi Styles */
+        /* Game Character Chibi */
         .chibi-character {
-            width: 80px;
-            height: 80px;
-            position: absolute;
-            bottom: 32px;
-            left: 15%;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
-            z-index: 20;
-        }
-
-        /* Smooth Marquee */
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .marquee-track {
-            display: flex;
-            width: max-content;
-            animation: marquee 40s linear infinite;
+            width: 70px; height: 70px; position: absolute;
+            bottom: 32px; left: 10%; z-index: 20;
         }
 
         /* Progress Bar */
         .bar-container {
-            width: 100%;
-            background: rgba(241, 245, 249, 1);
-            height: 0.6rem;
-            border-radius: 999px;
-            overflow: hidden;
+            width: 100%; background: rgba(241, 245, 249, 1);
+            height: 0.6rem; border-radius: 999px; overflow: hidden;
             border: 1px solid rgba(226, 232, 240, 1);
         }
         .bar-fill {
-            height: 100%;
-            border-radius: 999px;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 2s ease-out;
+            height: 100%; border-radius: 999px; transform: scaleX(0);
+            transform-origin: left; transition: transform 2s ease-out;
         }
         .reveal.active .bar-fill { transform: scaleX(1); }
 
+        /* Marquee bergulir */
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+
         .desti-name-center {
-            letter-spacing: 0.4em;
-            color: #7F1D1D;
-            text-align: center;
-            font-size: 1.25rem;
-            font-weight: 900;
+            letter-spacing: 0.4em; color: #7F1D1D; text-align: center;
+            font-size: 1.25rem; font-weight: 900;
         }
-        @media (min-width: 768px) {
-            .desti-name-center { letter-spacing: 0.8em; font-size: 1rem; }
-        }
+        @media (min-width: 768px) { .desti-name-center { letter-spacing: 0.8em; font-size: 1rem; } }
+
+        /* Game Clouds */
+        @keyframes cloud-drift { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+        .cloud { position: absolute; animation: cloud-drift 20s linear infinite; opacity: 0.4; }
     </style>
 </head>
 <body class="selection:bg-pink-200">
 
-    <!-- Latar Belakang Mesh -->
+    <!-- Elemen Audio (Pastikan file ada di GitHub) -->
+    <audio id="bg-music" loop>
+        <source src="Maudy Ayunda - Kejar Mimpi _ Official Music Video - (64 Kbps).mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Mesh Background Layers -->
     <div class="mesh-bg">
         <div class="mesh-circle bg-pink-300" style="top: -10%; left: -10%; width: 90%; height: 90%;"></div>
         <div class="mesh-circle bg-blue-200" style="bottom: -10%; right: -5%; width: 80%; height: 80%; animation-delay: 1.5s;"></div>
@@ -156,27 +133,25 @@
         <div class="max-w-5xl mx-auto flex justify-between items-center bg-white/70 backdrop-blur-2xl px-6 md:px-10 py-3 rounded-3xl md:rounded-full shadow-lg border border-white/50">
             <span class="text-xs font-black uppercase tracking-[0.4em] text-pink-900/60">Portfolio</span>
             
-            <!-- Desktop Nav -->
+            <!-- Nav Laptop -->
             <nav class="hidden md:flex space-x-8">
-                <a href="#menu" class="menu-btn font-bold text-[10px] uppercase tracking-widest text-slate-500">Menu</a>
-                <a href="#capaian" class="menu-btn font-bold text-[10px] uppercase tracking-widest text-slate-500">Capaian</a>
-                <a href="#sertifikat" class="menu-btn font-bold text-[10px] uppercase tracking-widest text-slate-500">Sertifikat</a>
-                <a href="#dokumentasi" class="menu-btn font-bold text-[10px] uppercase tracking-widest text-slate-500">Dokumen</a>
+                <a href="#menu" class="font-bold text-[10px] uppercase tracking-widest text-slate-500 hover:text-pink-600 transition-all">Menu</a>
+                <a href="#capaian" class="font-bold text-[10px] uppercase tracking-widest text-slate-500 hover:text-pink-600 transition-all">Capaian</a>
+                <a href="#sertifikat" class="font-bold text-[10px] uppercase tracking-widest text-slate-500 hover:text-pink-600 transition-all">Sertifikat</a>
+                <a href="#dokumentasi" class="font-bold text-[10px] uppercase tracking-widest text-slate-500 hover:text-pink-600 transition-all">Dokumen</a>
             </nav>
 
-            <!-- Mobile Menu Toggle (Three Dots) -->
+            <!-- Menu Titik Tiga (Mobile) -->
             <button id="menu-toggle" class="md:hidden p-2.5 rounded-2xl bg-white/80 hover:bg-pink-100 transition-all shadow-md active:scale-90">
                 <i data-lucide="more-horizontal" class="w-6 h-6 text-pink-600"></i>
             </button>
         </div>
     </header>
 
-    <!-- Mobile Menu Overlay -->
+    <!-- Overlay Menu Mobile -->
     <div id="mobile-menu" class="fixed inset-0 z-50 md:hidden flex flex-col items-center justify-center bg-white/95 backdrop-blur-3xl">
         <div class="absolute top-8 right-8">
-            <button id="menu-close" class="p-4 rounded-full bg-pink-50 text-pink-600 active:scale-90">
-                <i data-lucide="x" class="w-8 h-8"></i>
-            </button>
+            <button id="menu-close" class="p-4 rounded-full bg-pink-50 text-pink-600 active:scale-90"><i data-lucide="x" class="w-8 h-8"></i></button>
         </div>
         <nav class="flex flex-col items-center space-y-10 text-center">
             <a href="#menu" class="mobile-link text-3xl font-black text-slate-800 uppercase tracking-widest">Menu</a>
@@ -184,7 +159,6 @@
             <a href="#sertifikat" class="mobile-link text-3xl font-black text-slate-800 uppercase tracking-widest">Sertifikat</a>
             <a href="#dokumentasi" class="mobile-link text-3xl font-black text-slate-800 uppercase tracking-widest">Dokumen</a>
         </nav>
-        <div class="mt-20 text-[10px] font-bold uppercase tracking-[0.5em] text-pink-300">Desti Puspita</div>
     </div>
 
     <!-- Hero Section -->
@@ -194,26 +168,32 @@
                 <div class="absolute inset-0 animate-[spin_30s_linear_infinite] opacity-40">
                     <svg class="w-full h-full" viewBox="0 0 100 100">
                         <circle cx="50" cy="50" r="46" fill="none" stroke="#be185d" stroke-width="1.2" stroke-dasharray="12 18" />
-                        <circle cx="50" cy="4" r="4.5" fill="#f472b6" />
-                        <circle cx="5" cy="50" r="3.5" fill="#60a5fa" />
+                        <circle cx="50" cy="4" r="4.5" fill="#f472b6" /><circle cx="5" cy="50" r="3.5" fill="#60a5fa" />
                     </svg>
                 </div>
                 <div class="absolute -inset-4 bg-gradient-to-tr from-pink-200/50 to-blue-200/30 rounded-full blur-2xl opacity-30"></div>
                 <img src="https://i.imgur.com/ZZnypaj.jpeg" alt="Desti Puspita" class="relative z-10 w-32 h-32 md:w-40 md:h-40 object-cover rounded-full border-4 border-white shadow-2xl transition-transform hover:scale-105" />
             </div>
 
-            <div class="space-y-4">
+            <div class="space-y-6">
                 <h1 class="desti-name-center uppercase w-full">DESTI PUSPITA</h1>
-                <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.4em] text-slate-500 pt-1">
-                    Japanese Speaker • Creative • Professional Care
-                </p>
+                
+                <!-- Music Control -->
+                <div class="flex justify-center">
+                    <button id="music-control" class="music-btn px-6 py-2.5 rounded-full flex items-center gap-3 active:scale-95 group">
+                        <i id="music-icon" data-lucide="play-circle" class="w-5 h-5"></i>
+                        <span class="text-[10px] font-black uppercase tracking-[0.2em]">Putar "Kejar Mimpi"</span>
+                    </button>
+                </div>
+
+                <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.4em] text-slate-500 pt-1">Japanese Speaker • Creative • Professional Care</p>
             </div>
         </div>
 
-        <!-- Tentang Aku Box -->
+        <!-- Tentang Aku -->
         <div class="w-full max-w-2xl mx-auto mt-16 reveal active" style="transition-delay: 0.2s">
             <div id="about-box" class="p-8 md:p-12 relative overflow-hidden group rounded-[2.5rem] md:rounded-[3.5rem] cursor-pointer border-2 shadow-2xl transition-all duration-700 timbul-interaktif">
-                <div class="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-pink-100/30 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-1000"></div>
+                <div class="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-pink-100/30 rounded-bl-full -z-10"></div>
                 <h3 class="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-pink-700 mb-8 flex items-center justify-center gap-4">
                     <span class="w-10 md:w-12 h-[2px] bg-pink-400"></span> Tentang Aku <span class="w-10 md:w-12 h-[2px] bg-pink-400"></span>
                 </h3>
@@ -226,94 +206,104 @@
         </div>
     </section>
 
-    <!-- Pencapaian Section -->
+    <!-- Pencapaian Section - 6 KARTU LENGKAP -->
     <section id="capaian" class="py-24 md:py-40 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 md:mb-28 reveal">
-                <h3 class="text-2xl font-black uppercase tracking-widest text-red-900/80">Pencapaian</h3>
-                <div class="w-16 h-[3px] bg-gradient-to-r from-pink-400 via-red-400 to-blue-400 mx-auto mt-4 rounded-full shadow-sm"></div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 mb-20 md:mb-32">
-                <!-- Achievement Card 1 -->
-                <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.5rem] border-2 border-white shadow-xl group bg-pink-50">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/HwQXNA8.jpeg')"></div>
-                    <div class="relative z-10">
-                        <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 1 J-Challenge</h4>
-                        <p class="text-[9px] font-black mb-4 md:mb-6 uppercase tracking-widest text-slate-500">JEducation</p>
-                        <p class="text-[11px] text-slate-600 leading-relaxed italic">"Beasiswa sinau menyang Jepang."</p>
-                    </div>
-                </div>
-                <!-- ACHIEVEMENT CARD 2 -->
-                <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.5rem] border-2 border-white shadow-xl group bg-blue-50" style="transition-delay: 0.1s">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/iZ9jDEZ.jpeg')"></div>
-                    <div class="relative z-10">
-                        <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 3 Nihongo Shiken</h4>
-                        <p class="text-[9px] font-black mb-4 md:mb-6 uppercase tracking-widest text-slate-500">Universitas Indonesia</p>
-                        <p class="text-[11px] text-slate-600 leading-relaxed italic">"Uji kemahiran tingkat nasional (UI)."</p>
-                    </div>
-                </div>
-                <!-- ACHIEVEMENT CARD 3 -->
-                <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.5rem] border-2 border-white shadow-xl group bg-red-50" style="transition-delay: 0.2s">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/Dl3ucVd.png')"></div>
-                    <div class="relative z-10">
-                        <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 3 Lomba Rodoku</h4>
-                        <p class="text-[9px] font-black mb-4 md:mb-6 uppercase tracking-widest text-slate-500">Univ. Negeri Jakarta</p>
-                        <p class="text-[11px] text-slate-600 leading-relaxed italic">"Seni intonasi lan pelafalan Basa Jepang."</p>
-                    </div>
+        <div class="max-w-6xl mx-auto text-center mb-16 md:mb-28 reveal">
+            <h3 class="text-2xl font-black uppercase tracking-widest text-red-900/80">Pencapaian</h3>
+            <div class="w-16 h-[3px] bg-gradient-to-r from-pink-400 via-red-400 to-blue-400 mx-auto mt-4 rounded-full shadow-sm"></div>
+        </div>
+        <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 mb-20 md:mb-32">
+            <!-- Achievement 1 -->
+            <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.5rem] border-2 border-white shadow-xl group bg-pink-50">
+                <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/HwQXNA8.jpeg')"></div>
+                <div class="relative z-10">
+                    <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 1 J-Challenge</h4>
+                    <p class="text-[9px] font-black mb-4 uppercase tracking-widest text-slate-500">JEducation</p>
+                    <p class="text-[11px] text-slate-600 italic">"Beasiswa sinau menyang Jepang."</p>
                 </div>
             </div>
-
-            <!-- Skills Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
-                <div class="timbul-interaktif p-8 md:p-10 reveal rounded-[2.5rem] md:rounded-[3.5rem] bg-blue-50/50 border-2 border-blue-100">
-                    <div class="flex items-center gap-4 mb-10 border-b border-blue-200 pb-5">
-                        <div class="p-3 bg-blue-600 text-white rounded-2xl shadow-lg"><i data-lucide="languages" class="w-6 h-6"></i></div>
-                        <h4 class="text-[13px] font-black uppercase text-blue-900 tracking-widest">Kompetensi Bahasa</h4>
-                    </div>
-                    <div class="space-y-10">
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-end">
-                                <span class="text-[15px] font-bold text-slate-700">Jepang (N3)</span>
-                                <span class="text-[10px] font-black text-blue-800 uppercase tracking-widest">Advanced</span>
-                            </div>
-                            <div class="bar-container"><div class="bar-fill bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)]" style="width: 85%;"></div></div>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-end">
-                                <span class="text-[15px] font-bold text-slate-700">Indonesia (Native)</span>
-                                <span class="text-[10px] font-black text-blue-700 uppercase tracking-widest">Native</span>
-                            </div>
-                            <div class="bar-container"><div class="bar-fill bg-blue-400" style="width: 100%;"></div></div>
-                        </div>
-                    </div>
+            <!-- Achievement 2 -->
+            <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.5rem] border-2 border-white shadow-xl group bg-blue-50" style="transition-delay: 0.1s">
+                <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/iZ9jDEZ.jpeg')"></div>
+                <div class="relative z-10">
+                    <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 3 Nihongo Shiken</h4>
+                    <p class="text-[9px] font-black mb-4 uppercase tracking-widest text-slate-500">Universitas Indonesia</p>
+                    <p class="text-[11px] text-slate-600 italic">"Uji kemahiran tingkat nasional (UI)."</p>
                 </div>
+            </div>
+            <!-- Achievement 3 -->
+            <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.5rem] border-2 border-white shadow-xl group bg-red-50" style="transition-delay: 0.2s">
+                <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/Dl3ucVd.png')"></div>
+                <div class="relative z-10">
+                    <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 3 Lomba Rodoku</h4>
+                    <p class="text-[9px] font-black mb-4 uppercase tracking-widest text-slate-500">Univ. Negeri Jakarta</p>
+                    <p class="text-[11px] text-slate-600 italic">"Seni intonasi lan pelafalan Basa Jepang."</p>
+                </div>
+            </div>
+            <!-- Achievement 4 -->
+            <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.5rem] border-2 border-white shadow-xl group bg-green-50" style="transition-delay: 0.3s">
+                <div class="relative z-10">
+                    <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 3 Speech</h4>
+                    <p class="text-[9px] font-black mb-4 uppercase tracking-widest text-slate-500">Grand Pertiwi Int.</p>
+                    <p class="text-[11px] text-slate-600 italic">"Pidato Bahasa Jepang Internasional."</p>
+                </div>
+            </div>
+            <!-- Achievement 5 -->
+            <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.5rem] border-2 border-white shadow-xl group bg-purple-50" style="transition-delay: 0.4s">
+                <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/4vda2dQ.png')"></div>
+                <div class="relative z-10">
+                    <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 5 Global Japanese</h4>
+                    <p class="text-[9px] font-black mb-4 uppercase tracking-widest text-slate-500">LifeArk</p>
+                    <p class="text-[11px] text-slate-600 italic">"Kemahiran praktis tingkat global."</p>
+                </div>
+            </div>
+            <!-- Achievement 6 -->
+            <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.5rem] border-2 border-white shadow-xl group bg-orange-50" style="transition-delay: 0.5s">
+                <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/Tv9nqiC.png')"></div>
+                <div class="relative z-10">
+                    <h4 class="font-extrabold text-sm text-slate-800 mb-2">Winner Daily Contest</h4>
+                    <p class="text-[9px] font-black mb-4 uppercase tracking-widest text-slate-500">LifeArk</p>
+                    <p class="text-[11px] text-slate-600 italic">"Konsistensi penguasaan basa saben dina."</p>
+                </div>
+            </div>
+        </div>
 
-                <div class="timbul-interaktif p-8 md:p-10 reveal rounded-[2.5rem] md:rounded-[3.5rem] bg-purple-50/50 border-2 border-purple-100">
-                    <div class="flex items-center gap-4 mb-10 border-b border-purple-200 pb-5">
-                        <div class="p-3 bg-purple-700 text-white rounded-2xl shadow-lg"><i data-lucide="zap" class="w-6 h-6"></i></div>
-                        <h4 class="text-[13px] font-black uppercase text-purple-900 tracking-widest">Soft Skills</h4>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="p-4 bg-white rounded-2xl text-center text-[10px] font-bold uppercase tracking-tight text-slate-600 shadow-sm border border-purple-50">Public Speaking</div>
-                        <div class="p-4 bg-white rounded-2xl text-center text-[10px] font-bold uppercase tracking-tight text-slate-600 shadow-sm border border-purple-50">Critical Thinking</div>
-                        <div class="p-4 bg-white rounded-2xl text-center text-[10px] font-bold uppercase tracking-tight text-slate-600 shadow-sm border border-purple-50">Mentoring</div>
-                        <div class="p-4 bg-white rounded-2xl text-center text-[10px] font-bold uppercase tracking-tight text-slate-600 shadow-sm border border-purple-50">Adaptasi Cepat</div>
-                    </div>
+        <!-- Skills Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
+            <div class="timbul-interaktif p-8 md:p-10 reveal rounded-[2.5rem] md:rounded-[3.5rem] bg-blue-50/50 border-2 border-blue-100">
+                <div class="flex items-center gap-4 mb-10 border-b border-blue-200 pb-5">
+                    <div class="p-3 bg-blue-600 text-white rounded-2xl shadow-lg"><i data-lucide="languages" class="w-6 h-6"></i></div>
+                    <h4 class="text-[13px] font-black uppercase text-blue-900 tracking-widest">Kompetensi Bahasa</h4>
+                </div>
+                <div class="space-y-10">
+                    <div class="space-y-3"><div class="flex justify-between items-end"><span class="text-[15px] font-bold text-slate-700">Jepang (N3)</span><span class="text-[10px] font-black text-blue-800 uppercase tracking-widest">Advanced</span></div><div class="bar-container"><div class="bar-fill bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)]" style="width: 85%;"></div></div></div>
+                    <div class="space-y-3"><div class="flex justify-between items-end"><span class="text-[15px] font-bold text-slate-700">Indonesia (Native)</span><span class="text-[10px] font-black text-blue-700 uppercase tracking-widest">Native</span></div><div class="bar-container"><div class="bar-fill bg-blue-400" style="width: 100%;"></div></div></div>
+                </div>
+            </div>
+            <div class="timbul-interaktif p-8 md:p-10 reveal rounded-[2.5rem] md:rounded-[3.5rem] bg-purple-50/50 border-2 border-purple-100">
+                <div class="flex items-center gap-4 mb-10 border-b border-purple-200 pb-5">
+                    <div class="p-3 bg-purple-700 text-white rounded-2xl shadow-lg"><i data-lucide="zap" class="w-6 h-6"></i></div>
+                    <h4 class="text-[13px] font-black uppercase text-purple-900 tracking-widest">Soft Skills</h4>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-white rounded-2xl text-center text-[10px] font-bold uppercase tracking-tight text-slate-600 shadow-sm border border-purple-50 hover:border-purple-300 transition-colors">Public Speaking</div>
+                    <div class="p-4 bg-white rounded-2xl text-center text-[10px] font-bold uppercase tracking-tight text-slate-600 shadow-sm border border-purple-50 hover:border-purple-300 transition-colors">Critical Thinking</div>
+                    <div class="p-4 bg-white rounded-2xl text-center text-[10px] font-bold uppercase tracking-tight text-slate-600 shadow-sm border border-purple-50 hover:border-purple-300 transition-colors">Mentoring</div>
+                    <div class="p-4 bg-white rounded-2xl text-center text-[10px] font-bold uppercase tracking-tight text-slate-600 shadow-sm border border-purple-50 hover:border-purple-300 transition-colors">Adaptasi Cepat</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Certificate Section -->
+    <!-- Sertifikat Section -->
     <section id="sertifikat" class="py-16 md:py-20 px-6">
         <div class="max-w-3xl mx-auto text-center mb-10 md:mb-12 reveal">
             <h3 class="text-2xl font-black uppercase tracking-widest text-blue-900/80">Certificate</h3>
             <div class="w-14 h-[2px] bg-blue-400 mx-auto mt-3 rounded-full shadow-sm"></div>
         </div>
         <div class="flex justify-center reveal">
-            <div class="w-full max-w-sm md:max-w-lg overflow-hidden rounded-[2.5rem] shadow-2xl border-4 border-white hover:scale-[1.02] transition-all duration-1000 bg-white ring-4 ring-blue-50/30 group timbul-interaktif">
-                <img src="https://i.imgur.com/yuCaZtp.jpeg" alt="Sertifikat Desti" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-[2000ms]" />
+            <div class="w-full max-w-sm md:max-w-lg overflow-hidden rounded-[2.5rem] shadow-2xl border-4 border-white bg-white ring-4 ring-blue-50/30 timbul-interaktif group">
+                <img src="https://i.imgur.com/yuCaZtp.jpeg" alt="Sertifikat" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-[2000ms]" />
             </div>
         </div>
     </section>
@@ -321,197 +311,110 @@
     <!-- Dokumentasi Section -->
     <section id="dokumentasi" class="py-24 md:py-40 px-4 md:px-6">
         <div class="max-w-6xl mx-auto text-center mb-16 md:mb-24 reveal">
-            <div class="glass-pink-nav inline-block px-8 md:px-12 py-3 md:py-4 rounded-full mb-6 border-pink-100">
-                <h3 class="text-lg md:text-2xl font-black uppercase tracking-[0.4em] text-pink-900">My Portofolio</h3>
-            </div>
+            <div class="glass-pink-nav inline-block px-8 md:px-12 py-3 md:py-4 rounded-full mb-6 border-pink-100"><h3 class="text-lg md:text-2xl font-black uppercase tracking-[0.4em] text-pink-900">My Portofolio</h3></div>
             <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.3em] mt-2">Karya Kreatif & Catetan Momen</p>
         </div>
-
         <div class="max-w-7xl mx-auto">
             <div class="mb-20 md:mb-32 reveal flex flex-wrap justify-center gap-8 md:gap-14">
-                <div class="w-64 md:w-72 h-80 overflow-hidden rounded-[3rem] md:rounded-[4rem] shadow-2xl border-8 border-white hover:scale-105 transition-all duration-1000 bg-pink-100 ring-8 ring-pink-50 group timbul-interaktif">
-                    <img src="https://i.imgur.com/6m2penP.jpeg" alt="Portrait 1" class="w-full h-full object-cover object-center scale-[1.75] group-hover:scale-[1.9] transition-transform duration-[2000ms]" />
+                <div class="w-64 md:w-72 h-80 overflow-hidden rounded-[3rem] md:rounded-[4rem] shadow-2xl border-8 border-white bg-pink-100 ring-8 ring-pink-50 group timbul-interaktif">
+                    <img src="https://i.imgur.com/6m2penP.jpeg" class="w-full h-full object-cover object-center scale-[1.75] group-hover:scale-[1.9] transition-transform duration-[2000ms]" />
                 </div>
-                <div class="w-64 md:w-72 h-80 overflow-hidden rounded-[3rem] md:rounded-[4rem] shadow-2xl border-8 border-white hover:scale-105 transition-all duration-1000 bg-blue-100 ring-8 ring-blue-200/50 group timbul-interaktif">
-                    <img src="https://i.imgur.com/tPVHLLA.png" alt="Portrait 2" class="w-full h-full object-cover object-center scale-[1.1] group-hover:scale-[1.25] transition-transform duration-[2000ms]" />
+                <div class="w-64 md:w-72 h-80 overflow-hidden rounded-[3rem] md:rounded-[4rem] shadow-2xl border-8 border-white bg-blue-100 ring-8 ring-blue-200/50 group timbul-interaktif">
+                    <img src="https://i.imgur.com/tPVHLLA.png" class="w-full h-full object-cover object-center scale-[1.1] group-hover:scale-[1.25] transition-transform duration-[2000ms]" />
                 </div>
             </div>
-
-            <!-- Marquee Foto Bergulir -->
+            <!-- Marquee Dokumentasi -->
             <div class="py-10 md:py-20 reveal mb-20 md:mb-32 overflow-hidden">
                 <h4 class="text-[10px] font-black text-blue-900/30 mb-12 uppercase tracking-[0.6em] text-center">Momen Foto Bergulir</h4>
-                <div class="marquee-container">
-                    <div class="marquee-track" id="marquee-track"></div>
-                </div>
+                <div class="marquee-track" id="marquee-track"></div>
             </div>
         </div>
     </section>
 
-    <!-- Mini Game Section (Smooth Physics & Anime Chibi) -->
+    <!-- Mini Game Section -->
     <section class="pb-32 px-4 md:px-6 reveal -mt-10 md:-mt-16">
         <div id="game-box" class="max-w-5xl mx-auto game-container-static p-8 md:p-16 rounded-[3.5rem] md:rounded-[5rem] text-center relative shadow-2xl border-2 border-pink-100">
-            <div class="absolute -top-5 left-1/2 -translate-x-1/2 px-8 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-black rounded-full text-[9px] md:text-[11px] uppercase tracking-widest shadow-xl shadow-pink-200">Mini Game</div>
-            <p class="text-[10px] md:text-[12px] text-slate-500 mb-8 tracking-widest uppercase font-black opacity-60">Mlumpat rintangan supaya tekan impian!</p>
-            
+            <div class="absolute -top-5 left-1/2 -translate-x-1/2 px-8 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-black rounded-full text-[11px] shadow-xl">Mini Game</div>
+            <p class="text-[10px] md:text-[12px] text-slate-500 mb-8 font-black opacity-60">Lompati rintangan supaya tekan impian!</p>
             <div class="relative w-full h-56 md:h-72 bg-sky-50 rounded-[3rem] md:rounded-[4rem] overflow-hidden border-2 border-pink-100 cursor-pointer shadow-inner" id="game-stage">
                 <!-- Clouds -->
-                <div class="cloud text-4xl" style="top: 10%; animation-duration: 20s;">☁️</div>
-                <div class="cloud text-4xl" style="top: 25%; animation-duration: 25s; animation-delay: 5s;">☁️</div>
-                
-                <!-- Anime Chibi Character (SVG) -->
+                <div class="cloud text-4xl" style="top: 10%; animation-duration: 25s;">☁️</div>
                 <div id="player" class="chibi-character">
                     <svg viewBox="0 0 100 100" class="w-full h-full">
-                        <!-- Hair -->
-                        <path d="M20,50 Q20,20 50,20 Q80,20 80,50" fill="#4B2C20" />
-                        <path d="M15,55 Q5,40 25,30 Q50,20 75,30 Q95,40 85,55" fill="#5D4037" />
-                        <!-- Face -->
-                        <circle cx="50" cy="55" r="30" fill="#FFE0B2" />
-                        <!-- Eyes -->
-                        <circle cx="40" cy="55" r="4" fill="#333" />
-                        <circle cx="60" cy="55" r="4" fill="#333" />
-                        <circle cx="41" cy="54" r="1.5" fill="white" />
-                        <circle cx="61" cy="54" r="1.5" fill="white" />
-                        <!-- Blush -->
-                        <circle cx="35" cy="62" r="3" fill="#F06292" opacity="0.4" />
-                        <circle cx="65" cy="62" r="3" fill="#F06292" opacity="0.4" />
-                        <!-- Mouth -->
-                        <path d="M47,65 Q50,68 53,65" fill="none" stroke="#333" stroke-width="1.5" stroke-linecap="round" />
-                        <!-- Kimono/Body -->
-                        <path d="M30,85 L70,85 L65,75 Q50,70 35,75 Z" fill="#F48FB1" />
-                        <path d="M50,75 L50,85" stroke="white" stroke-width="2" />
-                        <!-- Ribbon -->
-                        <path d="M70,25 Q85,20 80,40 Q70,45 70,25 Z" fill="#E91E63" />
+                        <path d="M20,50 Q20,20 50,20 Q80,20 80,50" fill="#4B2C20" /><path d="M15,55 Q5,40 25,30 Q50,20 75,30 Q95,40 85,55" fill="#5D4037" /><circle cx="50" cy="55" r="30" fill="#FFE0B2" /><circle cx="40" cy="55" r="4" fill="#333" /><circle cx="60" cy="55" r="4" fill="#333" /><circle cx="41" cy="54" r="1.5" fill="white" /><circle cx="61" cy="54" r="1.5" fill="white" /><circle cx="35" cy="62" r="3" fill="#F06292" opacity="0.4" /><circle cx="65" cy="62" r="3" fill="#F06292" opacity="0.4" /><path d="M47,65 Q50,68 53,65" fill="none" stroke="#333" stroke-width="1.5" /><path d="M30,85 L70,85 L65,75 Q50,70 35,75 Z" fill="#F48FB1" /><path d="M50,75 L50,85" stroke="white" stroke-width="2" /><path d="M70,25 Q85,20 80,40 Q70,45 70,25 Z" fill="#E91E63" />
                     </svg>
                 </div>
-
                 <div class="absolute bottom-8 text-3xl md:text-5xl" id="obstacle" style="right: -10%;">🌵</div>
                 <div class="absolute bottom-0 w-full h-2 md:h-3 bg-gradient-to-r from-green-300 via-emerald-200 to-green-300 opacity-70"></div>
             </div>
-
-            <div class="mt-8 flex flex-col md:flex-row justify-between items-center px-4 md:px-16 gap-6">
-                <span class="text-[16px] font-black text-pink-600 uppercase tracking-widest bg-white px-8 py-3 rounded-2xl shadow-sm border border-pink-50">Skor: <span id="score">0</span></span>
-                <button id="restart-btn" class="hidden px-14 py-4 bg-red-600 text-white rounded-[2rem] text-[12px] font-black uppercase hover:bg-red-700 hover:scale-105 transition-all shadow-xl">Restart</button>
-            </div>
+            <div class="mt-8 flex flex-col md:flex-row justify-between items-center px-4 md:px-16 gap-6"><span class="text-[16px] font-black text-pink-600 tracking-widest bg-white px-8 py-3 rounded-2xl shadow-sm border border-pink-50">Skor: <span id="score">0</span></span><button id="restart-btn" class="hidden px-14 py-4 bg-red-600 text-white rounded-[2rem] text-[12px] font-black uppercase hover:bg-red-700 transition-all shadow-xl active:scale-95">Restart</button></div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="py-24 md:py-32 px-6 text-center border-t border-pink-100 bg-white/40 backdrop-blur-xl">
-        <div class="reveal space-y-12">
-            <div class="flex justify-center gap-10 md:gap-16">
-                <a href="https://wa.me/6289506878654" target="_blank" class="text-slate-400 hover:text-green-500 transition-all transform hover:scale-150"><i data-lucide="phone" class="w-6 h-6 md:w-8 md:h-8"></i></a>
-                <a href="mailto:destipuspita.official@gmail.com" class="text-slate-400 hover:text-red-700 transition-all transform hover:scale-150"><i data-lucide="mail" class="w-6 h-6 md:w-8 md:h-8"></i></a>
-                <a href="#" class="text-slate-400 hover:text-pink-500 transition-all transform hover:scale-150"><i data-lucide="instagram" class="w-6 h-6 md:w-8 md:h-8"></i></a>
-                <a href="#" class="text-slate-400 hover:text-blue-900 transition-all transform hover:scale-150"><i data-lucide="linkedin" class="w-6 h-6 md:w-8 md:h-8"></i></a>
-            </div>
-            <div class="space-y-4">
-                <p class="text-[10px] md:text-[11px] font-black text-slate-500 uppercase tracking-[1em] leading-relaxed">
-                    Tujuan Bermakna • Desti Puspita
-                </p>
-                <p class="text-[8px] font-bold text-slate-300 uppercase tracking-[0.5em]">© 2026 • Professional Portfolio</p>
-            </div>
-        </div>
+        <div class="reveal space-y-12"><div class="flex justify-center gap-10 md:gap-16"><a href="https://wa.me/6289506878654" target="_blank" class="text-slate-400 hover:text-green-500 transition-all transform hover:scale-150"><i data-lucide="phone" class="w-6 h-6"></i></a><a href="mailto:destipuspita.official@gmail.com" class="text-slate-400 hover:text-red-700 transition-all transform hover:scale-150"><i data-lucide="mail" class="w-6 h-6"></i></a><a href="#" class="text-slate-400 hover:text-pink-500 transition-all transform hover:scale-150"><i data-lucide="instagram" class="w-6 h-6"></i></a><a href="#" class="text-slate-400 hover:text-blue-900 transition-all transform hover:scale-150"><i data-lucide="linkedin" class="w-6 h-6"></i></a></div><div class="space-y-4"><p class="text-[10px] md:text-[11px] font-black text-slate-500 uppercase tracking-[1em] leading-relaxed">Tujuan Bermakna • Desti Puspita</p><p class="text-[8px] font-bold text-slate-300 uppercase tracking-[0.5em]">© 2026 • Professional Portfolio</p></div></div>
     </footer>
 
     <script>
-        // Init Lucide
         lucide.createIcons();
 
-        // Menu Logic
+        // Music Logic
+        const music = document.getElementById('bg-music');
+        const musicControl = document.getElementById('music-control');
+        const musicIcon = document.getElementById('music-icon');
+        let isPlaying = false;
+        musicControl.onclick = () => {
+            if (isPlaying) { music.pause(); musicControl.classList.remove('playing'); musicIcon.setAttribute('data-lucide', 'play-circle'); musicControl.querySelector('span').innerText = 'Putar Musik'; }
+            else { music.play().catch(e => console.log("User interasi dibutuhkan.")); musicControl.classList.add('playing'); musicIcon.setAttribute('data-lucide', 'pause-circle'); musicControl.querySelector('span').innerText = 'Musik Berputar'; }
+            isPlaying = !isPlaying; lucide.createIcons();
+        };
+
+        // Mobile Menu
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuClose = document.getElementById('menu-close');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
         menuToggle.onclick = () => mobileMenu.classList.add('open');
-        menuClose.onclick = () => { mobileMenu.classList.remove('open'); };
-        mobileLinks.forEach(link => {
-            link.onclick = () => mobileMenu.classList.remove('open');
-        });
+        menuClose.onclick = () => mobileMenu.classList.remove('open');
+        document.querySelectorAll('.mobile-link').forEach(link => link.onclick = () => mobileMenu.classList.remove('open'));
 
-        // Reveal Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, { threshold: 0.1 });
+        // Reveal Observer
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // Marquee Logic
         const track = document.getElementById('marquee-track');
-        const images = [
-            "https://i.imgur.com/sLl3KOL.jpeg", "https://i.imgur.com/QpmT1DF.jpeg",
-            "https://i.imgur.com/qSjyQzR.jpeg", "https://i.imgur.com/xiJxEVA.jpeg",
-            "https://i.imgur.com/bS6YW8w.jpeg", "https://i.imgur.com/xrJJL9Q.jpeg"
-        ];
+        const images = ["https://i.imgur.com/sLl3KOL.jpeg", "https://i.imgur.com/QpmT1DF.jpeg", "https://i.imgur.com/qSjyQzR.jpeg", "https://i.imgur.com/xiJxEVA.jpeg", "https://i.imgur.com/bS6YW8w.jpeg", "https://i.imgur.com/xrJJL9Q.jpeg"];
         [...images, ...images].forEach(src => {
             const div = document.createElement('div');
             div.className = "w-40 h-40 md:w-56 md:h-52 mx-4 md:mx-8 overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] border-4 border-white shadow-xl flex-shrink-0 bg-white";
-            const img = document.createElement('img');
-            img.src = src;
-            img.className = "w-full h-full object-cover";
-            div.appendChild(img);
-            track.appendChild(div);
+            const img = document.createElement('img'); img.src = src; img.className = "w-full h-full object-cover";
+            div.appendChild(img); track.appendChild(div);
         });
 
         // Game Physics & Logic
-        const player = document.getElementById('player');
-        const obstacle = document.getElementById('obstacle');
-        const scoreEl = document.getElementById('score');
-        const restartBtn = document.getElementById('restart-btn');
-        const stage = document.getElementById('game-stage');
+        const player = document.getElementById('player'), obstacle = document.getElementById('obstacle'), scoreEl = document.getElementById('score'), restartBtn = document.getElementById('restart-btn'), stage = document.getElementById('game-stage');
+        let score = 0, isGameOver = false, obstaclePos = 110, playerY = 0, velocityY = 0;
+        const gravity = 0.55, jumpPower = -12.5, groundY = 0;
 
-        let score = 0;
-        let isGameOver = false;
-        let obstaclePos = 110;
-        let playerY = 0;
-        let velocityY = 0;
-        const gravity = 0.55;
-        const jumpPower = -12.5;
-        const groundY = 0;
-
-        function jump() {
-            if (isGameOver) { resetGame(); return; }
-            if (playerY === groundY) { velocityY = jumpPower; }
-        }
-
-        function resetGame() {
-            score = 0; obstaclePos = 110; isGameOver = false; playerY = groundY; velocityY = 0;
-            scoreEl.innerText = "0"; restartBtn.classList.add('hidden');
-            player.style.opacity = "1";
-            gameLoop();
-        }
+        function jump() { if (isGameOver) { resetGame(); return; } if (playerY === groundY) velocityY = jumpPower; }
+        function resetGame() { score = 0; obstaclePos = 110; isGameOver = false; playerY = groundY; velocityY = 0; scoreEl.innerText = "0"; restartBtn.classList.add('hidden'); player.style.opacity = "1"; gameLoop(); }
 
         function gameLoop() {
             if (isGameOver) return;
-
-            // Obstacle Movement
-            const speed = window.innerWidth > 768 ? 0.95 : 0.85;
-            obstaclePos -= speed; 
-            if (obstaclePos < -15) { obstaclePos = 115; score++; scoreEl.innerText = score; }
+            const speed = window.innerWidth > 768 ? 1.1 : 0.9;
+            obstaclePos -= speed; if (obstaclePos < -15) { obstaclePos = 115; score++; scoreEl.innerText = score; }
             obstacle.style.right = (100 - obstaclePos) + '%';
-
-            // Physics
-            velocityY += gravity;
-            playerY += velocityY;
+            velocityY += gravity; playerY += velocityY;
             if (playerY > groundY) { playerY = groundY; velocityY = 0; }
             player.style.transform = `translateY(${playerY}px)`;
-
-            // Collision Check
-            const pRect = player.getBoundingClientRect();
-            const oRect = obstacle.getBoundingClientRect();
-            
-            if (pRect.right > oRect.left + 15 && pRect.left < oRect.right - 15 && pRect.bottom > oRect.top + 10) {
-                isGameOver = true;
-                player.style.opacity = "0.5";
-                restartBtn.classList.remove('hidden');
-            }
-
+            const pRect = player.getBoundingClientRect(), oRect = obstacle.getBoundingClientRect();
+            if (pRect.right > oRect.left + 15 && pRect.left < oRect.right - 15 && pRect.bottom > oRect.top + 10) { isGameOver = true; player.style.opacity = "0.5"; restartBtn.classList.remove('hidden'); }
             requestAnimationFrame(gameLoop);
         }
-
         stage.addEventListener('mousedown', (e) => { e.preventDefault(); jump(); });
         stage.addEventListener('touchstart', (e) => { e.preventDefault(); jump(); });
-        restartBtn.addEventListener('click', (e) => { e.stopPropagation(); resetGame(); });
-
+        restartBtn.onclick = (e) => { e.stopPropagation(); resetGame(); };
         gameLoop();
     </script>
 </body>
