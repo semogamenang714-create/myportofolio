@@ -13,6 +13,7 @@
             font-family: 'Quicksand', sans-serif;
             scroll-behavior: smooth;
             background-color: #fdfcfd;
+            overflow-x: hidden;
         }
 
         /* VIBRANT MULTICOLOR MESH GRADIENT BACKGROUND */
@@ -29,21 +30,19 @@
         .mesh-circle {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px); /* Ukuran blur lebih kecil untuk HP agar tidak berat */
+            filter: blur(80px);
             opacity: 0.25;
             animation: pulse-glow 10s infinite alternate;
         }
         @media (min-width: 768px) {
-            .mesh-circle {
-                filter: blur(120px);
-            }
+            .mesh-circle { filter: blur(120px); }
         }
         @keyframes pulse-glow {
             from { transform: scale(1); opacity: 0.2; }
             to { transform: scale(1.3); opacity: 0.4; }
         }
 
-        /* Reveal Animation saat discroll */
+        /* Reveal Animation */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -54,7 +53,7 @@
             transform: translateY(0);
         }
 
-        /* Efek Interaktif Timbul & Stroke */
+        /* Interactive Timbul & Stroke */
         .timbul-interaktif {
             background: rgba(255, 255, 255, 0.92);
             box-shadow: 6px 6px 15px rgba(0,0,0,0.03), -6px -6px 15px rgba(255,255,255,0.8);
@@ -70,177 +69,174 @@
             transform: translateY(1px) scale(0.98);
         }
 
-        .glass-pink-nav {
-            background: rgba(255, 182, 193, 0.4);
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 30px rgba(219, 39, 119, 0.1);
-        }
-
+        /* Navigation Buttons */
         .menu-btn {
-            background: white;
-            box-shadow: 4px 4px 12px rgba(0,0,0,0.03), -4px -4px 12px rgba(255,255,255,0.9);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1.5px solid transparent;
-            font-size: 0.7rem; /* Default HP */
-        }
-        @media (min-width: 768px) {
-            .menu-btn { font-size: 0.5625rem; } /* Ukuran desktop sesuai req 9px */
         }
         .menu-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 8px 8px 20px rgba(219, 39, 119, 0.15);
-            border-color: #f472b6;
             color: #be185d;
+            transform: scale(1.1);
         }
 
-        .desti-name-center {
-            letter-spacing: 0.3em; /* Sedikit lebih rapat di HP */
-            color: #7F1D1D;
-            text-align: center;
-            font-size: 1.25rem;
-            font-weight: 900;
-            line-height: 1.4;
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(100%);
+            opacity: 0;
         }
-        @media (min-width: 768px) {
-            .desti-name-center {
-                letter-spacing: 0.7em;
-                font-size: 0.9rem;
-            }
+        #mobile-menu.open {
+            transform: translateX(0);
+            opacity: 1;
         }
 
-        /* Animasi Marquee */
-        @keyframes scroll-marquee {
+        /* Game Character Chibi Styles */
+        .chibi-character {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            bottom: 32px;
+            left: 15%;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+            z-index: 20;
+        }
+
+        /* Smooth Marquee */
+        @keyframes marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
-        }
-        .marquee-container {
-            overflow: hidden;
-            width: 100%;
-            padding: 1rem 0;
-        }
-        @media (min-width: 768px) {
-            .marquee-container { padding: 2rem 0; }
         }
         .marquee-track {
             display: flex;
             width: max-content;
-            animation: scroll-marquee 40s linear infinite;
+            animation: marquee 40s linear infinite;
         }
-        .marquee-track:hover { animation-play-state: paused; }
 
         /* Progress Bar */
         .bar-container {
             width: 100%;
             background: rgba(241, 245, 249, 1);
             height: 0.6rem;
-            border-radius: 9999px;
+            border-radius: 999px;
             overflow: hidden;
             border: 1px solid rgba(226, 232, 240, 1);
         }
         .bar-fill {
             height: 100%;
-            border-radius: 9999px;
+            border-radius: 999px;
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 2s ease-out;
         }
-        .reveal.active .bar-fill {
-            transform: scaleX(1);
-        }
+        .reveal.active .bar-fill { transform: scaleX(1); }
 
-        /* Game Styles */
-        .game-container-static {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 10px 10px 40px rgba(0,0,0,0.05), -10px -10px 40px rgba(255,255,255,0.9);
-            border: 2px solid rgba(255, 255, 255, 0.8);
-        }
-        #player {
-            transition: transform 0.6s cubic-bezier(0.1, 0.4, 0.1, 1);
-        }
-        .jumping {
-            transform: translateY(-100px);
+        .desti-name-center {
+            letter-spacing: 0.4em;
+            color: #7F1D1D;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 900;
         }
         @media (min-width: 768px) {
-            .jumping { transform: translateY(-130px); }
+            .desti-name-center { letter-spacing: 0.8em; font-size: 1rem; }
         }
     </style>
 </head>
 <body class="selection:bg-pink-200">
 
-    <!-- Latar Belakang Mesh Gradient (Responsive Blur) -->
+    <!-- Latar Belakang Mesh -->
     <div class="mesh-bg">
         <div class="mesh-circle bg-pink-300" style="top: -10%; left: -10%; width: 90%; height: 90%;"></div>
-        <div class="mesh-circle bg-blue-300" style="bottom: -10%; right: -5%; width: 80%; height: 80%; animation-delay: 1.5s;"></div>
-        <div class="mesh-circle bg-purple-300" style="top: 20%; left: 10%; width: 70%; height: 70%; animation-delay: 0.5s;"></div>
-        <div class="mesh-circle bg-green-200" style="bottom: 10%; left: 0%; width: 60%; height: 60%; animation-delay: 2.5s;"></div>
+        <div class="mesh-circle bg-blue-200" style="bottom: -10%; right: -5%; width: 80%; height: 80%; animation-delay: 1.5s;"></div>
+        <div class="mesh-circle bg-purple-200" style="top: 20%; left: 10%; width: 70%; height: 70%; animation-delay: 0.5s;"></div>
+        <div class="mesh-circle bg-green-100" style="bottom: 10%; left: 0%; width: 60%; height: 60%; animation-delay: 2.5s;"></div>
     </div>
 
-    <!-- Navigasi Header (Mobile: Scrollable / Desktop: Grid) -->
+    <!-- Header Navigation -->
     <header class="fixed w-full z-50 px-4 py-4 md:px-6">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center bg-white/70 backdrop-blur-2xl px-6 md:px-10 py-2.5 rounded-3xl md:rounded-full shadow-sm border border-white/50 gap-3 md:gap-0">
-            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-red-900/40">Portfolio</span>
-            <nav class="flex space-x-2 md:space-x-4 overflow-x-auto no-scrollbar w-full md:w-auto justify-center">
-                <a href="#menu" class="menu-btn whitespace-nowrap px-4 md:px-6 py-1.5 md:py-2 rounded-2xl font-extrabold uppercase tracking-widest text-slate-500 active:ring-2 active:ring-pink-300">Menu</a>
-                <a href="#capaian" class="menu-btn whitespace-nowrap px-4 md:px-6 py-1.5 md:py-2 rounded-2xl font-extrabold uppercase tracking-widest text-slate-500">Capaian</a>
-                <a href="#sertifikat" class="menu-btn whitespace-nowrap px-4 md:px-6 py-1.5 md:py-2 rounded-2xl font-extrabold uppercase tracking-widest text-slate-500">Sertifikat</a>
-                <a href="#dokumentasi" class="menu-btn whitespace-nowrap px-4 md:px-6 py-1.5 md:py-2 rounded-2xl font-extrabold uppercase tracking-widest text-slate-500">Dokumen</a>
+        <div class="max-w-5xl mx-auto flex justify-between items-center bg-white/70 backdrop-blur-2xl px-6 md:px-10 py-3 rounded-3xl md:rounded-full shadow-lg border border-white/50">
+            <span class="text-xs font-black uppercase tracking-[0.4em] text-pink-900/60">Portfolio</span>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#menu" class="menu-btn font-bold text-[10px] uppercase tracking-widest text-slate-500">Menu</a>
+                <a href="#capaian" class="menu-btn font-bold text-[10px] uppercase tracking-widest text-slate-500">Capaian</a>
+                <a href="#sertifikat" class="menu-btn font-bold text-[10px] uppercase tracking-widest text-slate-500">Sertifikat</a>
+                <a href="#dokumentasi" class="menu-btn font-bold text-[10px] uppercase tracking-widest text-slate-500">Dokumen</a>
             </nav>
+
+            <!-- Mobile Menu Toggle (Three Dots) -->
+            <button id="menu-toggle" class="md:hidden p-2.5 rounded-2xl bg-white/80 hover:bg-pink-100 transition-all shadow-md active:scale-90">
+                <i data-lucide="more-horizontal" class="w-6 h-6 text-pink-600"></i>
+            </button>
         </div>
     </header>
 
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 md:hidden flex flex-col items-center justify-center bg-white/95 backdrop-blur-3xl">
+        <div class="absolute top-8 right-8">
+            <button id="menu-close" class="p-4 rounded-full bg-pink-50 text-pink-600 active:scale-90">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col items-center space-y-10 text-center">
+            <a href="#menu" class="mobile-link text-3xl font-black text-slate-800 uppercase tracking-widest">Menu</a>
+            <a href="#capaian" class="mobile-link text-3xl font-black text-slate-800 uppercase tracking-widest">Capaian</a>
+            <a href="#sertifikat" class="mobile-link text-3xl font-black text-slate-800 uppercase tracking-widest">Sertifikat</a>
+            <a href="#dokumentasi" class="mobile-link text-3xl font-black text-slate-800 uppercase tracking-widest">Dokumen</a>
+        </nav>
+        <div class="mt-20 text-[10px] font-bold uppercase tracking-[0.5em] text-pink-300">Desti Puspita</div>
+    </div>
+
     <!-- Hero Section -->
     <section id="menu" class="min-h-screen flex flex-col items-center justify-center px-6 pt-24 text-center">
-        <div class="reveal active space-y-6 md:space-y-8">
-            <!-- Profil Animasi -->
-            <div class="relative w-36 h-36 md:w-44 md:h-44 mx-auto flex items-center justify-center">
+        <div class="reveal active space-y-8">
+            <div class="relative w-40 h-40 md:w-48 md:h-48 mx-auto flex items-center justify-center">
                 <div class="absolute inset-0 animate-[spin_30s_linear_infinite] opacity-40">
                     <svg class="w-full h-full" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="46" fill="none" stroke="#be185d" stroke-width="1.2" stroke-dasharray="10 15" />
+                        <circle cx="50" cy="50" r="46" fill="none" stroke="#be185d" stroke-width="1.2" stroke-dasharray="12 18" />
                         <circle cx="50" cy="4" r="4.5" fill="#f472b6" />
                         <circle cx="5" cy="50" r="3.5" fill="#60a5fa" />
                     </svg>
                 </div>
-                <div class="absolute -inset-4 bg-gradient-to-tr from-pink-200/50 via-purple-100/30 to-blue-200/30 rounded-full blur-2xl opacity-30"></div>
-                <img src="https://i.imgur.com/ZZnypaj.jpeg" alt="Desti Puspita" class="relative z-10 w-28 h-28 md:w-36 md:h-36 object-cover rounded-full border-4 border-white shadow-2xl transition-transform hover:scale-105" />
+                <div class="absolute -inset-4 bg-gradient-to-tr from-pink-200/50 to-blue-200/30 rounded-full blur-2xl opacity-30"></div>
+                <img src="https://i.imgur.com/ZZnypaj.jpeg" alt="Desti Puspita" class="relative z-10 w-32 h-32 md:w-40 md:h-40 object-cover rounded-full border-4 border-white shadow-2xl transition-transform hover:scale-105" />
             </div>
 
             <div class="space-y-4">
                 <h1 class="desti-name-center uppercase w-full">DESTI PUSPITA</h1>
-                <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] md:tracking-[0.4em] text-slate-500 pt-1 flex items-center justify-center gap-2">
-                    <span class="hidden md:inline w-4 h-[1px] bg-blue-300"></span> Japanese Speaker • Creative • Professional Care <span class="hidden md:inline w-4 h-[1px] bg-purple-300"></span>
+                <p class="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.4em] text-slate-500 pt-1">
+                    Japanese Speaker • Creative • Professional Care
                 </p>
             </div>
         </div>
 
-        <!-- Tentang Aku Box (Responsif Padding & Rounded) -->
-        <div class="w-full max-w-2xl mx-auto mt-12 md:mt-16 reveal active" style="transition-delay: 0.2s">
+        <!-- Tentang Aku Box -->
+        <div class="w-full max-w-2xl mx-auto mt-16 reveal active" style="transition-delay: 0.2s">
             <div id="about-box" class="p-8 md:p-12 relative overflow-hidden group rounded-[2.5rem] md:rounded-[3.5rem] cursor-pointer border-2 shadow-2xl transition-all duration-700 timbul-interaktif">
                 <div class="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-pink-100/30 rounded-bl-full -z-10 group-hover:scale-150 transition-transform duration-1000"></div>
-                <h3 class="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-pink-700 mb-6 md:mb-8 flex items-center justify-center gap-3 md:gap-4">
-                    <span class="w-8 md:w-12 h-[2px] bg-pink-400"></span> Tentang Aku <span class="w-8 md:w-12 h-[2px] bg-pink-400"></span>
+                <h3 class="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-pink-700 mb-8 flex items-center justify-center gap-4">
+                    <span class="w-10 md:w-12 h-[2px] bg-pink-400"></span> Tentang Aku <span class="w-10 md:w-12 h-[2px] bg-pink-400"></span>
                 </h3>
-                <div class="space-y-4 md:space-y-6 text-[13px] md:text-[15px] leading-relaxed text-slate-700 font-medium text-center">
+                <div class="space-y-6 text-[14px] md:text-[15px] leading-relaxed text-slate-700 font-medium text-center">
                     <p>Halo kenalin, Namaku <strong>Desti Puspita</strong>.</p>
                     <p>Aku seorang yang sangat menyukai hal baru, dan memiliki ambisi untuk mencapai target-targetku. Contohnya aku bisa mendapatkan <strong>JLPT N3 hanya kurun waktu 1 tahun</strong>, aku juga memiliki pencapaian yang ku dapetkan ketika aku berada di SMK.</p>
-                    <p class="text-pink-800/40 text-[9px] md:text-[10px] font-black uppercase tracking-widest pt-2 md:pt-4 italic">"Ini adalah tentang aku, tentang perjalanan."</p>
+                    <p class="text-pink-800/40 text-[10px] font-black uppercase tracking-widest pt-4 italic">"Ini adalah tentang aku, tentang perjalanan."</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pencapaian Section (Responsif Grid) -->
+    <!-- Pencapaian Section -->
     <section id="capaian" class="py-24 md:py-40 px-6">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16 md:mb-28 reveal">
-                <h3 class="text-xl md:text-2xl font-black uppercase tracking-widest text-red-900/80">Pencapaian</h3>
+                <h3 class="text-2xl font-black uppercase tracking-widest text-red-900/80">Pencapaian</h3>
                 <div class="w-16 h-[3px] bg-gradient-to-r from-pink-400 via-red-400 to-blue-400 mx-auto mt-4 rounded-full shadow-sm"></div>
             </div>
 
-            <!-- Grid 1 kolom di HP, 3 kolom di Desktop -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 mb-20 md:mb-32">
                 <!-- Achievement Card 1 -->
-                <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.2rem] md:rounded-[2.8rem] border-2 border-white shadow-xl group bg-pink-50 hover:ring-pink-400">
+                <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.5rem] border-2 border-white shadow-xl group bg-pink-50">
                     <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/HwQXNA8.jpeg')"></div>
                     <div class="relative z-10">
                         <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 1 J-Challenge</h4>
@@ -248,8 +244,8 @@
                         <p class="text-[11px] text-slate-600 leading-relaxed italic">"Beasiswa sinau menyang Jepang."</p>
                     </div>
                 </div>
-                <!-- Achievement Card 2 -->
-                <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.2rem] md:rounded-[2.8rem] border-2 border-white shadow-xl group bg-blue-50 hover:ring-blue-400" style="transition-delay: 0.1s">
+                <!-- ACHIEVEMENT CARD 2 -->
+                <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.5rem] border-2 border-white shadow-xl group bg-blue-50" style="transition-delay: 0.1s">
                     <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/iZ9jDEZ.jpeg')"></div>
                     <div class="relative z-10">
                         <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 3 Nihongo Shiken</h4>
@@ -257,8 +253,8 @@
                         <p class="text-[11px] text-slate-600 leading-relaxed italic">"Uji kemahiran tingkat nasional (UI)."</p>
                     </div>
                 </div>
-                <!-- Achievement Card 3 -->
-                <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.2rem] md:rounded-[2.8rem] border-2 border-white shadow-xl group bg-red-50 hover:ring-red-500" style="transition-delay: 0.2s">
+                <!-- ACHIEVEMENT CARD 3 -->
+                <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.5rem] border-2 border-white shadow-xl group bg-red-50" style="transition-delay: 0.2s">
                     <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/Dl3ucVd.png')"></div>
                     <div class="relative z-10">
                         <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 3 Lomba Rodoku</h4>
@@ -266,119 +262,78 @@
                         <p class="text-[11px] text-slate-600 leading-relaxed italic">"Seni intonasi lan pelafalan Basa Jepang."</p>
                     </div>
                 </div>
-                <!-- Achievement Card 4 -->
-                <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.2rem] md:rounded-[2.8rem] border-2 border-white shadow-xl group bg-green-50 hover:ring-green-400" style="transition-delay: 0.3s">
-                    <div class="relative z-10">
-                        <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 3 Speech</h4>
-                        <p class="text-[9px] font-black mb-4 md:mb-6 uppercase tracking-widest text-slate-500">Grand Pertiwi Int.</p>
-                        <p class="text-[11px] text-slate-600 leading-relaxed italic">"Pidato Bahasa Jepang Internasional."</p>
-                    </div>
-                </div>
-                <!-- Achievement Card 5 -->
-                <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.2rem] md:rounded-[2.8rem] border-2 border-white shadow-xl group bg-purple-50 hover:ring-purple-400" style="transition-delay: 0.4s">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/4vda2dQ.png')"></div>
-                    <div class="relative z-10">
-                        <h4 class="font-extrabold text-sm text-slate-800 mb-2">Juara 5 Global Japanese</h4>
-                        <p class="text-[9px] font-black mb-4 md:mb-6 uppercase tracking-widest text-slate-500">LifeArk</p>
-                        <p class="text-[11px] text-slate-600 leading-relaxed italic">"Kemahiran praktis tingkat global."</p>
-                    </div>
-                </div>
-                <!-- Achievement Card 6 -->
-                <div class="reveal timbul-interaktif relative overflow-hidden p-8 md:p-10 rounded-[2.2rem] md:rounded-[2.8rem] border-2 border-white shadow-xl group bg-orange-50 hover:ring-orange-400" style="transition-delay: 0.5s">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-[0.08] group-hover:opacity-40 transition-all duration-1000 group-hover:scale-110" style="background-image: url('https://i.imgur.com/Tv9nqiC.png')"></div>
-                    <div class="relative z-10">
-                        <h4 class="font-extrabold text-sm text-slate-800 mb-2">Winner Daily Contest</h4>
-                        <p class="text-[9px] font-black mb-4 md:mb-6 uppercase tracking-widest text-slate-500">LifeArk</p>
-                        <p class="text-[11px] text-slate-600 leading-relaxed italic">"Konsistensi penguasaan basa saben dina."</p>
-                    </div>
-                </div>
             </div>
 
-            <!-- Skills Grid (Responsif Columns) -->
+            <!-- Skills Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
-                <!-- Bahasa -->
-                <div class="timbul-interaktif p-8 md:p-10 reveal rounded-[2.5rem] md:rounded-[3.5rem] bg-blue-50/50 border-2 hover:border-red-600 hover:ring-8 hover:ring-blue-100">
-                    <div class="flex items-center gap-4 mb-10 border-b border-red-100 pb-5">
-                        <div class="p-3 bg-red-800 text-white rounded-2xl shadow-lg shadow-red-100"><i data-lucide="languages" class="w-5 h-5 md:w-6 md:h-6"></i></div>
-                        <h4 class="text-[11px] md:text-[13px] font-black uppercase text-red-900 tracking-widest">Kompetensi Bahasa</h4>
+                <div class="timbul-interaktif p-8 md:p-10 reveal rounded-[2.5rem] md:rounded-[3.5rem] bg-blue-50/50 border-2 border-blue-100">
+                    <div class="flex items-center gap-4 mb-10 border-b border-blue-200 pb-5">
+                        <div class="p-3 bg-blue-600 text-white rounded-2xl shadow-lg"><i data-lucide="languages" class="w-6 h-6"></i></div>
+                        <h4 class="text-[13px] font-black uppercase text-blue-900 tracking-widest">Kompetensi Bahasa</h4>
                     </div>
                     <div class="space-y-10">
                         <div class="space-y-3">
                             <div class="flex justify-between items-end">
-                                <span class="text-[13px] md:text-[15px] font-bold text-slate-700">Jepang (N3)</span>
-                                <span class="text-[9px] md:text-[10px] font-black text-red-800 uppercase tracking-widest">Advanced</span>
+                                <span class="text-[15px] font-bold text-slate-700">Jepang (N3)</span>
+                                <span class="text-[10px] font-black text-blue-800 uppercase tracking-widest">Advanced</span>
                             </div>
-                            <div class="bar-container"><div class="bar-fill bg-gradient-to-r from-blue-500 to-red-800" style="width: 85%;"></div></div>
+                            <div class="bar-container"><div class="bar-fill bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)]" style="width: 85%;"></div></div>
                         </div>
                         <div class="space-y-3">
                             <div class="flex justify-between items-end">
-                                <span class="text-[13px] md:text-[15px] font-bold text-slate-700">Indonesia (Native)</span>
-                                <span class="text-[9px] md:text-[10px] font-black text-blue-700 uppercase tracking-widest">Native</span>
+                                <span class="text-[15px] font-bold text-slate-700">Indonesia (Native)</span>
+                                <span class="text-[10px] font-black text-blue-700 uppercase tracking-widest">Native</span>
                             </div>
-                            <div class="bar-container"><div class="bar-fill bg-gradient-to-r from-red-400 to-blue-700" style="width: 100%;"></div></div>
+                            <div class="bar-container"><div class="bar-fill bg-blue-400" style="width: 100%;"></div></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Soft Skills -->
-                <div class="timbul-interaktif p-8 md:p-10 reveal rounded-[2.5rem] md:rounded-[3.5rem] bg-purple-50/50 border-2 hover:border-pink-500 hover:ring-8 hover:ring-purple-100" style="transition-delay: 0.1s">
+                <div class="timbul-interaktif p-8 md:p-10 reveal rounded-[2.5rem] md:rounded-[3.5rem] bg-purple-50/50 border-2 border-purple-100">
                     <div class="flex items-center gap-4 mb-10 border-b border-purple-200 pb-5">
-                        <div class="p-3 bg-purple-700 text-white rounded-2xl shadow-lg"><i data-lucide="zap" class="w-5 h-5 md:w-6 md:h-6"></i></div>
-                        <h4 class="text-[11px] md:text-[13px] font-black uppercase text-purple-900 tracking-widest">Soft Skills Profesional</h4>
+                        <div class="p-3 bg-purple-700 text-white rounded-2xl shadow-lg"><i data-lucide="zap" class="w-6 h-6"></i></div>
+                        <h4 class="text-[13px] font-black uppercase text-purple-900 tracking-widest">Soft Skills</h4>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="p-4 md:p-5 bg-white border-2 border-transparent hover:border-pink-400 hover:bg-pink-50 rounded-2xl md:rounded-3xl shadow-sm transition-all group text-center active:scale-95">
-                            <span class="text-[9px] md:text-[10px] font-black text-slate-600 group-hover:text-pink-700 transition-colors uppercase tracking-tight">Public Speaking</span>
-                        </div>
-                        <div class="p-4 md:p-5 bg-white border-2 border-transparent hover:border-pink-400 hover:bg-pink-50 rounded-2xl md:rounded-3xl shadow-sm transition-all group text-center active:scale-95">
-                            <span class="text-[9px] md:text-[10px] font-black text-slate-600 group-hover:text-pink-700 transition-colors uppercase tracking-tight">Critical Thinking</span>
-                        </div>
-                        <div class="p-4 md:p-5 bg-white border-2 border-transparent hover:border-pink-400 hover:bg-pink-50 rounded-2xl md:rounded-3xl shadow-sm transition-all group text-center active:scale-95">
-                            <span class="text-[9px] md:text-[10px] font-black text-slate-600 group-hover:text-pink-700 transition-colors uppercase tracking-tight">Mentoring</span>
-                        </div>
-                        <div class="p-4 md:p-5 bg-white border-2 border-transparent hover:border-pink-400 hover:bg-pink-50 rounded-2xl md:rounded-3xl shadow-sm transition-all group text-center active:scale-95">
-                            <span class="text-[9px] md:text-[10px] font-black text-slate-600 group-hover:text-pink-700 transition-colors uppercase tracking-tight">Adaptasi Cepat</span>
-                        </div>
+                        <div class="p-4 bg-white rounded-2xl text-center text-[10px] font-bold uppercase tracking-tight text-slate-600 shadow-sm border border-purple-50">Public Speaking</div>
+                        <div class="p-4 bg-white rounded-2xl text-center text-[10px] font-bold uppercase tracking-tight text-slate-600 shadow-sm border border-purple-50">Critical Thinking</div>
+                        <div class="p-4 bg-white rounded-2xl text-center text-[10px] font-bold uppercase tracking-tight text-slate-600 shadow-sm border border-purple-50">Mentoring</div>
+                        <div class="p-4 bg-white rounded-2xl text-center text-[10px] font-bold uppercase tracking-tight text-slate-600 shadow-sm border border-purple-50">Adaptasi Cepat</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Certificate Section (Responsif Width) -->
+    <!-- Certificate Section -->
     <section id="sertifikat" class="py-16 md:py-20 px-6">
         <div class="max-w-3xl mx-auto text-center mb-10 md:mb-12 reveal">
-            <h3 class="text-xl md:text-2xl font-black uppercase tracking-widest text-blue-900/80">Certificate</h3>
+            <h3 class="text-2xl font-black uppercase tracking-widest text-blue-900/80">Certificate</h3>
             <div class="w-14 h-[2px] bg-blue-400 mx-auto mt-3 rounded-full shadow-sm"></div>
         </div>
-        <div class="flex justify-center reveal px-2 md:px-0">
-            <div class="w-full max-w-sm md:max-w-lg overflow-hidden rounded-[2rem] md:rounded-[2.5rem] shadow-2xl border-4 border-white hover:scale-[1.02] transition-all duration-1000 bg-white ring-4 ring-blue-50 group timbul-interaktif">
+        <div class="flex justify-center reveal">
+            <div class="w-full max-w-sm md:max-w-lg overflow-hidden rounded-[2.5rem] shadow-2xl border-4 border-white hover:scale-[1.02] transition-all duration-1000 bg-white ring-4 ring-blue-50/30 group timbul-interaktif">
                 <img src="https://i.imgur.com/yuCaZtp.jpeg" alt="Sertifikat Desti" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-[2000ms]" />
             </div>
         </div>
     </section>
 
-    <!-- Dokumentasi Section (Responsif Layout) -->
+    <!-- Dokumentasi Section -->
     <section id="dokumentasi" class="py-24 md:py-40 px-4 md:px-6">
         <div class="max-w-6xl mx-auto text-center mb-16 md:mb-24 reveal">
-            <div class="glass-pink-nav inline-block px-8 md:px-12 py-3 md:py-4 rounded-full mb-6 ring-4 ring-pink-50">
+            <div class="glass-pink-nav inline-block px-8 md:px-12 py-3 md:py-4 rounded-full mb-6 border-pink-100">
                 <h3 class="text-lg md:text-2xl font-black uppercase tracking-[0.4em] text-pink-900">My Portofolio</h3>
             </div>
-            <p class="text-[10px] md:text-[11px] text-slate-400 font-bold uppercase tracking-[0.3em] mt-2 md:mt-4">Karya Kreatif & Catetan Momen</p>
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.3em] mt-2">Karya Kreatif & Catetan Momen</p>
         </div>
 
         <div class="max-w-7xl mx-auto">
-            <div class="mb-20 md:mb-32 reveal">
-                <!-- Flex Wrap agar pas di HP -->
-                <div class="flex flex-wrap justify-center gap-8 md:gap-14">
-                    <!-- Portofolio Pilihan 1 -->
-                    <div class="w-64 md:w-72 h-80 overflow-hidden rounded-[3rem] md:rounded-[4rem] shadow-2xl border-8 border-white hover:scale-105 transition-all duration-1000 bg-pink-100 ring-8 ring-pink-50 group timbul-interaktif">
-                        <img src="https://i.imgur.com/6m2penP.jpeg" alt="Portrait 1" class="w-full h-full object-cover object-center scale-[1.75] group-hover:scale-[1.9] transition-transform duration-[2000ms]" />
-                    </div>
-                    <!-- Portofolio Pilihan 2 -->
-                    <div class="w-64 md:w-72 h-80 overflow-hidden rounded-[3rem] md:rounded-[4rem] shadow-2xl border-8 border-white hover:scale-105 transition-all duration-1000 bg-blue-100 ring-8 ring-blue-200/50 group timbul-interaktif">
-                        <img src="https://i.imgur.com/tPVHLLA.png" alt="Portrait 2" class="w-full h-full object-cover object-center scale-[1.1] group-hover:scale-[1.25] transition-transform duration-[2000ms]" />
-                    </div>
+            <div class="mb-20 md:mb-32 reveal flex flex-wrap justify-center gap-8 md:gap-14">
+                <div class="w-64 md:w-72 h-80 overflow-hidden rounded-[3rem] md:rounded-[4rem] shadow-2xl border-8 border-white hover:scale-105 transition-all duration-1000 bg-pink-100 ring-8 ring-pink-50 group timbul-interaktif">
+                    <img src="https://i.imgur.com/6m2penP.jpeg" alt="Portrait 1" class="w-full h-full object-cover object-center scale-[1.75] group-hover:scale-[1.9] transition-transform duration-[2000ms]" />
+                </div>
+                <div class="w-64 md:w-72 h-80 overflow-hidden rounded-[3rem] md:rounded-[4rem] shadow-2xl border-8 border-white hover:scale-105 transition-all duration-1000 bg-blue-100 ring-8 ring-blue-200/50 group timbul-interaktif">
+                    <img src="https://i.imgur.com/tPVHLLA.png" alt="Portrait 2" class="w-full h-full object-cover object-center scale-[1.1] group-hover:scale-[1.25] transition-transform duration-[2000ms]" />
                 </div>
             </div>
 
@@ -386,44 +341,71 @@
             <div class="py-10 md:py-20 reveal mb-20 md:mb-32 overflow-hidden">
                 <h4 class="text-[10px] font-black text-blue-900/30 mb-12 uppercase tracking-[0.6em] text-center">Momen Foto Bergulir</h4>
                 <div class="marquee-container">
-                    <div class="marquee-track" id="marquee-track">
-                        <!-- Foto-foto disuntikkan lewat JS -->
-                    </div>
+                    <div class="marquee-track" id="marquee-track"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mini Game Section (Responsif Area Bermain) -->
+    <!-- Mini Game Section (Smooth Physics & Anime Chibi) -->
     <section class="pb-32 px-4 md:px-6 reveal -mt-10 md:-mt-16">
-        <div id="game-box" class="max-w-5xl mx-auto game-container-static p-8 md:p-16 rounded-[3.5rem] md:rounded-[5rem] text-center relative shadow-2xl transition-all duration-500 active:ring-8 active:ring-pink-50 border-2 border-pink-100">
+        <div id="game-box" class="max-w-5xl mx-auto game-container-static p-8 md:p-16 rounded-[3.5rem] md:rounded-[5rem] text-center relative shadow-2xl border-2 border-pink-100">
             <div class="absolute -top-5 left-1/2 -translate-x-1/2 px-8 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-black rounded-full text-[9px] md:text-[11px] uppercase tracking-widest shadow-xl shadow-pink-200">Mini Game</div>
             <p class="text-[10px] md:text-[12px] text-slate-500 mb-8 tracking-widest uppercase font-black opacity-60">Mlumpat rintangan supaya tekan impian!</p>
             
-            <div class="relative w-full h-40 md:h-56 bg-pink-50/40 rounded-[2.5rem] md:rounded-[4rem] overflow-hidden border-2 border-pink-100 cursor-pointer shadow-inner" id="game-stage">
-                <div class="absolute bottom-6 md:bottom-8 left-10 md:left-24 text-4xl md:text-6xl" id="player">🐱</div>
-                <div class="absolute bottom-6 md:bottom-8 text-3xl md:text-5xl" id="obstacle" style="right: -10%;">🌵</div>
-                <div class="absolute bottom-0 w-full h-2 md:h-3 bg-gradient-to-r from-pink-300 via-blue-200 to-green-200 opacity-70"></div>
+            <div class="relative w-full h-56 md:h-72 bg-sky-50 rounded-[3rem] md:rounded-[4rem] overflow-hidden border-2 border-pink-100 cursor-pointer shadow-inner" id="game-stage">
+                <!-- Clouds -->
+                <div class="cloud text-4xl" style="top: 10%; animation-duration: 20s;">☁️</div>
+                <div class="cloud text-4xl" style="top: 25%; animation-duration: 25s; animation-delay: 5s;">☁️</div>
+                
+                <!-- Anime Chibi Character (SVG) -->
+                <div id="player" class="chibi-character">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <!-- Hair -->
+                        <path d="M20,50 Q20,20 50,20 Q80,20 80,50" fill="#4B2C20" />
+                        <path d="M15,55 Q5,40 25,30 Q50,20 75,30 Q95,40 85,55" fill="#5D4037" />
+                        <!-- Face -->
+                        <circle cx="50" cy="55" r="30" fill="#FFE0B2" />
+                        <!-- Eyes -->
+                        <circle cx="40" cy="55" r="4" fill="#333" />
+                        <circle cx="60" cy="55" r="4" fill="#333" />
+                        <circle cx="41" cy="54" r="1.5" fill="white" />
+                        <circle cx="61" cy="54" r="1.5" fill="white" />
+                        <!-- Blush -->
+                        <circle cx="35" cy="62" r="3" fill="#F06292" opacity="0.4" />
+                        <circle cx="65" cy="62" r="3" fill="#F06292" opacity="0.4" />
+                        <!-- Mouth -->
+                        <path d="M47,65 Q50,68 53,65" fill="none" stroke="#333" stroke-width="1.5" stroke-linecap="round" />
+                        <!-- Kimono/Body -->
+                        <path d="M30,85 L70,85 L65,75 Q50,70 35,75 Z" fill="#F48FB1" />
+                        <path d="M50,75 L50,85" stroke="white" stroke-width="2" />
+                        <!-- Ribbon -->
+                        <path d="M70,25 Q85,20 80,40 Q70,45 70,25 Z" fill="#E91E63" />
+                    </svg>
+                </div>
+
+                <div class="absolute bottom-8 text-3xl md:text-5xl" id="obstacle" style="right: -10%;">🌵</div>
+                <div class="absolute bottom-0 w-full h-2 md:h-3 bg-gradient-to-r from-green-300 via-emerald-200 to-green-300 opacity-70"></div>
             </div>
 
-            <div class="mt-8 flex flex-col md:flex-row justify-between items-center px-4 md:px-16 gap-4">
-                <span class="text-[14px] md:text-[16px] font-black text-pink-600 uppercase tracking-widest bg-white px-6 py-2 rounded-2xl shadow-sm border border-pink-50">Skor: <span id="score">0</span></span>
-                <button id="restart-btn" class="hidden px-10 md:px-14 py-3 md:py-4 bg-red-600 text-white rounded-[2rem] text-[10px] md:text-[12px] font-black uppercase hover:bg-red-700 hover:scale-105 transition-all shadow-2xl active:scale-90">Restart</button>
+            <div class="mt-8 flex flex-col md:flex-row justify-between items-center px-4 md:px-16 gap-6">
+                <span class="text-[16px] font-black text-pink-600 uppercase tracking-widest bg-white px-8 py-3 rounded-2xl shadow-sm border border-pink-50">Skor: <span id="score">0</span></span>
+                <button id="restart-btn" class="hidden px-14 py-4 bg-red-600 text-white rounded-[2rem] text-[12px] font-black uppercase hover:bg-red-700 hover:scale-105 transition-all shadow-xl">Restart</button>
             </div>
         </div>
     </section>
 
-    <!-- Footer (Responsif Spacing) -->
+    <!-- Footer -->
     <footer class="py-24 md:py-32 px-6 text-center border-t border-pink-100 bg-white/40 backdrop-blur-xl">
-        <div class="reveal space-y-12 md:space-y-16">
+        <div class="reveal space-y-12">
             <div class="flex justify-center gap-10 md:gap-16">
-                <a href="https://wa.me/6289506878654" target="_blank" class="text-slate-400 hover:text-green-500 transition-all transform hover:scale-150"><i data-lucide="phone" class="w-6 h-6 md:w-7 md:h-7"></i></a>
-                <a href="mailto:destipuspita.official@gmail.com" class="text-slate-400 hover:text-red-700 transition-all transform hover:scale-150"><i data-lucide="mail" class="w-6 h-6 md:w-7 md:h-7"></i></a>
-                <a href="#" class="text-slate-400 hover:text-pink-500 transition-all transform hover:scale-150"><i data-lucide="instagram" class="w-6 h-6 md:w-7 md:h-7"></i></a>
-                <a href="#" class="text-slate-400 hover:text-blue-900 transition-all transform hover:scale-150"><i data-lucide="linkedin" class="w-6 h-6 md:w-7 md:h-7"></i></a>
+                <a href="https://wa.me/6289506878654" target="_blank" class="text-slate-400 hover:text-green-500 transition-all transform hover:scale-150"><i data-lucide="phone" class="w-6 h-6 md:w-8 md:h-8"></i></a>
+                <a href="mailto:destipuspita.official@gmail.com" class="text-slate-400 hover:text-red-700 transition-all transform hover:scale-150"><i data-lucide="mail" class="w-6 h-6 md:w-8 md:h-8"></i></a>
+                <a href="#" class="text-slate-400 hover:text-pink-500 transition-all transform hover:scale-150"><i data-lucide="instagram" class="w-6 h-6 md:w-8 md:h-8"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-900 transition-all transform hover:scale-150"><i data-lucide="linkedin" class="w-6 h-6 md:w-8 md:h-8"></i></a>
             </div>
-            <div class="space-y-3 md:space-y-4">
-                <p class="text-[10px] md:text-[11px] font-black text-slate-500 uppercase tracking-[0.8em] md:tracking-[1.2em] leading-relaxed">
+            <div class="space-y-4">
+                <p class="text-[10px] md:text-[11px] font-black text-slate-500 uppercase tracking-[1em] leading-relaxed">
                     Tujuan Bermakna • Desti Puspita
                 </p>
                 <p class="text-[8px] font-bold text-slate-300 uppercase tracking-[0.5em]">© 2026 • Professional Portfolio</p>
@@ -435,17 +417,25 @@
         // Init Lucide
         lucide.createIcons();
 
-        // Reveal Animation Observer
+        // Menu Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuClose = document.getElementById('menu-close');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuToggle.onclick = () => mobileMenu.classList.add('open');
+        menuClose.onclick = () => { mobileMenu.classList.remove('open'); };
+        mobileLinks.forEach(link => {
+            link.onclick = () => mobileMenu.classList.remove('open');
+        });
+
+        // Reveal Animation
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Marquee Logic (Responsive size)
+        // Marquee Logic
         const track = document.getElementById('marquee-track');
         const images = [
             "https://i.imgur.com/sLl3KOL.jpeg", "https://i.imgur.com/QpmT1DF.jpeg",
@@ -454,8 +444,7 @@
         ];
         [...images, ...images].forEach(src => {
             const div = document.createElement('div');
-            // Responsive width/height for marquee items
-            div.className = "w-36 h-36 md:w-52 md:h-52 mx-4 md:mx-8 overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] border-4 border-white shadow-2xl flex-shrink-0 hover:scale-110 hover:ring-4 md:hover:ring-8 hover:ring-pink-300 transition-all duration-700 bg-white";
+            div.className = "w-40 h-40 md:w-56 md:h-52 mx-4 md:mx-8 overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] border-4 border-white shadow-xl flex-shrink-0 bg-white";
             const img = document.createElement('img');
             img.src = src;
             img.className = "w-full h-full object-cover";
@@ -463,91 +452,65 @@
             track.appendChild(div);
         });
 
-        // Interactive states for About Box
-        const aboutBox = document.getElementById('about-box');
-        aboutBox.addEventListener('mousedown', () => aboutBox.classList.add('bg-pink-100', 'border-pink-400', 'ring-8', 'ring-pink-50', 'scale-95'));
-        ['mouseup', 'mouseleave'].forEach(e => 
-            aboutBox.addEventListener(e, () => aboutBox.classList.remove('bg-pink-100', 'border-pink-400', 'ring-8', 'ring-pink-50', 'scale-95'))
-        );
-
-        // Game Logic (Responsive Collision)
-        let score = 0;
-        let isJumping = false;
-        let isGameOver = false;
-        let obstaclePos = 110;
+        // Game Physics & Logic
         const player = document.getElementById('player');
         const obstacle = document.getElementById('obstacle');
         const scoreEl = document.getElementById('score');
         const restartBtn = document.getElementById('restart-btn');
         const stage = document.getElementById('game-stage');
 
+        let score = 0;
+        let isGameOver = false;
+        let obstaclePos = 110;
+        let playerY = 0;
+        let velocityY = 0;
+        const gravity = 0.55;
+        const jumpPower = -12.5;
+        const groundY = 0;
+
         function jump() {
-            if (isGameOver) {
-                resetGame();
-                return;
-            }
-            if (!isJumping) {
-                isJumping = true;
-                player.classList.add('jumping');
-                setTimeout(() => {
-                    player.classList.remove('jumping');
-                    isJumping = false;
-                }, 600);
-            }
+            if (isGameOver) { resetGame(); return; }
+            if (playerY === groundY) { velocityY = jumpPower; }
         }
 
         function resetGame() {
-            score = 0;
-            obstaclePos = 110;
-            isGameOver = false;
-            isJumping = false;
-            scoreEl.innerText = "0";
-            restartBtn.classList.add('hidden');
-            player.innerText = '🐱';
+            score = 0; obstaclePos = 110; isGameOver = false; playerY = groundY; velocityY = 0;
+            scoreEl.innerText = "0"; restartBtn.classList.add('hidden');
+            player.style.opacity = "1";
             gameLoop();
         }
 
         function gameLoop() {
             if (isGameOver) return;
 
-            // Speed scales slightly on desktop for better feel
-            const speed = window.innerWidth > 768 ? 0.9 : 0.75;
+            // Obstacle Movement
+            const speed = window.innerWidth > 768 ? 0.95 : 0.85;
             obstaclePos -= speed; 
-            
-            if (obstaclePos < -15) {
-                obstaclePos = 115;
-                score++;
-                scoreEl.innerText = score;
-            }
-
+            if (obstaclePos < -15) { obstaclePos = 115; score++; scoreEl.innerText = score; }
             obstacle.style.right = (100 - obstaclePos) + '%';
 
-            // Simple collision check
-            const hitZoneStart = window.innerWidth > 768 ? 15 : 10;
-            const hitZoneEnd = window.innerWidth > 768 ? 35 : 25;
+            // Physics
+            velocityY += gravity;
+            playerY += velocityY;
+            if (playerY > groundY) { playerY = groundY; velocityY = 0; }
+            player.style.transform = `translateY(${playerY}px)`;
+
+            // Collision Check
+            const pRect = player.getBoundingClientRect();
+            const oRect = obstacle.getBoundingClientRect();
             
-            if (obstaclePos > hitZoneStart && obstaclePos < hitZoneEnd && !isJumping) {
+            if (pRect.right > oRect.left + 15 && pRect.left < oRect.right - 15 && pRect.bottom > oRect.top + 10) {
                 isGameOver = true;
-                player.innerText = '😵';
+                player.style.opacity = "0.5";
                 restartBtn.classList.remove('hidden');
             }
 
             requestAnimationFrame(gameLoop);
         }
 
-        stage.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            jump();
-        });
-        stage.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            jump();
-        });
-
-        restartBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            resetGame();
-        });
+        stage.addEventListener('mousedown', (e) => { e.preventDefault(); jump(); });
+        stage.addEventListener('touchstart', (e) => { e.preventDefault(); jump(); });
+        restartBtn.addEventListener('click', (e) => { e.stopPropagation(); resetGame(); });
 
         gameLoop();
     </script>
